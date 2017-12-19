@@ -46,7 +46,7 @@ public class regenController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private Management ms_Instance;
+	private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
     private Camera m_MainCamera;
 
     //members
@@ -67,7 +67,7 @@ public class regenController : MonoBehaviour
     {
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
 		this.ms_Instance = Management.Instance;
-        ms_Instance.Regen = this;
+        ms_Instance.Regen = this; //Speichert sich selbst im Manager
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;
 
@@ -143,7 +143,6 @@ public class regenController : MonoBehaviour
             {
                 HideGameObject();
             }
-
             this.m_IsVisible = false;
         }
     }
@@ -184,20 +183,20 @@ public class regenController : MonoBehaviour
             }
         }
     }
-    
-  
+
+
+    //Methode mit Countdown, sorgt dafür, dass das Regen-Fiducial mindestens 4 Sekunden in die Kamera gehalten werden muss
     public IEnumerator StartCountdownToGrow(float countdownValue = 4)
     {
         currCountdownValue = countdownValue;
         while (currCountdownValue > 0)
         {
-            Debug.Log("Countdown: " + currCountdownValue);
             yield return new WaitForSeconds(1.0f);
             currCountdownValue--;
             ms_Instance.setRainDuration(currCountdownValue);
             if (currCountdownValue == 0)
             {
-                ms_Instance.setRainReady(true);
+                ms_Instance.setRainReady(true);  //Es hat genug geregnet
             }
         }
         

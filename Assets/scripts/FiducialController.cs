@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+//wird nicht genutzt! Dient als Kopiervorlage
 public class FiducialController : MonoBehaviour
 {
     public int MarkerID = 0;

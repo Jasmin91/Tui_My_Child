@@ -25,6 +25,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>  
+///  Diese Klasse steuert die  Funktion der Sonne
+/// </summary> 
 
 public class sonneController : MonoBehaviour
 {
@@ -32,6 +35,7 @@ public class sonneController : MonoBehaviour
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     public float sunDuration = 0;
+    public float countdownDuration = 5; //Dauer, die die Sonne scheint
     //translation
     public bool IsPositionMapped = false;
     public bool InvertX = false;
@@ -46,7 +50,7 @@ public class sonneController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private Management ms_Instance;
+	private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
     private Camera m_MainCamera;
 
     //members
@@ -67,7 +71,7 @@ public class sonneController : MonoBehaviour
     {
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
 		this.ms_Instance = Management.Instance;
-        ms_Instance.Sonne = this;
+        ms_Instance.Sonne = this; //Speichert sich selbst im Management
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;
 
@@ -264,17 +268,17 @@ public class sonneController : MonoBehaviour
         }
     }
 
+    //Methode mit Zähler, sorgt dafür, dass das Sonnen-Fiducial mindestens countdownDuration Sekunden in die Kamera gehalten werden muss
     public IEnumerator StartCountdownToRed(float countdownValue = 0)
     {
         sunDuration = countdownValue;
-        while (sunDuration < 5)
+        while (sunDuration < countdownDuration)
         {
-            Debug.Log("Countdown: " + sunDuration);
             yield return new WaitForSeconds(1.0f);
             sunDuration++;
             if (sunDuration == 5)
             {
-                ms_Instance.setSunReady(true);
+                ms_Instance.setSunReady(true); //Sonne hat genug geschienen
             }
         }
 

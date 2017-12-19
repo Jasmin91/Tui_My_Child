@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class gruneApfelScript : MonoBehaviour
 {
-    private Management ms_Instance;
-    private bool appleVisible = true;
-    private float appleNumber = 0;
+    private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
+    private bool appleVisible = true; //Boolsche Variable, ob Apfel angezeigt wird
+    private float appleNumber = 0; //Nummer des zu ladenden Apfel-Bildes (ändert sich je nach Reifegrad)
 
 
 
     void Start()
     {
-        // tuioManager = UniducialLibrary.TuioManager.Instance;
         this.ms_Instance = Management.Instance;
-        gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 1f);
-        Debug.Log("Initiale Apfel-größe:" + gameObject.transform.localScale.x);
+        gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 1f); //Verkleinert den Apfel ("unreif")
     }
 
     void Update()
@@ -24,73 +22,59 @@ public class gruneApfelScript : MonoBehaviour
         
         if (this.ms_Instance.Regen.IsVisible)
         {
-            Debug.Log("Apfel sieht Regen.");
-            this.GrowingApple();
+            this.GrowingApple(); //Lässt Apfel wachsen, wenn der Regen angezeigt wird
         }
 
         if (this.ms_Instance.Sonne.IsVisible)
         {
-            Debug.Log("Apfel sieht Sonne.");
-            this.RipingApple();
+            this.RipingApple(); //Lässt den Apfel reifen, wenn die Sonne angezeigt wird
         }
 
         if (this.ms_Instance.getHarvestingReady()&&appleVisible)
         {
-            this.HideApple();
+            this.HideApple(); //Lässt den Apfel verschwinden, wenn geerntet werden kann (und die roten Äpfel auftauchen)
         }
     }
 
+    //Zeigt den Apfel
     void ShowgApple()
     {
-
-
-        //if (gameObject.GetComponent<Renderer>() != null && !gameObject.GetComponent<Renderer>().enabled)
-        
-            gameObject.GetComponent<Renderer>().enabled = true;
+        gameObject.GetComponent<Renderer>().enabled = true;
         appleVisible = true;
-
-            
         
-
     }
 
+    //Verbirgt den Apfel
     void HideApple()
     {
-
-
-        //set 3d game object to visible, if it was hidden before
-        //if (gameObject.GetComponent<Renderer>() != null && gameObject.GetComponent<Renderer>().enabled)
-        {
-            gameObject.GetComponent<Renderer>().enabled = false;
-            appleVisible = false;
-            Debug.Log("Der Apfel verschwindet");
-        }
-
+        
+       gameObject.GetComponent<Renderer>().enabled = false;
+       appleVisible = false;
+        
     }
 
+    //Lässt den Apfel reifen
     void RipingApple()
     {
-        if (appleNumber+1 == ms_Instance.Sonne.sunDuration)
+        if (appleNumber+1 == ms_Instance.Sonne.sunDuration) //checkt, ob das nächste Bild auch wirklich einen Apfel zeigt, der reifer ist, als der vorhergehende
         {
             appleNumber = ms_Instance.Sonne.sunDuration;
         }
-        Debug.Log("Suche nach Apfel_" + appleNumber);
-        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("apfel_" + appleNumber, typeof(Sprite)) as Sprite;
+        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("apfel_" + appleNumber, typeof(Sprite)) as Sprite; //Setzt neues (reiferes) Bild
     }
+
+    //Lässt den Apfel wachsen
     void GrowingApple()
     {
         
-        float oldSize = gameObject.transform.localScale.x;
-        Debug.Log("oldSize:"+oldSize);
+        float oldSize = gameObject.transform.localScale.x; //Alte Größe des Apfels
 
         if (ms_Instance.getRainDuration() < 5 && ms_Instance.getRainDuration() > 0)
         {
-            float size = 0.1f + (0.1f - (0.02f * (ms_Instance.getRainDuration())));
-            Debug.Log("Formel: 0.1f + (0.1f - (0.02f * ("+ms_Instance.getRainDuration()+")))");
-            if (size > oldSize&&size<=0.2f)
+            float size = 0.1f + (0.1f - (0.02f * (ms_Instance.getRainDuration()))); //Berechnen der neuen Größe
+            if (size > oldSize&&size<=0.2f) //checkt, ob neue Größe wirklich größer, als die alte
             {
-                gameObject.transform.localScale = new Vector3(size, size, 1f);
-                Debug.Log("Der Apfel wächst." + size);
+                gameObject.transform.localScale = new Vector3(size, size, 1f); //Setzt die neue Größe/
             }
         }
     }

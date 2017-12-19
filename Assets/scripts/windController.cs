@@ -24,7 +24,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>  
+///  Diese Klasse steuert die  Funktion des Windes
+/// </summary> 
 public class windController : MonoBehaviour
 {
     public int MarkerID = 0;
@@ -47,7 +49,7 @@ public class windController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private Management ms_Instance;
+	private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
     private Camera m_MainCamera;
 
     //members
@@ -63,7 +65,7 @@ public class windController : MonoBehaviour
     private bool m_IsVisible;
 
     public float RotationMultiplier = 1;
-    private bool warWeg = true;
+    private bool warWeg = true; //Boolsche Variable, ob der Wind ausgeblendet war, bevor er gezeigt wurde
 
     void Awake()
     {
@@ -137,7 +139,6 @@ public class windController : MonoBehaviour
 
             //set game object to visible, if it was hidden before
             ShowGameObject();
-            Debug.Log("Windweht.");
             if (warWeg) {
                 ms_Instance.einApfelFaellt();
                 this.warWeg = false;
@@ -151,10 +152,7 @@ public class windController : MonoBehaviour
             if (this.AutoHideGO)
             {
                 HideGameObject();
-
-            }
-            Debug.Log("Windwehtnicht.");
-            
+            }            
             this.m_IsVisible = false;
             this.warWeg = true;
         }

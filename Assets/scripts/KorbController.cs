@@ -28,7 +28,7 @@ using UnityEngine;
 public class KorbController : MonoBehaviour
 {
     public int MarkerID = 0;
-    private int appleCounter = 0;
+    private int appleCounter = 0; //Zählt die gesammelten Äpfel
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 
     //translation
@@ -46,7 +46,7 @@ public class KorbController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private Management ms_Instance;
+	private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
     private Camera m_MainCamera;
 
     //members
@@ -115,7 +115,6 @@ public class KorbController : MonoBehaviour
         this.updateCounter();
 
 		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
-			//Debug.Log("FidcialController Zeile 110:this.m_TuioManager.IsMarkerAlive(this.MarkerID)");
 		}
 
 
@@ -144,13 +143,13 @@ public class KorbController : MonoBehaviour
    
     }
 
+    //Collider, der erkennt ob Apfel und Korb kollidieren
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "Apfel")
         {
-            Destroy(col.gameObject);
-            Debug.Log("collide!");
-            this.appleCounter++;
+            Destroy(col.gameObject); //Zerstören des gesammelten Apfel-Objekts
+            this.appleCounter++; //Zähler der gesammelten Äpfel wird erhöht
         }
     }
 
@@ -162,6 +161,7 @@ public class KorbController : MonoBehaviour
         }
     }
 
+    //Bewegung des Korbs, allerdings nur auf der x-Achse
     private void UpdateTransform()
     {
         //position mapping
@@ -171,7 +171,6 @@ public class KorbController : MonoBehaviour
             float xPos = this.m_ScreenPosition.x;
             float yPos = this.yAxe;
             if (this.InvertX) xPos = 1 - xPos;
-            //if (this.InvertY) yPos = 1 - yPos;
 
             if (this.m_ControlsGUIElement)
             {
@@ -217,6 +216,7 @@ public class KorbController : MonoBehaviour
         }
     }
 
+    //Ändert das Bild des Korbes, je nach Anzahl der gesammelten Äpfel
     public void updateCounter()
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("korb_"+appleCounter, typeof(Sprite)) as Sprite;

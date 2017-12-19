@@ -2,84 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Apfel fällt schon, wenn noch garnicht sichtbar!
+/// <summary>  
+///  Diese Klasse steuert die  Funktion eines (roten) Apfels
+/// </summary> 
 
 public class apfelScript : MonoBehaviour
 {
-    private Management ms_Instance;
-    private bool appleVisible = false;
-    public float fallingSpeed = 0.23f;
-    private bool fallen = false;
+    
+    private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
+    private bool appleVisible = false; //Boolscher Wert, ob der Apfel sichtbar ist
+    public float fallingSpeed = 0.23f; //Geschwindigkeit, mit der der Apfel fällt
+    private bool fallen = false; //Boolscher Wert, ob Apfel bereits gefallen ist
 
 
 
     void Start()
     {
-        // tuioManager = UniducialLibrary.TuioManager.Instance;
-        this.ms_Instance = Management.Instance;
-        this.ms_Instance.addApple(this);
-        this.HideApple();
+        this.ms_Instance = Management.Instance; 
+        this.ms_Instance.addApple(this); //Füge Apfel dem Apfel-Array im Manager hinzu
+        this.HideApple(); //Roter Apfel ist zu Beginn ausgeblendet
         
     }
 
     void Update()
     {
-        Debug.Log("Mal schauen, ob wir ernten können...");
-        if (this.ms_Instance.getHarvestingReady())
+        if (this.ms_Instance.getHarvestingReady()) //Testen, ob geerntet werden kann
         {
-            Debug.Log("Wir können ernten...");
-            this.ShowApple();
+            this.ShowApple(); //Apfel wird angezeigt
         }
         
     }
 
-    public void setFallen(bool fallen)
+    public void SetFallen(bool fallen)
     {
         this.fallen = fallen;
     }
 
-    public bool getFallen()
+    public bool GetFallen()
     {
         return this.fallen;
     }
 
     void ShowApple()
     {
-
-
-        //if (gameObject.GetComponent<Renderer>() != null && !gameObject.GetComponent<Renderer>().enabled)
-        
-            gameObject.GetComponent<Renderer>().enabled = true;
-        appleVisible = true;
-
-            
-        
-
+        gameObject.GetComponent<Renderer>().enabled = true; //Apfel-Objekt anzeigen
+        appleVisible = true; 
     }
 
     void HideApple()
     {
-
-
-        //set 3d game object to visible, if it was hidden before
-        //if (gameObject.GetComponent<Renderer>() != null && gameObject.GetComponent<Renderer>().enabled)
-        {
-            gameObject.GetComponent<Renderer>().enabled = false;
-            Debug.Log("Der Apfel verschwindet");
-        }
+        gameObject.GetComponent<Renderer>().enabled = false; //Apfel-Objekt ausblenden
+        appleVisible = false;
 
     }
 
     public void FallingApple()
     {
-
-
-        //if (gameObject.GetComponent<Renderer>() != null && !gameObject.GetComponent<Renderer>().enabled)
-        
             if (this.appleVisible) { 
-            gameObject.GetComponent<Rigidbody2D>().gravityScale = this.fallingSpeed;
-            this.setFallen(true);
-            Debug.Log("Der Apfel fällt.");
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = this.fallingSpeed; //Schwerkraft auf Fallgeschwindigkeit setzen
+            this.SetFallen(true);
         }
 
     }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TUIO;
 
+
+//wird nicht genutzt!
 public class Korb : MonoBehaviour {
 
     public float speed = 15;
