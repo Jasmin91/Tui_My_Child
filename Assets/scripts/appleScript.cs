@@ -10,7 +10,7 @@ public class appleScript : MonoBehaviour
 {
     
     private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
-    private bool appleVisible = true; //Boolscher Wert, ob der Apfel sichtbar ist
+   // private bool appleVisible = true; //Boolscher Wert, ob der Apfel sichtbar ist
     public float fallingSpeed = 0.23f; //Geschwindigkeit, mit der der Apfel fällt
     private bool fallen = false; //Boolscher Wert, ob Apfel bereits gefallen ist
     private float appleNumber = 0; //Nummer des zu ladenden Apfel-Bildes (ändert sich je nach Reifegrad)
@@ -55,22 +55,23 @@ public class appleScript : MonoBehaviour
     void ShowApple()
     {
         gameObject.GetComponent<Renderer>().enabled = true; //Apfel-Objekt anzeigen
-        appleVisible = true; 
+       // appleVisible = true; 
     }
 
-    void HideApple()
+   /* void HideApple()
     {
         //gameObject.GetComponent<Renderer>().enabled = false; //Apfel-Objekt ausblenden
         //appleVisible = false;
 
     }
+    */
 
     public void FallingApple()
     {
-            if (this.appleVisible) { 
+           // if (this.appleVisible) { 
             gameObject.GetComponent<Rigidbody2D>().gravityScale = this.fallingSpeed; //Schwerkraft auf Fallgeschwindigkeit setzen
             this.SetFallen(true);
-        }
+       // }
 
     }
 
