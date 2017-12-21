@@ -10,7 +10,7 @@ public class appleScript : MonoBehaviour
 {
     
     private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
-    private bool appleVisible = false; //Boolscher Wert, ob der Apfel sichtbar ist
+    private bool appleVisible = true; //Boolscher Wert, ob der Apfel sichtbar ist
     public float fallingSpeed = 0.23f; //Geschwindigkeit, mit der der Apfel fällt
     private bool fallen = false; //Boolscher Wert, ob Apfel bereits gefallen ist
     private float appleNumber = 0; //Nummer des zu ladenden Apfel-Bildes (ändert sich je nach Reifegrad)
@@ -105,7 +105,8 @@ public class appleScript : MonoBehaviour
         if (appleNumber + 1 == ms_Instance.Sun.sunDuration) //checkt, ob das nächste Bild auch wirklich einen Apfel zeigt, der reifer ist, als der vorhergehende
         {
             appleNumber = ms_Instance.Sun.sunDuration;
+            Debug.Log("appleNumber:" +appleNumber);
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("apfel_" + appleNumber, typeof(Sprite)) as Sprite; //Setzt neues (reiferes) Bild
         }
-        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("apfel_" + appleNumber, typeof(Sprite)) as Sprite; //Setzt neues (reiferes) Bild
     }
 }
