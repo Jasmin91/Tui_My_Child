@@ -8,12 +8,11 @@ using UnityEngine;
 public class Management {
 
     private static Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
-    public regenController Regen {get; set; } //Speichert das Regen-Objekt
-    public sonneController Sonne { get; set; } //Speichert das Sonnen-Objekt
-    private bool rainReady; //es hat genug geregnet
-    private bool sunReady; //die Sonne hat genug geschienen
+    public regenController Rain {get; set; } //Speichert das Regen-Objekt
+    public sonneController Sun { get; set; } //Speichert das Sonnen-Objekt
+   // private bool rainReady; //es hat genug geregnet
+   // private bool sunReady; //die Sonne hat genug geschienen
     private bool windBlowing; //der Wind weht gerade
-    private float rainDuration = 4;
     private List<apfelScript> apfelArray = new List <apfelScript>(); //Array, dass die (roten) Äpfel am Baum speichert
     float currCountdownValue;
 
@@ -45,8 +44,8 @@ public class Management {
 
     void Start () {
         this.setWindBlowing(false);
-        this.setRainReady(false);
-        this.setSunReady(false);
+        this.Rain.setRainReady(false);
+        this.Sun.setSunReady(false);
     }
 
     // Update is called once per frame
@@ -67,6 +66,7 @@ public class Management {
         return this.windBlowing;
     }
 
+    /*
     public void setRainReady(bool rain)
     {
         this.rainReady = rain;
@@ -77,6 +77,7 @@ public class Management {
     {
         return this.rainReady;
     }
+    
 
     public void setSunReady(bool sun)
     {
@@ -88,11 +89,12 @@ public class Management {
     {
         return this.sunReady;
     }
+    */
 
     //Methode testet, ob Sonne und Regen-Fiducials lang genug gezeigt wurden und damit die Äpfel bereit zum Ernten sind
     public bool getHarvestingReady(){
         bool result = false;
-		if (getSunReady()&&getRainReady()) {
+		if (this.Sun.getSunReady()&&this.Rain.getRainReady()) {
             result = true;
         }
         return result;
@@ -126,7 +128,7 @@ public class Management {
             
         }
     }
-
+    /*
     public float getRainDuration()
     {
         return this.rainDuration;
@@ -136,6 +138,6 @@ public class Management {
     {
         this.rainDuration = duration;
     }
-
+    */
 
 }

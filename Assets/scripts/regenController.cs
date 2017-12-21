@@ -29,7 +29,9 @@ using UnityEngine;
 public class regenController : MonoBehaviour
 {
     public int MarkerID = 0;
-    public float rainDuration = 0;
+    public float rainDuration = 0; //Dauer, die die Sonne scheint
+    public float countdownDuration = 5; //Dauer, die die Sonne scheinen soll
+    private bool RainReady = false; //es hat genug geregnet
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     float currCountdownValue;
@@ -67,7 +69,7 @@ public class regenController : MonoBehaviour
     {
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
 		this.ms_Instance = Management.Instance;
-        ms_Instance.Regen = this; //Speichert sich selbst im Manager
+        ms_Instance.Rain = this; //Speichert sich selbst im Manager
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;
 
@@ -184,23 +186,45 @@ public class regenController : MonoBehaviour
         }
     }
 
-
+    /*
     //Methode mit Countdown, sorgt dafür, dass das Regen-Fiducial mindestens 4 Sekunden in die Kamera gehalten werden muss
-    public IEnumerator StartCountdownToGrow(float countdownValue = 4)
+    public IEnumerator StartCountdownToGrow(float countdownValue = 0)
     {
         currCountdownValue = countdownValue;
-        while (currCountdownValue > 0)
+        while (currCountdownValue < rainDuration)
         {
             yield return new WaitForSeconds(1.0f);
-            currCountdownValue--;
+            currCountdownValue++;
             ms_Instance.setRainDuration(currCountdownValue);
-            if (currCountdownValue == 0)
+            if (currCountdownValue == rainDuration)
             {
-                ms_Instance.setRainReady(true);  //Es hat genug geregnet
+                this.setRainReady(true);  //Es hat genug geregnet
             }
         }
         
 
+    }
+    */
+    //Methode mit Zähler, sorgt dafür, dass das Regen-Fiducial mindestens countdownDuration Sekunden in die Kamera gehalten werden muss
+    public IEnumerator StartCountdownToGrow(float countdownValue = 0)
+    {
+        if (!RainReady)
+        {
+            rainDuration = countdownValue;
+            while (rainDuration <= countdownDuration)
+            {
+
+                rainDuration++;
+                yield return new WaitForSeconds(1.0f);
+                if (rainDuration >= countdownDuration)
+                {
+                    this.setRainReady(true); //Es hat genug geregnet
+                    Debug.Log("Es hat genug geregnet: " + rainDuration);
+                    break;
+                }
+
+            }
+        }
     }
 
 
@@ -228,11 +252,29 @@ public class regenController : MonoBehaviour
         }
     }
 
+    public void setRainReady(bool rain)
+    {
+        this.RainReady = rain;
 
+    }
 
+    public bool getRainReady()
+    {
+        return this.RainReady;
+    }
+
+    public float getRainDuration()
+    {
+        return this.rainDuration;
+    }
+
+    public void setRainDuration(float duration)
+    {
+        this.rainDuration = duration;
+    }
     #region Getter
 
-    
+
 
     public bool isAttachedToGUIComponent()
     {

@@ -36,6 +36,7 @@ public class sonneController : MonoBehaviour
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     public float sunDuration = 0;
     public float countdownDuration = 5; //Dauer, die die Sonne scheint
+    private bool sunReady; //die Sonne hat genug geschienen
     //translation
     public bool IsPositionMapped = false;
     public bool InvertX = false;
@@ -71,7 +72,7 @@ public class sonneController : MonoBehaviour
     {
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
 		this.ms_Instance = Management.Instance;
-        ms_Instance.Sonne = this; //Speichert sich selbst im Management
+        ms_Instance.Sun = this; //Speichert sich selbst im Management
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;
 
@@ -220,7 +221,7 @@ public class sonneController : MonoBehaviour
 
     private void ShowGameObject()
     {
-        if (ms_Instance.getRainReady()) {
+        if (ms_Instance.Rain.getRainReady()) {
             StartCoroutine(StartCountdownToRed());
         }
         if (this.m_ControlsGUIElement)
@@ -278,13 +279,23 @@ public class sonneController : MonoBehaviour
             sunDuration++;
             if (sunDuration == 5)
             {
-                ms_Instance.setSunReady(true); //Sonne hat genug geschienen
+                this.setSunReady(true); //Sonne hat genug geschienen
             }
         }
 
 
     }
 
+    public void setSunReady(bool sun)
+    {
+        this.sunReady = sun;
+
+    }
+
+    public bool getSunReady()
+    {
+        return this.sunReady;
+    }
     #region Getter
 
     public bool isAttachedToGUIComponent()
