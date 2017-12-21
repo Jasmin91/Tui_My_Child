@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 174828733}
   - component: {fileID: 174828734}
   - component: {fileID: 174828735}
+  - component: {fileID: 174828737}
   - component: {fileID: 174828736}
   m_Layer: 0
   m_Name: Ruebe4_1
@@ -364,6 +365,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &174828737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 174828732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MarkerID: 0
   IsPositionMapped: 0
   InvertX: 0
@@ -383,6 +395,7 @@ GameObject:
   - component: {fileID: 248444953}
   - component: {fileID: 248444954}
   - component: {fileID: 248444955}
+  - component: {fileID: 248444957}
   - component: {fileID: 248444956}
   m_Layer: 0
   m_Name: Ruebe1_1
@@ -477,6 +490,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &248444957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 248444952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 0
@@ -717,6 +741,7 @@ GameObject:
   - component: {fileID: 588815115}
   - component: {fileID: 588815116}
   - component: {fileID: 588815117}
+  - component: {fileID: 588815119}
   - component: {fileID: 588815118}
   m_Layer: 0
   m_Name: Ruebe4_3
@@ -813,6 +838,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &588815119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 588815114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MarkerID: 2
   IsPositionMapped: 0
   InvertX: 0
@@ -832,6 +868,7 @@ GameObject:
   - component: {fileID: 612977882}
   - component: {fileID: 612977884}
   - component: {fileID: 612977883}
+  - component: {fileID: 612977886}
   - component: {fileID: 612977885}
   m_Layer: 0
   m_Name: Ruebe3_2
@@ -928,6 +965,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &612977886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 612977881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MarkerID: 1
   IsPositionMapped: 0
   InvertX: 0
@@ -1020,6 +1068,7 @@ GameObject:
   - component: {fileID: 885135112}
   - component: {fileID: 885135113}
   - component: {fileID: 885135114}
+  - component: {fileID: 885135116}
   - component: {fileID: 885135115}
   m_Layer: 0
   m_Name: Ruebe2_1
@@ -1116,6 +1165,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &885135116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 885135111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MarkerID: 0
   IsPositionMapped: 0
   InvertX: 0
@@ -1180,6 +1240,7 @@ GameObject:
   - component: {fileID: 961831960}
   - component: {fileID: 961831961}
   - component: {fileID: 961831962}
+  - component: {fileID: 961831964}
   - component: {fileID: 961831963}
   m_Layer: 0
   m_Name: Ruebe2_4
@@ -1276,6 +1337,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &961831964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 961831959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MarkerID: 3
   IsPositionMapped: 0
   InvertX: 0
@@ -1295,6 +1367,7 @@ GameObject:
   - component: {fileID: 973720535}
   - component: {fileID: 973720536}
   - component: {fileID: 973720537}
+  - component: {fileID: 973720539}
   - component: {fileID: 973720538}
   m_Layer: 0
   m_Name: Ruebe4_2
@@ -1391,6 +1464,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &973720539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 973720534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MarkerID: 1
   IsPositionMapped: 0
   InvertX: 0
@@ -1483,6 +1567,7 @@ GameObject:
   - component: {fileID: 1009267878}
   - component: {fileID: 1009267880}
   - component: {fileID: 1009267879}
+  - component: {fileID: 1009267882}
   - component: {fileID: 1009267881}
   m_Layer: 0
   m_Name: Ruebe3_4
@@ -1577,6 +1662,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1009267882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1009267877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 3
@@ -1786,6 +1882,7 @@ GameObject:
   - component: {fileID: 1141288391}
   - component: {fileID: 1141288392}
   - component: {fileID: 1141288393}
+  - component: {fileID: 1141288395}
   - component: {fileID: 1141288394}
   m_Layer: 0
   m_Name: Ruebe2_3
@@ -1880,6 +1977,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1141288395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1141288390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 2
@@ -2266,6 +2374,7 @@ GameObject:
   - component: {fileID: 1388647934}
   - component: {fileID: 1388647935}
   - component: {fileID: 1388647936}
+  - component: {fileID: 1388647938}
   - component: {fileID: 1388647937}
   m_Layer: 0
   m_Name: Ruebe4_4
@@ -2360,6 +2469,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1388647938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1388647933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 3
@@ -2482,6 +2602,7 @@ GameObject:
   - component: {fileID: 1435544852}
   - component: {fileID: 1435544853}
   - component: {fileID: 1435544854}
+  - component: {fileID: 1435544856}
   - component: {fileID: 1435544855}
   m_Layer: 0
   m_Name: Ruebe2_2
@@ -2578,6 +2699,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1435544856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1435544851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MarkerID: 1
   IsPositionMapped: 0
   InvertX: 0
@@ -2670,6 +2802,7 @@ GameObject:
   - component: {fileID: 1502086972}
   - component: {fileID: 1502086973}
   - component: {fileID: 1502086974}
+  - component: {fileID: 1502086976}
   - component: {fileID: 1502086975}
   m_Layer: 0
   m_Name: Ruebe1_4
@@ -2764,6 +2897,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1502086976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1502086971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 3
@@ -3004,6 +3148,7 @@ GameObject:
   - component: {fileID: 1571736483}
   - component: {fileID: 1571736484}
   - component: {fileID: 1571736485}
+  - component: {fileID: 1571736487}
   - component: {fileID: 1571736486}
   m_Layer: 0
   m_Name: Ruebe1_3
@@ -3100,6 +3245,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1571736487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1571736482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MarkerID: 2
   IsPositionMapped: 0
   InvertX: 0
@@ -3170,7 +3326,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1687590879
-  m_SortingLayer: -2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0f111463e2ae449ea8258a62c37a4a26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3192,6 +3348,7 @@ GameObject:
   - component: {fileID: 1592270545}
   - component: {fileID: 1592270547}
   - component: {fileID: 1592270546}
+  - component: {fileID: 1592270549}
   - component: {fileID: 1592270548}
   m_Layer: 0
   m_Name: Ruebe3_3
@@ -3286,6 +3443,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1592270549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1592270544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 2
@@ -3473,6 +3641,7 @@ GameObject:
   - component: {fileID: 1684723373}
   - component: {fileID: 1684723375}
   - component: {fileID: 1684723374}
+  - component: {fileID: 1684723377}
   - component: {fileID: 1684723376}
   m_Layer: 0
   m_Name: Ruebe3_1
@@ -3567,6 +3736,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1684723377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1684723372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 0
@@ -3960,6 +4140,7 @@ GameObject:
   - component: {fileID: 2118688729}
   - component: {fileID: 2118688730}
   - component: {fileID: 2118688731}
+  - component: {fileID: 2118688733}
   - component: {fileID: 2118688732}
   m_Layer: 0
   m_Name: Ruebe1_2
@@ -4054,6 +4235,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 731428109997c4076b52b3c6dafc9020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2118688733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2118688728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cb77b0c08e2cf4eaf5dfc73b52b0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 1

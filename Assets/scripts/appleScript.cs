@@ -39,7 +39,12 @@ public class appleScript : MonoBehaviour
         {
             this.RipingApple(); //Lässt den Apfel reifen, wenn die Sonne angezeigt wird
         }
-        
+
+
+        if (!gameObject.GetComponent<Renderer>().enabled)
+        {
+            gameObject.GetComponent<Renderer>().enabled = true;
+        }
     }
 
     public void SetFallen(bool fallen)
