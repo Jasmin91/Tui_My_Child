@@ -14,6 +14,7 @@ public class Management {
    // private bool sunReady; //die Sonne hat genug geschienen
     private bool windBlowing; //der Wind weht gerade
     private List<apfelScript> apfelArray = new List <apfelScript>(); //Array, dass die (roten) Äpfel am Baum speichert
+    private List<appleScript> appleArray = new List<appleScript>(); //Array, dass die Äpfel am Baum speichert
     float currCountdownValue;
 
     public static Management Instance
@@ -66,30 +67,6 @@ public class Management {
         return this.windBlowing;
     }
 
-    /*
-    public void setRainReady(bool rain)
-    {
-        this.rainReady = rain;
-
-    }
-
-    public bool getRainReady()
-    {
-        return this.rainReady;
-    }
-    
-
-    public void setSunReady(bool sun)
-    {
-        this.sunReady = sun;
-
-    }
-
-    public bool getSunReady()
-    {
-        return this.sunReady;
-    }
-    */
 
     //Methode testet, ob Sonne und Regen-Fiducials lang genug gezeigt wurden und damit die Äpfel bereit zum Ernten sind
     public bool getHarvestingReady(){
@@ -106,6 +83,13 @@ public class Management {
         this.apfelArray.Add(apple);      
     }
 
+
+    //Fügt einen Apfel dem Apfel-Array hinzu
+    public void addApple(appleScript apple)
+    {
+        this.appleArray.Add(apple);
+    }
+
     //Methode, die das Fallen eines Apfels ermöglicht
     public void einApfelFaellt()
     {
@@ -113,6 +97,7 @@ public class Management {
        this.fallApple();
        this.setWindBlowing(false);//Wird wieder auf false gesetzt, damit Fiducial erneut gezeigt werden muss, damit der nächste Apfel fällt
     }
+
 
     //Lässt den Apfel fallen
     private void fallApple()
@@ -127,17 +112,17 @@ public class Management {
             }
             
         }
-    }
-    /*
-    public float getRainDuration()
-    {
-        return this.rainDuration;
-    }
+        foreach (appleScript apfel in appleArray)
+        {
+            if (!apfel.GetFallen()) //Findet einen nicht gefallenen Apfel
+            {
+                apfel.FallingApple(); //lässt ihn fallen
+                setWindBlowing(false); //Wird wieder auf false gesetzt, damit Fiducial erneut gezeigt werden muss, damit der nächste Apfel fällt
+                break; //bricht die Schleife ab, damit nur ein Apfel fällt
+            }
 
-    public void setRainDuration(float duration)
-    {
-        this.rainDuration = duration;
+        }
     }
-    */
+ 
 
 }
