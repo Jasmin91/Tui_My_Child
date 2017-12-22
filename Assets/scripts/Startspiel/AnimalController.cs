@@ -24,13 +24,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>  
-///  Diese Klasse steuert die  Funktion des Windes
-/// </summary> 
-public class windController : MonoBehaviour
+
+//wird nicht genutzt! Dient als Kopiervorlage
+public class AnimalController : MonoBehaviour
 {
     public int MarkerID = 0;
-    
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 
@@ -38,7 +36,6 @@ public class windController : MonoBehaviour
     public bool IsPositionMapped = false;
     public bool InvertX = false;
     public bool InvertY = false;
-    public float yAxe = -2;
 
     //rotation
     public bool IsRotationMapped = false;
@@ -49,7 +46,7 @@ public class windController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
+	private Management ms_Instance;
     private Camera m_MainCamera;
 
     //members
@@ -65,13 +62,15 @@ public class windController : MonoBehaviour
     private bool m_IsVisible;
 
     public float RotationMultiplier = 1;
-    private bool warWeg = true; //Boolsche Variable, ob der Wind ausgeblendet war, bevor er gezeigt wurde
 
     void Awake()
     {
+
+       // GetComponent<Rigidbody2D>().velocity = new Vector2(0.5f, 0);//Setze Geschwindigkeit, sobald Fiducial sichtbar
+        
+
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
 		this.ms_Instance = Management.Instance;
-
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;
 
@@ -112,7 +111,6 @@ public class windController : MonoBehaviour
 
     void Update()
     {
-        ms_Instance.Update();
 
 		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
 			//Debug.Log("FidcialController Zeile 110:this.m_TuioManager.IsMarkerAlive(this.MarkerID)");
@@ -122,11 +120,12 @@ public class windController : MonoBehaviour
         if (this.m_TuioManager.IsConnected
             && this.m_TuioManager.IsMarkerAlive(this.MarkerID))
         {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0.5f, 0);//Setze Geschwindigkeit, sobald Fiducial sichtbar
             TUIO.TuioObject marker = this.m_TuioManager.GetMarker(this.MarkerID);
 
             //update parameters
             this.m_ScreenPosition.x = marker.getX();
-            this.m_ScreenPosition.y = this.yAxe;
+            this.m_ScreenPosition.y = marker.getY();
             this.m_Angle = marker.getAngle() * RotationMultiplier;
             this.m_AngleDegrees = marker.getAngleDegrees() * RotationMultiplier;
             this.m_Speed = marker.getMotionSpeed();
@@ -139,22 +138,20 @@ public class windController : MonoBehaviour
 
             //set game object to visible, if it was hidden before
             ShowGameObject();
-            if (warWeg) {
-                ms_Instance.einApfelFaellt();
-                this.warWeg = false;
-            }
-            
 
+            //update transform component
+            UpdateTransform();
         }
         else
         {
             //automatically hide game object when marker is not visible
             if (this.AutoHideGO)
             {
+               // GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Setze Geschwindigkeit auf 0, sobald Fiducial unsichtbar
                 HideGameObject();
-            }            
+            }
+
             this.m_IsVisible = false;
-            this.warWeg = true;
         }
     }
 
@@ -167,12 +164,67 @@ public class windController : MonoBehaviour
         }
     }
 
-    
+    private void UpdateTransform()
+    {
+        //position mapping
+        if (this.IsPositionMapped)
+        {
+            //calculate world position with respect to camera view direction
+            float xPos = this.m_ScreenPosition.x;
+            float yPos = this.m_ScreenPosition.y;
+            if (this.InvertX) xPos = 1 - xPos;
+            if (this.InvertY) yPos = 1 - yPos;
+
+            if (this.m_ControlsGUIElement)
+            {
+                transform.position = new Vector3(xPos, 1 - yPos, 0);
+            }
+            else
+            {
+                Vector3 position = new Vector3(xPos * Screen.width,
+                    (1 - yPos) * Screen.height, this.CameraOffset);
+                this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);
+                //worldPosition += cameraOffset * mainCamera.transform.forward;
+                transform.position = this.m_WorldPosition;
+            }
+        }
+
+        //rotation mapping
+        if (this.IsRotationMapped)
+        {
+            Quaternion rotation = Quaternion.identity;
+
+            switch (this.RotateAround)
+            {
+                case RotationAxis.Forward:
+                    rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.forward);
+                    break;
+                case RotationAxis.Back:
+                    rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.back);
+                    break;
+                case RotationAxis.Up:
+                    rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.up);
+                    break;
+                case RotationAxis.Down:
+                    rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.down);
+                    break;
+                case RotationAxis.Left:
+                    rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.left);
+                    break;
+                case RotationAxis.Right:
+                    rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.right);
+                    break;
+            }
+            transform.localRotation = rotation;
+        }
+    }
+
     private void ShowGameObject()
     {
-        
         if (this.m_ControlsGUIElement)
+            
         {
+            
             //show GUI components
             if (gameObject.GetComponent<GUIText>() != null && !gameObject.GetComponent<GUIText>().enabled)
             {
@@ -193,12 +245,9 @@ public class windController : MonoBehaviour
     }
 
     private void HideGameObject()
-
     {
         if (this.m_ControlsGUIElement)
-        { 
-            
-        
+        {
             //hide GUI components
             if (gameObject.GetComponent<GUIText>() != null && gameObject.GetComponent<GUIText>().enabled)
             {
@@ -220,11 +269,6 @@ public class windController : MonoBehaviour
     }
 
     #region Getter
-
-    public bool getWarWeg()
-    {
-        return this.warWeg;
-    }
 
     public bool isAttachedToGUIComponent()
     {

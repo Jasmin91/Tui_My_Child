@@ -25,19 +25,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>  
+///  Diese Klasse steuert die  Funktion der Sonne
+/// </summary> 
 
-public class regenController : MonoBehaviour
+public class sonneController : MonoBehaviour
 {
     public int MarkerID = 0;
-    public float rainDuration = 0; //Dauer, die die Sonne scheint
-    public float countdownDuration = 5; //Dauer, die die Sonne scheinen soll
-    private bool RainReady = false; //es hat genug geregnet
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
-    float currCountdownValue;
-
+    public float sunDuration = 0;
+    public float countdownDuration = 5; //Dauer, die die Sonne scheint
+    private bool sunReady = false; //die Sonne hat genug geschienen
     //translation
     public bool IsPositionMapped = false;
+    public bool InvertX = false;
+    public bool InvertY = false;
 
     //rotation
     public bool IsRotationMapped = false;
@@ -52,16 +55,7 @@ public class regenController : MonoBehaviour
     private Camera m_MainCamera;
 
     //members
-    private Vector2 m_ScreenPosition;
-    private Vector3 m_WorldPosition;
-    private Vector2 m_Direction;
-    private float m_Angle;
-    private float m_AngleDegrees;
-    private float m_Speed;
-    private float m_Acceleration;
-    private float m_RotationSpeed;
-    private float m_RotationAcceleration;
-    private bool m_IsVisible = false;
+    private bool m_IsVisible;
 
     public float RotationMultiplier = 1;
 
@@ -69,7 +63,7 @@ public class regenController : MonoBehaviour
     {
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
 		this.ms_Instance = Management.Instance;
-        ms_Instance.Rain = this; //Speichert sich selbst im Manager
+        ms_Instance.Sun = this; //Speichert sich selbst im Management
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;
 
@@ -83,16 +77,7 @@ public class regenController : MonoBehaviour
             Debug.LogWarning("Rotation of GUIText or GUITexture is not supported. Use a plane with a texture instead.");
             this.m_ControlsGUIElement = true;
         }
-
-        this.m_ScreenPosition = Vector2.zero;
-        this.m_WorldPosition = Vector3.zero;
-        this.m_Direction = Vector2.zero;
-        this.m_Angle = 0f;
-        this.m_AngleDegrees = 0;
-        this.m_Speed = 0f;
-        this.m_Acceleration = 0f;
-        this.m_RotationSpeed = 0f;
-        this.m_RotationAcceleration = 0f;
+        
         this.m_IsVisible = false;
     }
 
@@ -122,21 +107,11 @@ public class regenController : MonoBehaviour
             TUIO.TuioObject marker = this.m_TuioManager.GetMarker(this.MarkerID);
 
             //update parameters
-            this.m_ScreenPosition.x = marker.getX();
-            this.m_ScreenPosition.y = marker.getY();
-            this.m_Angle = marker.getAngle() * RotationMultiplier;
-            this.m_AngleDegrees = marker.getAngleDegrees() * RotationMultiplier;
-            this.m_Speed = marker.getMotionSpeed();
-            this.m_Acceleration = marker.getMotionAccel();
-            this.m_RotationSpeed = marker.getRotationSpeed() * RotationMultiplier;
-            this.m_RotationAcceleration = marker.getRotationAccel();
-            this.m_Direction.x = marker.getXSpeed();
-            this.m_Direction.y = marker.getYSpeed();
             this.m_IsVisible = true;
 
             //set game object to visible, if it was hidden before
             ShowGameObject();
-
+            
         }
         else
         {
@@ -145,6 +120,7 @@ public class regenController : MonoBehaviour
             {
                 HideGameObject();
             }
+
             this.m_IsVisible = false;
         }
     }
@@ -158,13 +134,12 @@ public class regenController : MonoBehaviour
         }
     }
 
-
-
+    
     private void ShowGameObject()
     {
-        
-        StartCoroutine(StartCountdownToGrow());
-       
+        if (ms_Instance.Rain.getRainReady()) {
+            StartCoroutine(StartCountdownToRed());
+        }
         if (this.m_ControlsGUIElement)
         {
             //show GUI components
@@ -185,48 +160,6 @@ public class regenController : MonoBehaviour
             }
         }
     }
-
-    /*
-    //Methode mit Countdown, sorgt dafür, dass das Regen-Fiducial mindestens 4 Sekunden in die Kamera gehalten werden muss
-    public IEnumerator StartCountdownToGrow(float countdownValue = 0)
-    {
-        currCountdownValue = countdownValue;
-        while (currCountdownValue < rainDuration)
-        {
-            yield return new WaitForSeconds(1.0f);
-            currCountdownValue++;
-            ms_Instance.setRainDuration(currCountdownValue);
-            if (currCountdownValue == rainDuration)
-            {
-                this.setRainReady(true);  //Es hat genug geregnet
-            }
-        }
-        
-
-    }
-    */
-    //Methode mit Zähler, sorgt dafür, dass das Regen-Fiducial mindestens countdownDuration Sekunden in die Kamera gehalten werden muss
-    public IEnumerator StartCountdownToGrow(float countdownValue = 0)
-    {
-        if (!RainReady)
-        {
-            rainDuration = countdownValue;
-            while (rainDuration <= countdownDuration)
-            {
-
-                rainDuration++;
-                yield return new WaitForSeconds(1.0f);
-                if (rainDuration >= countdownDuration)
-                {
-                    this.setRainReady(true); //Es hat genug geregnet
-                    Debug.Log("Es hat genug geregnet: " + rainDuration);
-                    break;
-                }
-
-            }
-        }
-    }
-
 
     private void HideGameObject()
     {
@@ -252,70 +185,41 @@ public class regenController : MonoBehaviour
         }
     }
 
-    public void setRainReady(bool rain)
+    //Methode mit Zähler, sorgt dafür, dass das Sonnen-Fiducial mindestens countdownDuration Sekunden in die Kamera gehalten werden muss
+    public IEnumerator StartCountdownToRed(float countdownValue = 0)
     {
-        this.RainReady = rain;
+        sunDuration = countdownValue;
+        while (sunDuration < countdownDuration)
+        {
+            yield return new WaitForSeconds(1.0f);
+            sunDuration++;
+            ms_Instance.ApfelReifenLassen(this.sunDuration);
+            if (sunDuration == 5)
+            {
+                this.setSunReady(true); //Sonne hat genug geschienen
+            }
+        }
+
 
     }
 
-    public bool getRainReady()
+    public void setSunReady(bool sun)
     {
-        return this.RainReady;
+        this.sunReady = sun;
+
     }
 
-    public float getRainDuration()
+    public bool getSunReady()
     {
-        return this.rainDuration;
-    }
-
-    public void setRainDuration(float duration)
-    {
-        this.rainDuration = duration;
+        return this.sunReady;
     }
     #region Getter
-
-
 
     public bool isAttachedToGUIComponent()
     {
         return (gameObject.GetComponent<GUIText>() != null || gameObject.GetComponent<GUITexture>() != null);
     }
-    public Vector2 ScreenPosition
-    {
-        get { return this.m_ScreenPosition; }
-    }
-    public Vector3 WorldPosition
-    {
-        get { return this.m_WorldPosition; }
-    }
-    public Vector2 MovementDirection
-    {
-        get { return this.m_Direction; }
-    }
-    public float Angle
-    {
-        get { return this.m_Angle; }
-    }
-    public float AngleDegrees
-    {
-        get { return this.m_AngleDegrees; }
-    }
-    public float Speed
-    {
-        get { return this.m_Speed; }
-    }
-    public float Acceleration
-    {
-        get { return this.m_Acceleration; }
-    }
-    public float RotationSpeed
-    {
-        get { return this.m_RotationSpeed; }
-    }
-    public float RotationAcceleration
-    {
-        get { return this.m_RotationAcceleration; }
-    }
+   
     public bool IsVisible
     {
         get { return this.m_IsVisible; }

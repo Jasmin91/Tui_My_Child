@@ -10,12 +10,9 @@ public class Management {
     private static Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
     public regenController Rain {get; set; } //Speichert das Regen-Objekt
     public sonneController Sun { get; set; } //Speichert das Sonnen-Objekt
-   // private bool rainReady; //es hat genug geregnet
-   // private bool sunReady; //die Sonne hat genug geschienen
-    private bool windBlowing; //der Wind weht gerade
-    private List<apfelScript> apfelArray = new List <apfelScript>(); //Array, dass die (roten) Äpfel am Baum speichert
+    private bool windBlowing = false; //der Wind weht gerade
     private List<appleScript> appleArray = new List<appleScript>(); //Array, dass die Äpfel am Baum speichert
-    float currCountdownValue;
+
 
     public static Management Instance
 	{
@@ -43,19 +40,6 @@ public class Management {
         
     }
 
-    void Start () {
-        this.setWindBlowing(false);
-        this.Rain.setRainReady(false);
-        this.Sun.setSunReady(false);
-    }
-
-    // Update is called once per frame
-    public void Update()
-    {
-      //  getHarvestingReady();
-        
-    }
-
 
 	public void setWindBlowing(bool wind){
         this.windBlowing = wind;
@@ -77,12 +61,6 @@ public class Management {
         return result;
 	}
 
-    //Fügt einen Apfel dem Apfel-Array hinzu
-    public void addApple(apfelScript apple)
-    {
-        this.apfelArray.Add(apple);      
-    }
-
 
     //Fügt einen Apfel dem Apfel-Array hinzu
     public void addApple(appleScript apple)
@@ -98,20 +76,28 @@ public class Management {
        this.setWindBlowing(false);//Wird wieder auf false gesetzt, damit Fiducial erneut gezeigt werden muss, damit der nächste Apfel fällt
     }
 
+    //Lässt jeden Apfel im Array wachsen
+    public void ApfelWachsenLassen(float rainDuration)
+    {
+        foreach (appleScript apfel in appleArray)
+        {
+            apfel.GrowingApple(rainDuration);
+        }
+    }
 
-    //Lässt den Apfel fallen
+    //Lässt jeden Apfel im Array reifen
+    public void ApfelReifenLassen(float sunDuration)
+    {
+        foreach (appleScript apfel in appleArray)
+        {
+            apfel.RipingApple(sunDuration);
+        }
+    }
+
+
+    //Lässt jeden Apfel im Array fallen
     private void fallApple()
     {
-        foreach (apfelScript apfel in apfelArray)
-        {
-            if (!apfel.GetFallen()) //Findet einen nicht gefallenen Apfel
-            {
-                apfel.FallingApple(); //lässt ihn fallen
-                setWindBlowing(false); //Wird wieder auf false gesetzt, damit Fiducial erneut gezeigt werden muss, damit der nächste Apfel fällt
-                break; //bricht die Schleife ab, damit nur ein Apfel fällt
-            }
-            
-        }
         foreach (appleScript apfel in appleArray)
         {
             if (!apfel.GetFallen()) //Findet einen nicht gefallenen Apfel
