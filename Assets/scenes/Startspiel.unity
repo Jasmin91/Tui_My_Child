@@ -171,11 +171,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 705104564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24830ba54d55c9a459f04e288102cc3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ceb29b62508a4d4ea5c7bb005b66d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarkerID: 2
-  IsPositionMapped: 1
+  MarkerID: 4
+  IsPositionMapped: 0
   InvertX: 0
   InvertY: 0
   IsRotationMapped: 0
@@ -286,11 +286,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1047478775}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24830ba54d55c9a459f04e288102cc3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ceb29b62508a4d4ea5c7bb005b66d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 1
-  IsPositionMapped: 1
+  IsPositionMapped: 0
   InvertX: 0
   InvertY: 0
   IsRotationMapped: 0
@@ -401,11 +401,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1380129402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24830ba54d55c9a459f04e288102cc3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ceb29b62508a4d4ea5c7bb005b66d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 3
-  IsPositionMapped: 1
+  IsPositionMapped: 0
   InvertX: 0
   InvertY: 0
   IsRotationMapped: 0
@@ -628,11 +628,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2130643994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24830ba54d55c9a459f04e288102cc3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ceb29b62508a4d4ea5c7bb005b66d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 0
-  IsPositionMapped: 1
+  IsPositionMapped: 0
   InvertX: 0
   InvertY: 0
   IsRotationMapped: 0

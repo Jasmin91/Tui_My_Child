@@ -12,6 +12,8 @@ public class appleScript : MonoBehaviour
     private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
     public float fallingSpeed = 0.23f; //Geschwindigkeit, mit der der Apfel fällt
     private bool fallen = false; //Boolscher Wert, ob Apfel bereits gefallen ist
+    private bool red = false; //Boolscher Wert, ob Apfel bereits reif ist
+    private bool grown = false; //Boolscher Wert, ob Apfel bereits gewachsen ist
     private float appleNumber = 0; //Nummer des zu ladenden Apfel-Bildes (ändert sich je nach Reifegrad)
 
 
@@ -46,8 +48,10 @@ public class appleScript : MonoBehaviour
 
     public void FallingApple()
     {
+        if (red&&grown) {
             gameObject.GetComponent<Rigidbody2D>().gravityScale = this.fallingSpeed; //Schwerkraft auf Fallgeschwindigkeit setzen
             this.SetFallen(true);
+        }
       }
 
     //Lässt den Apfel wachsen
@@ -55,17 +59,22 @@ public class appleScript : MonoBehaviour
     {
         float oldSize = gameObject.transform.localScale.x; //Alte Größe des Apfels
        
-        if (rainDuration < 5 && rainDuration > 0)
+        if (rainDuration <= 5 && rainDuration > 0)
         {
             float size = 0.1f + (0.02f * (rainDuration)); //Berechnen der neuen Größe
             if (size > oldSize && size <= 0.2f) //checkt, ob neue Größe wirklich größer, als die alte
             {
-                if (size == 1.9f)
+                if (size == 0.09f)
                 {
-                    size = 2.0f;
+                    size = 0.2f;
                 }
                 gameObject.transform.localScale = new Vector3(size, size, 1f); //Setzt die neue Größe/
 
+            }
+            Debug.Log("size:"+size);
+            if (size >= 0.2f)
+            {
+                grown = true;
             }
         }
     }
@@ -77,6 +86,11 @@ public class appleScript : MonoBehaviour
         {
             appleNumber = sunDuration;
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("apfel_" + appleNumber, typeof(Sprite)) as Sprite; //Setzt neues (reiferes) Bild
+            Debug.Log("appleNumber:" + appleNumber);
+            if(appleNumber == 5)
+            {
+                red = true;
+            }
         }
     }
 }
