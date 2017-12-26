@@ -31,6 +31,7 @@ public class AnimalController : MonoBehaviour
     public int MarkerID = 0;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
+    public float Geschwindigkeit = 0.01f;
 
     //translation
     public bool IsPositionMapped = false;
@@ -145,10 +146,10 @@ public class AnimalController : MonoBehaviour
         else
         {
             //automatically hide game object when marker is not visible
-            if (this.AutoHideGO)
+           // if (this.AutoHideGO)
             {
-               // GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Setze Geschwindigkeit auf 0, sobald Fiducial unsichtbar
-                HideGameObject();
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Setze Geschwindigkeit auf 0, sobald Fiducial unsichtbar
+                //HideGameObject();
             }
 
             this.m_IsVisible = false;
@@ -190,32 +191,51 @@ public class AnimalController : MonoBehaviour
         }
 
         //rotation mapping
-        if (this.IsRotationMapped)
+        //if (this.IsRotationMapped)
         {
             Quaternion rotation = Quaternion.identity;
+            
 
             switch (this.RotateAround)
             {
                 case RotationAxis.Forward:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.forward);
+                  //  GetComponent<Rigidbody2D>().velocity = Vector3.forward;
                     break;
                 case RotationAxis.Back:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.back);
+                  //  GetComponent<Rigidbody2D>().velocity = Vector3.back;
                     break;
                 case RotationAxis.Up:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.up);
+                   // GetComponent<Rigidbody2D>().velocity = Vector3.up;
                     break;
                 case RotationAxis.Down:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.down);
+                   // GetComponent<Rigidbody2D>().velocity = Vector3.down;
                     break;
                 case RotationAxis.Left:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.left);
+                   // GetComponent<Rigidbody2D>().velocity = Vector3.left;
                     break;
                 case RotationAxis.Right:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.right);
+                    
                     break;
             }
+
             transform.localRotation = rotation;
+            String s = "";
+            float Geschwindigkeit = this.Geschwindigkeit;
+          
+            s+=("transform.right.x:" + transform.right.x);
+            if (transform.right.x < -0.5) {
+                Geschwindigkeit = Geschwindigkeit * 2;
+            }
+            transform.position += transform.right * Geschwindigkeit;
+            s +=("+++ Rechnung:" + transform.right+"*"+ Geschwindigkeit);
+            s+=("=" + transform.position.ToString());
+            Debug.Log(s);
         }
     }
 
