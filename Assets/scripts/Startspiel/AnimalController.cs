@@ -39,7 +39,6 @@ public class AnimalController : MonoBehaviour
     public bool InvertY = false;
 
     //rotation
-    public bool IsRotationMapped = false;
     public bool AutoHideGO = false;
     private bool m_ControlsGUIElement = false;
 
@@ -136,23 +135,18 @@ public class AnimalController : MonoBehaviour
             this.m_Direction.x = marker.getXSpeed();
             this.m_Direction.y = marker.getYSpeed();
             this.m_IsVisible = true;
-
-            //set game object to visible, if it was hidden before
-            ShowGameObject();
+            
 
             //update transform component
             UpdateTransform();
         }
         else
         {
-            //automatically hide game object when marker is not visible
-           // if (this.AutoHideGO)
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Setze Geschwindigkeit auf 0, sobald Fiducial unsichtbar
-                //HideGameObject();
+               
             }
-
-            this.m_IsVisible = false;
+            
         }
     }
 
@@ -167,31 +161,8 @@ public class AnimalController : MonoBehaviour
 
     private void UpdateTransform()
     {
-        //position mapping
-        if (this.IsPositionMapped)
-        {
-            //calculate world position with respect to camera view direction
-            float xPos = this.m_ScreenPosition.x;
-            float yPos = this.m_ScreenPosition.y;
-            if (this.InvertX) xPos = 1 - xPos;
-            if (this.InvertY) yPos = 1 - yPos;
-
-            if (this.m_ControlsGUIElement)
-            {
-                transform.position = new Vector3(xPos, 1 - yPos, 0);
-            }
-            else
-            {
-                Vector3 position = new Vector3(xPos * Screen.width,
-                    (1 - yPos) * Screen.height, this.CameraOffset);
-                this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);
-                //worldPosition += cameraOffset * mainCamera.transform.forward;
-                transform.position = this.m_WorldPosition;
-            }
-        }
-
-        //rotation mapping
-        //if (this.IsRotationMapped)
+     
+      
         {
             Quaternion rotation = Quaternion.identity;
             
@@ -239,54 +210,6 @@ public class AnimalController : MonoBehaviour
         }
     }
 
-    private void ShowGameObject()
-    {
-        if (this.m_ControlsGUIElement)
-            
-        {
-            
-            //show GUI components
-            if (gameObject.GetComponent<GUIText>() != null && !gameObject.GetComponent<GUIText>().enabled)
-            {
-                gameObject.GetComponent<GUIText>().enabled = true;
-            }
-            if (gameObject.GetComponent<GUITexture>() != null && !gameObject.GetComponent<GUITexture>().enabled)
-            {
-                gameObject.GetComponent<GUITexture>().enabled = true;
-            }
-        }
-        else
-        {
-            if (gameObject.GetComponent<Renderer>() != null && !gameObject.GetComponent<Renderer>().enabled)
-            {
-                gameObject.GetComponent<Renderer>().enabled = true;
-            }
-        }
-    }
-
-    private void HideGameObject()
-    {
-        if (this.m_ControlsGUIElement)
-        {
-            //hide GUI components
-            if (gameObject.GetComponent<GUIText>() != null && gameObject.GetComponent<GUIText>().enabled)
-            {
-                gameObject.GetComponent<GUIText>().enabled = false;
-            }
-            if (gameObject.GetComponent<GUITexture>() != null && gameObject.GetComponent<GUITexture>().enabled)
-            {
-                gameObject.GetComponent<GUITexture>().enabled = false;
-            }
-        }
-        else
-        {
-            //set 3d game object to visible, if it was hidden before
-            if (gameObject.GetComponent<Renderer>() != null && gameObject.GetComponent<Renderer>().enabled)
-            {
-                gameObject.GetComponent<Renderer>().enabled = false;
-            }
-        }
-    }
 
     #region Getter
 
