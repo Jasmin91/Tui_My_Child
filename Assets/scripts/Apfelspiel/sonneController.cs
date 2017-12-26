@@ -51,7 +51,7 @@ public class sonneController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
+	private ApfelManager ms_Instance; //Erstellt eine Instanz der Manager-Klasse
     private Camera m_MainCamera;
 
     //members
@@ -62,7 +62,7 @@ public class sonneController : MonoBehaviour
     void Awake()
     {
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
-		this.ms_Instance = Management.Instance;
+		this.ms_Instance = ApfelManager.Instance;
         ms_Instance.Sun = this; //Speichert sich selbst im Management
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;

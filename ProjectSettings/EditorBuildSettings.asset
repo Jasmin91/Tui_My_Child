@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Apfelspiel2.unity
+    path: Assets/scenes/Apfelspiel2.unity
     guid: fe9a0f5c1a631434986cdd5e1e819b4f
+  - enabled: 1
+    path: Assets/scenes/Startspiel.unity
+    guid: ab98c7a0377eb3d42bf448d15713ca72

@@ -23,11 +23,13 @@ THE SOFTWARE.
 using System;
 using UnityEngine;
 
-
-//wird nicht genutzt! Dient als Kopiervorlage
+/// <summary>  
+///Klasse um die Tiere zu steuern
+/// </summary>  
 public class AnimalController : MonoBehaviour
 {
     public int MarkerID = 0;
+    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     public float Geschwindigkeit = 0.01f;
@@ -45,7 +47,7 @@ public class AnimalController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private Management ms_Instance;
+	private ApfelManager ms_Instance;
     private Camera m_MainCamera;
 
     //members
@@ -57,11 +59,13 @@ public class AnimalController : MonoBehaviour
     void Awake()
     {
 
-       // GetComponent<Rigidbody2D>().velocity = new Vector2(0.5f, 0);//Setze Geschwindigkeit, sobald Fiducial sichtbar
-        
+        // GetComponent<Rigidbody2D>().velocity = new Vector2(0.5f, 0);//Setze Geschwindigkeit, sobald Fiducial sichtbar
+
+        this.Manager = ManagerKlasse.Instance;
+        this.Manager.addAnimal(this); //Füge AnimalArray ein Tier im Manager hinzu
 
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
-		this.ms_Instance = Management.Instance;
+		this.ms_Instance = ApfelManager.Instance;
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;
 
@@ -170,20 +174,17 @@ public class AnimalController : MonoBehaviour
             }
 
             transform.localRotation = rotation;
-            String s = "";
             float Geschwindigkeit = this.Geschwindigkeit;
           
-            s+=("transform.right.x:" + transform.right.x);
             if (transform.right.x < -0.5) {
                 Geschwindigkeit = Geschwindigkeit * 2;
             }
             transform.position += transform.right * Geschwindigkeit;
-            s +=("+++ Rechnung:" + transform.right+"*"+ Geschwindigkeit);
-            s+=("=" + transform.position.ToString());
-            Debug.Log(s);
+            
         }
     }
 
+    
 
     #region Getter
 

@@ -166,7 +166,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 4.965287
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -267,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 181251081}
   m_Layer: 0
-  m_Name: Aepfel gruen
+  m_Name: Aepfel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

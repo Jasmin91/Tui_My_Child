@@ -23,7 +23,7 @@ THE SOFTWARE.
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class KorbController : MonoBehaviour
 {
@@ -46,7 +46,7 @@ public class KorbController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
+	private ApfelManager ms_Instance; //Erstellt eine Instanz der Manager-Klasse
     private Camera m_MainCamera;
 
     //members
@@ -61,7 +61,7 @@ public class KorbController : MonoBehaviour
     void Awake()
     {
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
-		this.ms_Instance = Management.Instance;
+		this.ms_Instance = ApfelManager.Instance;
 
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;
@@ -113,6 +113,11 @@ public class KorbController : MonoBehaviour
             this.m_ScreenPosition.y = this.yAxe;
             //update transform component
             UpdateTransform();
+        }
+
+        if (appleCounter >= 4)
+        {
+            SceneManager.UnloadSceneAsync("Apfelspiel2");
         }
    
     }

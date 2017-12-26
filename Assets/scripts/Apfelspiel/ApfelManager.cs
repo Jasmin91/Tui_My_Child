@@ -5,22 +5,22 @@ using UnityEngine;
 /// <summary>  
 ///  Diese Management-Klasse steuert und verbindet alle anderen Klassen
 /// </summary>
-public class Management {
+public class ApfelManager {
 
-    private static Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
+    private static ApfelManager ms_Instance; //Erstellt eine Instanz der Manager-Klasse
     public regenController Rain {get; set; } //Speichert das Regen-Objekt
     public sonneController Sun { get; set; } //Speichert das Sonnen-Objekt
     private bool windBlowing = false; //der Wind weht gerade
     private List<appleScript> appleArray = new List<appleScript>(); //Array, dass die Äpfel am Baum speichert
 
 
-    public static Management Instance
+    public static ApfelManager Instance
 	{
 		get
 		{
             if (ms_Instance == null)
 			{
-                ms_Instance = new Management();
+                ms_Instance = new ApfelManager();
 			}
             return ms_Instance;
 		}
@@ -29,7 +29,7 @@ public class Management {
 
 
 
-    public Management()
+    public ApfelManager()
     {
         if (ms_Instance != null)
         {

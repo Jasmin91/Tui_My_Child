@@ -9,7 +9,7 @@ using UnityEngine;
 public class appleScript : MonoBehaviour
 {
     
-    private Management ms_Instance; //Erstellt eine Instanz der Manager-Klasse
+    private ApfelManager ms_Instance; //Erstellt eine Instanz der Manager-Klasse
     public float fallingSpeed = 0.23f; //Geschwindigkeit, mit der der Apfel fällt
     private bool fallen = false; //Boolscher Wert, ob Apfel bereits gefallen ist
     private bool red = false; //Boolscher Wert, ob Apfel bereits reif ist
@@ -20,7 +20,7 @@ public class appleScript : MonoBehaviour
 
     void Start()
     {
-        this.ms_Instance = Management.Instance; 
+        this.ms_Instance = ApfelManager.Instance; 
         this.ms_Instance.addApple(this); //Füge Apfel dem Apfel-Array im Manager hinzu
         
     }
