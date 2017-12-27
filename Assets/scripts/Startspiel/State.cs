@@ -8,15 +8,19 @@ using UnityEngine;
 ///  Diese Klasse hält den aktuellen Stand der Szene
 /// </summary>
 public class State {
-
-    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
+    
     public string savegameName;//used as the file name when saving as well as for loading a specific savegame
     public string testString;//just a test variable of data we want to keep
+    public List<string> nutNames = new List<string>();
 
     public State()
     {
-        this.Manager = ManagerKlasse.Instance;
-        Manager.addSceneState(this);
+        
+    }
+
+    public void updateNutNames(List<string> nn)
+    {
+        this.nutNames = nn;
     }
 
 }

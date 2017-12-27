@@ -6,18 +6,22 @@ using UnityEngine;
 ///  Diese Klasse steuert die  Funktion einer Nuss
 /// </summary> 
 
+
 public class NutScript : MonoBehaviour
 {
     
     private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
     private bool collected = false;
+    private String namenut="noname";
 
 
 
     void Start()
     {
         this.Manager = ManagerKlasse.Instance;
+        this.namenut = this.gameObject.name;
         this.Manager.addNut(this);
+        Debug.Log("Eine neue Nuss ist geboren und ich heiße " + namenut);
         
     }
 
@@ -30,10 +34,20 @@ public class NutScript : MonoBehaviour
     {
         //if (col.gameObject.name == "hase")
         {
-            Destroy(this.gameObject); //Zerstören des gesammelten Nuss-Objekts
-            Manager.collectNut(); //Zähler der gesammelten Nüsse im Manager wird erhöht
-            Manager.removeNut(this);
+            this.collectNut();
         }
+    }
+
+    public void collectNut()
+    {
+        Destroy(this.gameObject); //Zerstören des gesammelten Nuss-Objekts
+        Manager.collectNut(); //Zähler der gesammelten Nüsse im Manager wird erhöht
+        Manager.removeNut(this);
+
+    }
+    public String getName()
+    {
+        return this.namenut;
     }
 
 }

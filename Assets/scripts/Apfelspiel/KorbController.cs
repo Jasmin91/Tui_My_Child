@@ -117,7 +117,9 @@ public class KorbController : MonoBehaviour
 
         if (appleCounter >= 4)
         {
-            SceneManager.UnloadSceneAsync("Apfelspiel2");
+            
+            SceneManager.LoadScene("Startspiel");
+           // ms_Instance.getManager().getOldState();
         }
    
     }

@@ -7,7 +7,8 @@ using UnityEngine;
 /// </summary>
 public class ApfelManager {
 
-    private static ApfelManager ms_Instance; //Erstellt eine Instanz der Manager-Klasse
+    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
+    private static ApfelManager ms_Instance; //Erstellt eine Instanz der ApfelManager-Klasse
     public regenController Rain {get; set; } //Speichert das Regen-Objekt
     public sonneController Sun { get; set; } //Speichert das Sonnen-Objekt
     private bool windBlowing = false; //der Wind weht gerade
@@ -37,7 +38,8 @@ public class ApfelManager {
             return;
         }
             ms_Instance = this;
-        
+        this.Manager = ManagerKlasse.Instance;
+
     }
 
 
@@ -49,6 +51,11 @@ public class ApfelManager {
     public bool getWindBlowing()
     {
         return this.windBlowing;
+    }
+
+    public ManagerKlasse getManager()
+    {
+        return Manager;
     }
 
 

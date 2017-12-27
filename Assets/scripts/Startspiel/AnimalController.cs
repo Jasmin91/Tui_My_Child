@@ -22,6 +22,7 @@ THE SOFTWARE.
 
 using System;
 using UnityEngine;
+[System.Serializable]
 
 /// <summary>  
 ///Klasse um die Tiere zu steuern

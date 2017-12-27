@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PortalController : MonoBehaviour
 {
     private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
@@ -32,8 +33,8 @@ public class PortalController : MonoBehaviour
         if (this.gameObject.name == "Apfel" && col.gameObject.name == "pferd")
         {
             Destroy(this.gameObject); //Zerstören des betretenen Portals
-            
-            SceneManager.LoadScene("Apfelspiel2", LoadSceneMode.Additive);
+            Manager.Save();
+            SceneManager.LoadScene("Apfelspiel2");
             //GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = false;
           
         }

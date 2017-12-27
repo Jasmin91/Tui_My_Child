@@ -4,19 +4,18 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+[System.Serializable]
 
 /// <summary>  
 ///  Diese Klasse speichert und lädt den aktuellen Stand der Szene
 /// </summary>
 public class SaveLoad {
 
-
-    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
+    
 
     public SaveLoad()
     {
-        this.Manager = ManagerKlasse.Instance;
-        Manager.addSaveLoad(this);
+       // Manager.addSaveLoad(this);
     }
 
     //it's static so we can call it from anywhere
@@ -24,7 +23,7 @@ public class SaveLoad {
     {
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create("C:/Savegames/" + saveGame.savegameName + ".sav"); //you can call it anything you want, including the extension. The directories have to exist though.
+        FileStream file = File.Create("D:/Users/Jasmin/Documents/Studium/HUC/WS1718/VRLab/GitHub/Tui_My_Child/Savegames/" + saveGame.savegameName + ".sav"); //you can call it anything you want, including the extension. The directories have to exist though.
         bf.Serialize(file, saveGame);
         file.Close();
         Debug.Log("Saved Game: " + saveGame.savegameName);
