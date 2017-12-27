@@ -32,6 +32,7 @@ public class PortalController : MonoBehaviour
         if (this.gameObject.name == "Apfel" && col.gameObject.name == "pferd")
         {
             Destroy(this.gameObject); //Zerstören des betretenen Portals
+            
             SceneManager.LoadScene("Apfelspiel2", LoadSceneMode.Additive);
             //GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = false;
           

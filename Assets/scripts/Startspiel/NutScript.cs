@@ -10,12 +10,14 @@ public class NutScript : MonoBehaviour
 {
     
     private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
+    private bool collected = false;
 
 
 
     void Start()
     {
-        this.Manager = ManagerKlasse.Instance; 
+        this.Manager = ManagerKlasse.Instance;
+        this.Manager.addNut(this);
         
     }
 
@@ -29,7 +31,8 @@ public class NutScript : MonoBehaviour
         //if (col.gameObject.name == "hase")
         {
             Destroy(this.gameObject); //Zerstören des gesammelten Nuss-Objekts
-            Manager.addNut(); //Zähler der gesammelten Nüsse im Manager wird erhöht
+            Manager.collectNut(); //Zähler der gesammelten Nüsse im Manager wird erhöht
+            Manager.removeNut(this);
         }
     }
 
