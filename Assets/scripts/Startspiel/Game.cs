@@ -26,7 +26,7 @@ public class Game : MonoBehaviour
     {
         if (!updated)
         {
-            Debug.Log("und ich versuche zu updaten");
+            Debug.Log("###############und ich versuche zu updaten"+ Manager.nutsComplete());
             if (Manager.nutsComplete())
             {
                 Manager.getOldState();
