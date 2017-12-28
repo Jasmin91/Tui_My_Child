@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>  
-///  Diese Klasse steuert die  Funktion einer Nuss
+///  Diese Klasse steuert die Funktionen der Hütte und erkennt das Ende des Spiels
 /// </summary> 
 
 
@@ -11,22 +11,24 @@ public class HutScript : MonoBehaviour
 {
     
     private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
-    private bool finished = false;
+    private bool finished = false; //Spiel beendet
 
 
 
     void Start()
     {
         this.Manager = ManagerKlasse.Instance;
-       
     }
 
+    /// <summary>  
+    ///  Erkennt die Kollision eines Tieres mit der Hütte
+    /// </summary> 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Manager.visitHut(col.name);
+        Manager.VisitHut(col.name); //Merkt sich im Manager, dass Tier gerade auf Hütte ist
 
-        if (Manager.getVistors().Count == Manager.PlayerCount) {
-            if (Manager.getFoundAllFood()) {
+        if (Manager.GetVistors().Count == Manager.PlayerCount) { //Schaut, ob alle Tiere auf der Hütte sind
+            if (Manager.GetFoundAllFood()) { //Schaut, ob alles Essen gesammelt wurde
                 finished = true;
                 Debug.Log("Spiel beendet!");
             }
@@ -37,14 +39,14 @@ public class HutScript : MonoBehaviour
         }
         else
         {
-            Debug.Log(col.name + " wartet auf seine Freunde"+Manager.getVistors().Count);
+            Debug.Log(col.name + " wartet auf seine Freunde"+Manager.GetVistors().Count);
         }
     }
 
 
     void OnTriggerExit2D(Collider2D col)
     {
-        Manager.leaveHut(col.name);
+        Manager.LeaveHut(col.name); //Merkt sich im Manager, dass Tier Hütte verlassen hat
     }
 
     void Update()

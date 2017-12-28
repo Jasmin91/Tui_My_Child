@@ -9,9 +9,19 @@ using UnityEngine;
 
 public class NutScript : MonoBehaviour
 {
-    
-    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
+    /// <summary>  
+    ///  Instanz der Manager-Klasse
+    /// </summary>
+    private ManagerKlasse Manager;
+
+    /// <summary>  
+    ///  Speichert, ob Nuss bereits gesammelt wurde
+    /// </summary>
     private bool collected = false;
+
+    /// <summary>  
+    ///  Speichert den Namen der Nuss
+    /// </summary>
     private String namenut="noname";
 
 
@@ -20,8 +30,7 @@ public class NutScript : MonoBehaviour
     {
         this.Manager = ManagerKlasse.Instance;
         this.namenut = this.gameObject.name;
-        this.Manager.addNut(this);
-        //Debug.Log("Eine neue Nuss ist geboren und ich heiße " + namenut);
+        this.Manager.AddNut(this);
         
     }
 
@@ -29,10 +38,12 @@ public class NutScript : MonoBehaviour
     {
     }
 
-    //Collider, der erkennt ob Tier und Nuss kollidieren
+
+    /// <summary>  
+    ///  Collider, der erkennt ob Tier und Nuss kollidieren
+    /// </summary>
     void OnTriggerEnter2D(Collider2D col)
     {
-        //if (col.gameObject.name == "hase")
         {
             this.collectNut();
         }
@@ -42,10 +53,8 @@ public class NutScript : MonoBehaviour
     {
         Debug.Log(namenut + " soll gelöscht werden");
         Destroy(this.gameObject); //Zerstören des gesammelten Nuss-Objekts
-        Manager.collectNut(); //Zähler der gesammelten Nüsse im Manager wird erhöht
-      
-            Manager.removeNut(this);
-        
+        Manager.CollectNut(); //Zähler der gesammelten Nüsse im Manager wird erhöht
+        Manager.RemoveNut(this);
     }
 
     public void destroyObject()

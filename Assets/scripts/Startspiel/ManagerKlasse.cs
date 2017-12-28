@@ -9,18 +9,40 @@ using UnityEngine;
 /// </summary>
 public class ManagerKlasse {
 
+    /// <summary> Instanz der Manager-Klasse </summary>
     private static ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
-    private List<AnimalController> AnimalArray = new List<AnimalController>(); //Array, dass die Tiere speichert
-    private int NutCounter; //Zählt die gesammelten Nüsse
-    private List<NutScript> NutList = new List<NutScript>(); //Speichert alle Nüsse
-    private List<PortalController> PortalList = new List<PortalController>(); //Speichert alle Portale
-    ICollection<KeyValuePair<string, Vector3>> AnimalPositionList = new Dictionary<string, Vector3>(); //Speichert die Position aller Tiere
-    private List<string> DeletedNutList = new List<string>(); //Speichert alle Namen der gelöschten Nüsse
-    private List<string> DeletedPortalList = new List<string>(); //Speichert alle Namen der bereits betretenen Portale
-    private List<AnimalController> VisitingHut = new List<AnimalController>();
-    //GUIText text = 
-    public int PlayerCount = 4;
+
+    /// <summary> Liste, die die Tiere speichert </summary>
+    private List<AnimalController> AnimalList = new List<AnimalController>();
+
+    /// <summary> Counter der gesammelten Nüsse </summary>
+
+    /// <summary> Liste, die alle Nüsse speichert </summary>
+    private List<NutScript> NutList = new List<NutScript>(); 
+
+    /// <summary> Liste, die alle Portale speichert </summary>
+    private List<PortalController> PortalList = new List<PortalController>(); 
+
+    /// <summary> Dictionary, das die Position aller Tiere speichert </summary>
+    ICollection<KeyValuePair<string, Vector3>> AnimalPositionList = new Dictionary<string, Vector3>(); 
+
+    /// <summary> Liste, die alle bereits gelöschten Nüsse speichert </summary>
+    private List<string> DeletedNutList = new List<string>();
+
+    /// <summary> Liste, die alle bereits betretenen Portale speichert </summary>
+    private List<string> DeletedPortalList = new List<string>(); 
+
+    /// <summary> Liste, die alle Tiere speichert, die gerade auf der Hütte sind </summary>
+    private List<AnimalController> VisitingHut = new List<AnimalController>(); 
+
+    /// <summary> Speichert die Anzahl der Spieler </summary>
+    public int PlayerCount = 4; 
+
+    /// <summary> Speichert die Anzahl der Nüsse im Spiel </summary>
     public int NutCount = 20;
+
+    /// <summary> Speichert die Anzahl der gesammelten Nüsse </summary>
+    public int NutCounter = 0;
 
 
 
@@ -50,26 +72,31 @@ public class ManagerKlasse {
 
     }
 
-    public void getOldState()
+    /// <summary>  
+    ///  Diese Methode stellt den alten Stand des Startspiels wieder her
+    /// </summary> 
+    public void GetOldState()
     {
-        Debug.Log("Versucht alten Stand wiederherzustellen");
-        this.deleteCollectedNutsInit();
-        this.deleteVisitedPortalsInit();
-        this.setOldAnimalPosition();
-        
-    }
-    //Fügt ein Tier dem Tier-Array hinzu
-    public void addAnimal(AnimalController animal)
-    {
-        this.AnimalArray.Add(animal);
+        this.DeleteCollectedNutsInit();
+        this.DeleteVisitedPortalsInit();
+        this.SetOldAnimalPosition();
     }
 
-    
+    /// <summary>  
+    ///  Fügt ein Tier dem Tier-Array hinzu
+    /// </summary> 
+    public void AddAnimal(AnimalController animal)
+    {
+        this.AnimalList.Add(animal);
+    }
 
-    private void deleteVisitedPortalsInit()
+    /// <summary>  
+    ///  Löscht alle bereits von den richtigen Tieren besuchten Portale
+    /// </summary> 
+    private void DeleteVisitedPortalsInit()
     {
 
-        foreach (string s in DeletedPortalList)
+        foreach (string s in DeletedPortalList) 
         {
             int i = 0;
             bool ready = false;
@@ -77,8 +104,7 @@ public class ManagerKlasse {
             {
                 if (PortalList[i].name == s)
                 {
-                    Debug.Log(s + " soll gelöscht werden");
-                   PortalList[i].destroyObject();
+                   PortalList[i].destroyObject(); //Löscht Portal, das in DeletedPortalList und PortalList zu finden ist
                     ready = true;
                 }
                 else if (i == PortalList.Count - 1)
@@ -91,7 +117,10 @@ public class ManagerKlasse {
         }
     }
 
-    private void deleteCollectedNutsInit()
+    /// <summary>  
+    ///  Löscht alle bereits gesammelten Nüsse
+    /// </summary> 
+    private void DeleteCollectedNutsInit()
     {
 
         foreach(string s in DeletedNutList){
@@ -101,8 +130,8 @@ public class ManagerKlasse {
             {
                     if (NutList[i].getName() == s)
                     {
-                        NutList[i].destroyObject();
-                        ready = true;
+                        NutList[i].destroyObject(); //Löscht Nuss, die in DeletedNutList und NutList zu finden ist
+                    ready = true;
                     }
                     else if(i == NutList.Count-1) {
                           ready = true;
@@ -114,7 +143,10 @@ public class ManagerKlasse {
         }
     }
 
-    private void setOldAnimalPosition()
+    /// <summary>  
+    ///  Setzt die Tiere auf ihre alte Position, welche in AnimalPositionList gespeichert ist
+    /// </summary> 
+    private void SetOldAnimalPosition()
     {
 
         foreach (KeyValuePair<string, Vector3> ap in AnimalPositionList)
@@ -123,12 +155,12 @@ public class ManagerKlasse {
             bool ready = false;
             while (!ready)
             {
-                if (this.AnimalArray[i].name == ap.Key)
+                if (this.AnimalList[i].name == ap.Key)
                 {
-                    AnimalArray[i].transform.position = ap.Value;
+                    AnimalList[i].transform.position = ap.Value;
                     ready = true;
                 }
-                else if (i == AnimalArray.Count - 1)
+                else if (i == AnimalList.Count - 1)
                 {
                     ready = true;
                 }
@@ -139,43 +171,56 @@ public class ManagerKlasse {
         }
     }
 
-    public void collectNut()
+    /// <summary>  
+    ///  Methode erhöht den NutCounter
+    /// </summary> 
+    public void CollectNut()
     {
         this.NutCounter++;
-        
-        Debug.Log("Gesammelte Nüsse: " + NutCounter);
     }
-    public void addNut(NutScript nut)
+
+    /// <summary>  
+    ///  Fügt eine Nuss zu Beginn des Spiels der NutList hinzu
+    /// </summary> 
+    public void AddNut(NutScript nut)
     {
         this.NutList.Add(nut);
     }
 
-    public void addPortal(PortalController portal)
+    /// <summary>  
+    ///  Fügt ein Portal zu Beginn des Spiels der PortalList hinzu
+    /// </summary> 
+    public void AddPortal(PortalController portal)
     {
         this.PortalList.Add(portal);
     }
 
-    public void addVisitedPortal(PortalController portal)
+    /// <summary>  
+    ///  Fügt ein Portal der Liste hinzu, wenn es vom richtigen Tier besucht wurde
+    /// </summary> 
+    public void AddVisitedPortal(PortalController portal)
     {
         this.DeletedPortalList.Add(portal.name);
     }
 
-    public void visitHut(string name)
+    /// <summary>  
+    ///  Methode, die anhand des Tiernamens das Tier in der entsprechenden Liste speichert, wenn es sich auf der Hütte befindet
+    /// </summary> 
+    public void VisitHut(string name)
     {
-        Debug.Log("In visitingHut mit " + name);
-        foreach (AnimalController animal in AnimalArray) {
-            Debug.Log("Versuche " + animal.name + " in die Besuchsliste aufzunehmen");
+        foreach (AnimalController animal in AnimalList) {
             if (animal.name == name)
             {
                 this.VisitingHut.Add(animal);
-                Debug.Log(animal.name + " ist drin");
             }
         }
-        //Debug.Log("visitingHut.Count:"+VisitingHut.Count+" ")
     }
-    public void leaveHut(string name)
+    /// <summary>  
+    ///  Methode, die anhand des Tiernamens das Tier aus der entsprechenden Liste löscht, wenn es sich nicht mehr auf der Hütte befindet
+    /// </summary> 
+    public void LeaveHut(string name)
     {
-        foreach (AnimalController animal in AnimalArray)
+        foreach (AnimalController animal in AnimalList)
         {
             if (animal.name == name)
             {
@@ -184,12 +229,18 @@ public class ManagerKlasse {
         }
     }
 
-    public List<AnimalController> getVistors()
+    /// <summary>  
+    ///  Methode gibt die Liste aller Tiere zurück, die aktuell auf der Hütte sind
+    /// </summary> 
+    public List<AnimalController> GetVistors()
     {
         return VisitingHut;
     }
 
-    public bool getFoundAllFood()
+    /// <summary>  
+    ///  Methode gibt an, ob alle Tiere ihr Essen gefunden haben
+    /// </summary> 
+    public bool GetFoundAllFood()
     {
         bool result = false;
 
@@ -201,15 +252,19 @@ public class ManagerKlasse {
         return result;
     }
 
-    public void removeNut(NutScript nut)
+    /// <summary>  
+    ///  Methode löscht die Nuss aus der Nussliste und fügt sie der Liste für gelöschte Nüsse hinzu
+    /// </summary> 
+    public void RemoveNut(NutScript nut)
     {
         this.NutList.Remove(nut);
-
-
         this.DeletedNutList.Add(nut.getName());
     }
 
-    public bool nutsComplete()
+    /// <summary>  
+    ///  Methode gibt an, ob alle Nüsse zu Beginn des Startspiels geladen wurden
+    /// </summary> 
+    public bool NutsComplete()
     {
         bool result = false;
         Debug.Log("Count:"+NutList.Count);
@@ -220,7 +275,10 @@ public class ManagerKlasse {
         return result;
     }
 
-    public bool portalsComplete()
+    /// <summary>  
+    ///  Methode gibt an, ob alle Portale zu Beginn des Startspiels geladen wurden
+    /// </summary> 
+    public bool PortalsComplete()
     {
         bool result = false;
         Debug.Log("Count:" + PortalList.Count);
@@ -231,32 +289,41 @@ public class ManagerKlasse {
         return result;
     }
 
+    /// <summary>  
+    ///  Methode gibt an, ob alle Tiere zu Beginn des Startspiels geladen wurden
+    /// </summary> 
     public bool AnimalsComplete()
     {
         bool result = false;
-        Debug.Log("Count:" + AnimalArray.Count);
-        if (this.AnimalArray.Count == PlayerCount)
+        Debug.Log("Count:" + AnimalList.Count);
+        if (this.AnimalList.Count == PlayerCount)
         {
             result = true;
         }
         return result;
     }
-    
 
-    public void clearScene()
+
+    /// <summary>  
+    ///  Leert die befüllten Listen und speichert die aktuellen Positionen der Tiere
+    /// </summary> 
+    public void ClearScene()
     {
        
-        fillAnimalPositionList();
-        AnimalArray.Clear();
+        FillAnimalPositionList();
+        AnimalList.Clear();
         NutList.Clear();
         PortalList.Clear();
         VisitingHut.Clear();
     }
 
-    public void fillAnimalPositionList()
+    /// <summary>  
+    ///  Methode füllt die Liste mit den Positionen der Tiere neu
+    /// </summary> 
+    public void FillAnimalPositionList()
     {
         AnimalPositionList.Clear();
-        foreach(AnimalController animal in AnimalArray)
+        foreach(AnimalController animal in AnimalList)
         {
               AnimalPositionList.Add(new KeyValuePair<string, Vector3>(animal.name, animal.transform.position));
         }

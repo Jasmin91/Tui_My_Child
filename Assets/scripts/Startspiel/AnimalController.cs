@@ -60,10 +60,8 @@ public class AnimalController : MonoBehaviour
     void Awake()
     {
 
-        // GetComponent<Rigidbody2D>().velocity = new Vector2(0.5f, 0);//Setze Geschwindigkeit, sobald Fiducial sichtbar
-
         this.Manager = ManagerKlasse.Instance;
-        this.Manager.addAnimal(this); //Füge AnimalArray ein Tier im Manager hinzu
+        this.Manager.AddAnimal(this); //Füge AnimalArray ein Tier im Manager hinzu
 
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
 		this.ms_Instance = ApfelManager.Instance;
@@ -101,7 +99,6 @@ public class AnimalController : MonoBehaviour
     {
 
 		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
-			//Debug.Log("FidcialController Zeile 110:this.m_TuioManager.IsMarkerAlive(this.MarkerID)");
 		}
 
 
@@ -174,13 +171,13 @@ public class AnimalController : MonoBehaviour
                     break;
             }
 
-            transform.localRotation = rotation;
-            float Geschwindigkeit = this.Geschwindigkeit;
+            transform.localRotation = rotation; //Rotiert das Tier
+            float Geschwindigkeit = this.Geschwindigkeit; //Setzt die Geschwindigkeit
           
             if (transform.right.x < -0.5) {
-                Geschwindigkeit = Geschwindigkeit * 2;
+                Geschwindigkeit = Geschwindigkeit * 2; //Erhöht Geschwindigkeit, wenn sich Tier nach links bewegt (Ausgleich)
             }
-            transform.position += transform.right * Geschwindigkeit;
+            transform.position += transform.right * Geschwindigkeit; //Bewegt das Tier
             
         }
     }

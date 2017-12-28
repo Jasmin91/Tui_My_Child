@@ -21,7 +21,7 @@ public class PortalController : MonoBehaviour
 
     void Start()
     {
-        this.Manager.addPortal(this);
+        this.Manager.AddPortal(this);
     }
 
     void Update()
@@ -35,8 +35,8 @@ public class PortalController : MonoBehaviour
           
           if (col.gameObject.name == this.animal)
           {
-              this.Manager.addVisitedPortal(this);
-              Manager.clearScene();
+              this.Manager.AddVisitedPortal(this);
+              Manager.ClearScene();
 
             String scenename = "Startspiel";
             switch (animal)
