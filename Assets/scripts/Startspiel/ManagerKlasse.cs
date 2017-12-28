@@ -18,8 +18,6 @@ public class ManagerKlasse {
     ICollection<KeyValuePair<string, Vector3>> AnimalPositionList = new Dictionary<string, Vector3>(); //Speichert die Position aller Tiere
     private List<string> DeletedNutList = new List<string>(); //Speichert alle Namen der gelöschten Nüsse
     private List<string> DeletedPortalList = new List<string>(); //Speichert alle Namen der bereits betretenen Portale
-    private State SceneState;
-    private SaveLoad SL;
     public int PlayerCount = 4;
     public int NutCount = 20;
 
@@ -46,9 +44,6 @@ public class ManagerKlasse {
             return;
         }
         Manager = this;
-        this.SL = new SaveLoad();
-        
-        this.SceneState = new State();
         Debug.Log("Sooft bin ich hier drin!");
 
     }
@@ -66,16 +61,7 @@ public class ManagerKlasse {
         this.AnimalArray.Add(animal);
     }
 
-
-    public void addSceneState(State state)
-    {
-        this.SceneState = state;
-    }
-
-    public void addSaveLoad(SaveLoad sl)
-    {
-        this.SL = sl;
-    }
+    
 
     private void deleteVisitedPortalsInit()
     {
@@ -159,7 +145,6 @@ public class ManagerKlasse {
     public void addNut(NutScript nut)
     {
         this.NutList.Add(nut);
-        SceneState.updateNutNames(DeletedNutList);
     }
 
     public void addPortal(PortalController portal)
@@ -212,24 +197,7 @@ public class ManagerKlasse {
         }
         return result;
     }
-
-    public State getSavedState()
-    {
-
-        return this.SceneState;
-    }
-
-    public SaveLoad getSaveLoad()
-    {
-
-        return this.SL;
-    }
-
-    public void Save()
-    {
-
-        this.SL.Save(SceneState);
-    }
+    
 
     public void clearScene()
     {

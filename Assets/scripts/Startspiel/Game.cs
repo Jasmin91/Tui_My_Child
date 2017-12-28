@@ -19,14 +19,12 @@ public class Game : MonoBehaviour
     {
         this.Manager = ManagerKlasse.Instance;
        
-        
     }
 
     void Update()
     {
         if (!updated)
         {
-            Debug.Log("###############und ich versuche zu updaten"+ updated);
             if (Manager.nutsComplete()&&Manager.portalsComplete()&&Manager.AnimalsComplete())
             {
                 Manager.getOldState();
@@ -36,5 +34,4 @@ public class Game : MonoBehaviour
         }
     }
     
-
 }
