@@ -14,12 +14,14 @@ public class ManagerKlasse {
     private int NutCounter; //Zählt die gesammelten Nüsse
     private List<NutScript> NutList = new List<NutScript>(); //Speichert alle Nüsse
     private List<PortalController> PortalList = new List<PortalController>(); //Speichert alle Portale
-   // private KeyValuePair<string, Vector3> AnimalPositionList = new KeyValuePair<string, Vector3>(); 
     ICollection<KeyValuePair<string, Vector3>> AnimalPositionList = new Dictionary<string, Vector3>(); //Speichert die Position aller Tiere
     private List<string> DeletedNutList = new List<string>(); //Speichert alle Namen der gelöschten Nüsse
     private List<string> DeletedPortalList = new List<string>(); //Speichert alle Namen der bereits betretenen Portale
+    private List<AnimalController> VisitingHut = new List<AnimalController>();
+    //GUIText text = 
     public int PlayerCount = 4;
     public int NutCount = 20;
+
 
 
     public static ManagerKlasse Instance
@@ -32,7 +34,7 @@ public class ManagerKlasse {
 			}
             return Manager;
 		}
-                
+        
 	}
 
 
@@ -54,6 +56,7 @@ public class ManagerKlasse {
         this.deleteCollectedNutsInit();
         this.deleteVisitedPortalsInit();
         this.setOldAnimalPosition();
+        
     }
     //Fügt ein Tier dem Tier-Array hinzu
     public void addAnimal(AnimalController animal)
@@ -157,6 +160,47 @@ public class ManagerKlasse {
         this.DeletedPortalList.Add(portal.name);
     }
 
+    public void visitHut(string name)
+    {
+        Debug.Log("In visitingHut mit " + name);
+        foreach (AnimalController animal in AnimalArray) {
+            Debug.Log("Versuche " + animal.name + " in die Besuchsliste aufzunehmen");
+            if (animal.name == name)
+            {
+                this.VisitingHut.Add(animal);
+                Debug.Log(animal.name + " ist drin");
+            }
+        }
+        //Debug.Log("visitingHut.Count:"+VisitingHut.Count+" ")
+    }
+    public void leaveHut(string name)
+    {
+        foreach (AnimalController animal in AnimalArray)
+        {
+            if (animal.name == name)
+            {
+                this.VisitingHut.Remove(animal);
+            }
+        }
+    }
+
+    public List<AnimalController> getVistors()
+    {
+        return VisitingHut;
+    }
+
+    public bool getFoundAllFood()
+    {
+        bool result = false;
+
+        if (this.DeletedPortalList.Count == PlayerCount)
+        {
+            result = true;
+        }
+
+        return result;
+    }
+
     public void removeNut(NutScript nut)
     {
         this.NutList.Remove(nut);
@@ -206,6 +250,7 @@ public class ManagerKlasse {
         AnimalArray.Clear();
         NutList.Clear();
         PortalList.Clear();
+        VisitingHut.Clear();
     }
 
     public void fillAnimalPositionList()
