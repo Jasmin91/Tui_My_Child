@@ -9,6 +9,7 @@ public class PortalController : MonoBehaviour
 {
     private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
     public bool done = false;
+    public String animal = "nicht vergeben";
 
 
     void Awake()
@@ -21,7 +22,6 @@ public class PortalController : MonoBehaviour
     void Start()
     {
         this.Manager.addPortal(this);
-        Debug.Log("Eine neues Portal ist geboren und ich heiße " + name);
     }
 
     void Update()
@@ -32,20 +32,55 @@ public class PortalController : MonoBehaviour
     //Collider, der erkennt ob Tier und Portal kollidieren
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (this.gameObject.name == "Apfel" && col.gameObject.name == "pferd")
-        {
-            this.Manager.addVisitedPortal(this);
-            Destroy(this.gameObject); //Zerstören des betretenen Portals
-            Manager.clearScene();
-            SceneManager.LoadScene("Apfelspiel2");
-            //GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().enabled = false;
           
-        }
+          if (col.gameObject.name == this.animal)
+          {
+              this.Manager.addVisitedPortal(this);
+              Manager.clearScene();
+
+            String scenename = "Startspiel";
+            switch (animal)
+            {
+                case "horse":
+                    scenename = "Apfelspiel2";
+                    break;
+                case "bear":
+                    scenename = "Startspiel";
+                    break;
+                case "dog":
+                    scenename = "Startspiel";
+                    break;
+                case "rabbit":
+                    scenename = "Startspiel";
+                    break;
+                    
+            }
+              SceneManager.LoadScene(scenename);
+          }else
+            {
+                Debug.Log("Ich möchte meinem Freund " + animal + " das Essen nicht wegnehmen!");
+            }
+      
+
+
+          /**
+        if (this.gameObject.name == "apple")
+        {
+            if (col.gameObject.name == "horse")
+            {
+                this.Manager.addVisitedPortal(this);
+                Manager.clearScene();
+                SceneManager.LoadScene("Apfelspiel2");
+            }
+            
+        }*/
     }
 
     public void destroyObject()
     {
-        Destroy(this.gameObject); //Zerstören des betretenen Portals
+         Destroy(this.gameObject); //Zerstören des betretenen Portals
+        //this.gameObject.SetActive(false);
+        Debug.Log(name+ " stirbt");
     }
 
 

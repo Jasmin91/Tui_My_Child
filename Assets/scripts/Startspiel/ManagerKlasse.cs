@@ -14,13 +14,17 @@ public class ManagerKlasse {
     private int NutCounter; //Zählt die gesammelten Nüsse
     private List<NutScript> NutList = new List<NutScript>(); //Speichert alle Nüsse
     private List<PortalController> PortalList = new List<PortalController>(); //Speichert alle Portale
+   // private KeyValuePair<string, Vector3> AnimalPositionList = new KeyValuePair<string, Vector3>(); 
+    ICollection<KeyValuePair<string, Vector3>> AnimalPositionList = new Dictionary<string, Vector3>(); //Speichert die Position aller Tiere
     private List<string> DeletedNutList = new List<string>(); //Speichert alle Namen der gelöschten Nüsse
     private List<string> DeletedPortalList = new List<string>(); //Speichert alle Namen der bereits betretenen Portale
     private State SceneState;
     private SaveLoad SL;
+    public int PlayerCount = 4;
+    public int NutCount = 20;
 
 
-public static ManagerKlasse Instance
+    public static ManagerKlasse Instance
 	{
 		get
 		{
@@ -54,6 +58,7 @@ public static ManagerKlasse Instance
         Debug.Log("Versucht alten Stand wiederherzustellen");
         this.deleteCollectedNutsInit();
         this.deleteVisitedPortalsInit();
+        this.setOldAnimalPosition();
     }
     //Fügt ein Tier dem Tier-Array hinzu
     public void addAnimal(AnimalController animal)
@@ -83,7 +88,8 @@ public static ManagerKlasse Instance
             {
                 if (PortalList[i].name == s)
                 {
-                    PortalList[i].destroyObject();
+                    Debug.Log(s + " soll gelöscht werden");
+                   PortalList[i].destroyObject();
                     ready = true;
                 }
                 else if (i == PortalList.Count - 1)
@@ -114,7 +120,32 @@ public static ManagerKlasse Instance
                         }
 
                     i++;
-               // }
+               
+            }
+        }
+    }
+
+    private void setOldAnimalPosition()
+    {
+
+        foreach (KeyValuePair<string, Vector3> ap in AnimalPositionList)
+        {
+            int i = 0;
+            bool ready = false;
+            while (!ready)
+            {
+                if (this.AnimalArray[i].name == ap.Key)
+                {
+                    AnimalArray[i].transform.position = ap.Value;
+                    ready = true;
+                }
+                else if (i == AnimalArray.Count - 1)
+                {
+                    ready = true;
+                }
+
+                i++;
+
             }
         }
     }
@@ -147,14 +178,35 @@ public static ManagerKlasse Instance
 
 
         this.DeletedNutList.Add(nut.getName());
-        //SceneState.updateNutNames(DeletedNutList);
     }
 
     public bool nutsComplete()
     {
         bool result = false;
         Debug.Log("Count:"+NutList.Count);
-        if (this.NutList.Count == 20)
+        if (this.NutList.Count == NutCount)
+        {
+            result = true;
+        }
+        return result;
+    }
+
+    public bool portalsComplete()
+    {
+        bool result = false;
+        Debug.Log("Count:" + PortalList.Count);
+        if (this.PortalList.Count == PlayerCount)
+        {
+            result = true;
+        }
+        return result;
+    }
+
+    public bool AnimalsComplete()
+    {
+        bool result = false;
+        Debug.Log("Count:" + AnimalArray.Count);
+        if (this.AnimalArray.Count == PlayerCount)
         {
             result = true;
         }
@@ -181,6 +233,19 @@ public static ManagerKlasse Instance
 
     public void clearScene()
     {
-        NutList = new List<NutScript>();
+       
+        fillAnimalPositionList();
+        AnimalArray.Clear();
+        NutList.Clear();
+        PortalList.Clear();
+    }
+
+    public void fillAnimalPositionList()
+    {
+        AnimalPositionList.Clear();
+        foreach(AnimalController animal in AnimalArray)
+        {
+              AnimalPositionList.Add(new KeyValuePair<string, Vector3>(animal.name, animal.transform.position));
+        }
     }
 }

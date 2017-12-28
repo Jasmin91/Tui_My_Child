@@ -26,12 +26,13 @@ public class Game : MonoBehaviour
     {
         if (!updated)
         {
-            Debug.Log("###############und ich versuche zu updaten"+ Manager.nutsComplete());
-            if (Manager.nutsComplete())
+            Debug.Log("###############und ich versuche zu updaten"+ updated);
+            if (Manager.nutsComplete()&&Manager.portalsComplete()&&Manager.AnimalsComplete())
             {
                 Manager.getOldState();
                 updated = true;
             }
+
         }
     }
     

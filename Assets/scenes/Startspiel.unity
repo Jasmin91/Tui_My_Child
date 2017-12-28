@@ -2169,6 +2169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   done: 0
+  animal: bear
 --- !u!58 &483863339
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2451,7 +2452,7 @@ GameObject:
   - component: {fileID: 705104566}
   - component: {fileID: 705104569}
   m_Layer: 0
-  m_Name: hund
+  m_Name: dog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3395,7 +3396,7 @@ GameObject:
   - component: {fileID: 1047478777}
   - component: {fileID: 1047478780}
   m_Layer: 0
-  m_Name: pferd
+  m_Name: horse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3741,7 +3742,7 @@ GameObject:
   - component: {fileID: 1092139331}
   - component: {fileID: 1092139330}
   m_Layer: 0
-  m_Name: Apfel
+  m_Name: apple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3816,6 +3817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   done: 0
+  animal: horse
 --- !u!58 &1092139331
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5139,7 +5141,7 @@ GameObject:
   - component: {fileID: 1380129404}
   - component: {fileID: 1380129407}
   m_Layer: 0
-  m_Name: hase
+  m_Name: rabbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6018,6 +6020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   done: 0
+  animal: dog
 --- !u!58 &1564022177
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7874,6 +7877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   done: 0
+  animal: rabbit
 --- !u!58 &2075965327
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8067,7 +8071,7 @@ GameObject:
   - component: {fileID: 2130643996}
   - component: {fileID: 2130643999}
   m_Layer: 0
-  m_Name: "b\xE4r"
+  m_Name: bear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
