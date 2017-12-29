@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>  
 ///  Diese Klasse steuert die  Funktion einer Nuss
@@ -23,6 +24,7 @@ public class NutScript : MonoBehaviour
     ///  Speichert den Namen der Nuss
     /// </summary>
     private String namenut="noname";
+    
 
 
 
@@ -51,7 +53,6 @@ public class NutScript : MonoBehaviour
 
     public void collectNut()
     {
-        Debug.Log(namenut + " soll gelöscht werden");
         Destroy(this.gameObject); //Zerstören des gesammelten Nuss-Objekts
         Manager.CollectNut(); //Zähler der gesammelten Nüsse im Manager wird erhöht
         Manager.RemoveNut(this);
@@ -65,5 +66,6 @@ public class NutScript : MonoBehaviour
     {
         return this.namenut;
     }
+    
 
 }

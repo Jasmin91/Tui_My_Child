@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 
@@ -14,9 +15,7 @@ public class ManagerKlasse {
 
     /// <summary> Liste, die die Tiere speichert </summary>
     private List<AnimalController> AnimalList = new List<AnimalController>();
-
-    /// <summary> Counter der gesammelten Nüsse </summary>
-
+    
     /// <summary> Liste, die alle Nüsse speichert </summary>
     private List<NutScript> NutList = new List<NutScript>(); 
 
@@ -44,6 +43,10 @@ public class ManagerKlasse {
     /// <summary> Speichert die Anzahl der gesammelten Nüsse </summary>
     public int NutCounter = 0;
 
+    public Konsole console;
+
+  
+
 
 
     public static ManagerKlasse Instance
@@ -68,7 +71,6 @@ public class ManagerKlasse {
             return;
         }
         Manager = this;
-        Debug.Log("Sooft bin ich hier drin!");
 
     }
 
@@ -77,6 +79,7 @@ public class ManagerKlasse {
     /// </summary> 
     public void GetOldState()
     {
+        console.AddText("Versuche zu Updaten");
         this.DeleteCollectedNutsInit();
         this.DeleteVisitedPortalsInit();
         this.SetOldAnimalPosition();
@@ -184,6 +187,7 @@ public class ManagerKlasse {
     /// </summary> 
     public void AddNut(NutScript nut)
     {
+        Debug.Log(nut.name + " wird gezählt");
         this.NutList.Add(nut);
     }
 
@@ -328,4 +332,14 @@ public class ManagerKlasse {
               AnimalPositionList.Add(new KeyValuePair<string, Vector3>(animal.name, animal.transform.position));
         }
     }
+
+    public void setConsole(Konsole c)
+    {
+        if (this.console == null)
+        {
+            this.console = c;
+        }
+    }
+
+   
 }
