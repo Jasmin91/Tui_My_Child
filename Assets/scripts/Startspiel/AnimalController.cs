@@ -31,6 +31,7 @@ public class AnimalController : MonoBehaviour
 {
     public int MarkerID = 0;
     private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
+    Talk Sprechblase;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     public float Geschwindigkeit = 0.01f;
@@ -61,8 +62,7 @@ public class AnimalController : MonoBehaviour
     {
 
         this.Manager = ManagerKlasse.Instance;
-        this.Manager.AddAnimal(this); //Füge AnimalArray ein Tier im Manager hinzu
-
+        Manager.AddAnimal(this);
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
 		this.ms_Instance = ApfelManager.Instance;
         //uncomment next line to set port explicitly (default is 3333)
@@ -180,6 +180,18 @@ public class AnimalController : MonoBehaviour
             transform.position += transform.right * Geschwindigkeit; //Bewegt das Tier
             
         }
+    }
+
+
+    public void Speak(String s)
+    {
+        this.Sprechblase.DisplayText(s);
+
+    }
+
+    public void setSpeaker(Talk speaker)
+    {
+        this.Sprechblase = speaker;
     }
 
     

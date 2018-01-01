@@ -58,6 +58,7 @@ public class PortalController : MonoBehaviour
               SceneManager.LoadScene(scenename);
           }else
             {
+            Manager.LetAnimalSaySomething(col.gameObject.name, "Ich möchte meinem Freund " + animal + " das Essen nicht wegnehmen!");
                 Debug.Log("Ich möchte meinem Freund " + animal + " das Essen nicht wegnehmen!");
             }
       

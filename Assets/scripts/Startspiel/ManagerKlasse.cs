@@ -90,6 +90,7 @@ public class ManagerKlasse {
     /// </summary> 
     public void AddAnimal(AnimalController animal)
     {
+        Debug.Log(animal.name + "wird hinzugefügt");
         this.AnimalList.Add(animal);
     }
 
@@ -271,7 +272,7 @@ public class ManagerKlasse {
     public bool NutsComplete()
     {
         bool result = false;
-        Debug.Log("Count:"+NutList.Count);
+       // Debug.Log("Count:"+NutList.Count);
         if (this.NutList.Count == NutCount)
         {
             result = true;
@@ -285,7 +286,7 @@ public class ManagerKlasse {
     public bool PortalsComplete()
     {
         bool result = false;
-        Debug.Log("Count:" + PortalList.Count);
+       // Debug.Log("Count:" + PortalList.Count);
         if (this.PortalList.Count == PlayerCount)
         {
             result = true;
@@ -299,19 +300,29 @@ public class ManagerKlasse {
     public bool AnimalsComplete()
     {
         bool result = false;
-        Debug.Log("Count:" + AnimalList.Count);
+        Debug.Log("AnimalCount:" + AnimalList.Count);
         if (this.AnimalList.Count == PlayerCount)
         {
             result = true;
         }
         return result;
     }
+    public bool LoadingComplete()
+    {
+        Debug.Log("Update: Manager.NutsComplete():" + Manager.NutsComplete() + "&&Manager.PortalsComplete():" + Manager.PortalsComplete() + "&&Manager.AnimalsComplete():" + Manager.AnimalsComplete());
 
+        bool result = false;
+        if (Manager.NutsComplete() && Manager.PortalsComplete() && Manager.AnimalsComplete()) //Checkt, ob alle Nüsse, Portale und Tiere geladen wurden
+        {
+            result = true;
+        }
+        return result;
+    }
 
-    /// <summary>  
-    ///  Leert die befüllten Listen und speichert die aktuellen Positionen der Tiere
-    /// </summary> 
-    public void ClearScene()
+        /// <summary>  
+        ///  Leert die befüllten Listen und speichert die aktuellen Positionen der Tiere
+        /// </summary> 
+        public void ClearScene()
     {
        
         FillAnimalPositionList();
@@ -341,7 +352,7 @@ public class ManagerKlasse {
         }
     }
 
-    public void deleteAnimals()
+    public void HideAnimals()
     {
         foreach (AnimalController animal in AnimalList)
         {
@@ -349,6 +360,23 @@ public class ManagerKlasse {
         }
     }
 
+    public AnimalController getAnimalByName(string name)
+    {
+        AnimalController result = null;
 
+        foreach (AnimalController animal in AnimalList)
+        {
+            if (animal.name == name)
+            {
+                result = animal;
+            }
+        }
+        Debug.Log("Animal:" + result.name);
+        return result;
+    }
 
+    public void LetAnimalSaySomething(string name, string text)
+    {
+        getAnimalByName(name).Speak(text);
+    }
 }

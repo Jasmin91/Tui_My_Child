@@ -32,7 +32,7 @@ public class HutScript : MonoBehaviour
             if (Manager.GetFoundAllFood()) { //Schaut, ob alles Essen gesammelt wurde
                 finished = true;
                 gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("hut_open", typeof(Sprite)) as Sprite;
-                Manager.deleteAnimals();
+                Manager.HideAnimals();
                 Debug.Log("Spiel beendet!");
             }
             else

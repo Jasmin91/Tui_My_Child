@@ -25,11 +25,12 @@ public class Game : MonoBehaviour
     /// </summary> 
     void Update()
     {
-        
+
+        Manager.LoadingComplete();
         if (!updated)
         {
-            Debug.Log("Update");
-            if (Manager.NutsComplete()&&Manager.PortalsComplete()&&Manager.AnimalsComplete()) //Checkt, ob alle Nüsse, Portale und Tiere geladen wurden
+            Debug.Log("Versucht zu updaten");
+            if (Manager.LoadingComplete()) //Checkt, ob das Spiel komplett geladen wurde
             {
                 Manager.GetOldState(); //versucht den alten Stand zu laden
                 updated = true;
