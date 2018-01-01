@@ -26,10 +26,13 @@ public class HutScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         Manager.VisitHut(col.name); //Merkt sich im Manager, dass Tier gerade auf Hütte ist
+      
 
         if (Manager.GetVistors().Count == Manager.PlayerCount) { //Schaut, ob alle Tiere auf der Hütte sind
             if (Manager.GetFoundAllFood()) { //Schaut, ob alles Essen gesammelt wurde
                 finished = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("hut_open", typeof(Sprite)) as Sprite;
+                Manager.deleteAnimals();
                 Debug.Log("Spiel beendet!");
             }
             else

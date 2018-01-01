@@ -79,7 +79,7 @@ public class ManagerKlasse {
     /// </summary> 
     public void GetOldState()
     {
-        console.AddText("Versuche zu Updaten");
+        //console.AddText("Versuche zu Updaten");
         this.DeleteCollectedNutsInit();
         this.DeleteVisitedPortalsInit();
         this.SetOldAnimalPosition();
@@ -341,5 +341,14 @@ public class ManagerKlasse {
         }
     }
 
-   
+    public void deleteAnimals()
+    {
+        foreach (AnimalController animal in AnimalList)
+        {
+            animal.GetComponent<Renderer>().enabled = false ;
+        }
+    }
+
+
+
 }

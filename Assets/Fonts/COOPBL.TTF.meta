@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 43243fa8ce87d3243bde7f11c18ea00e
+timeCreated: 1514573173
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Cooper Black
+  fontNames:
+  - Cooper Black
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
