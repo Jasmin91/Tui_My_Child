@@ -189,6 +189,11 @@ public class AnimalController : MonoBehaviour
 
     }
 
+    public void BeSilent()
+    {
+        this.Sprechblase.Hide();
+    }
+
     public void setSpeaker(Talk speaker)
     {
         this.Sprechblase = speaker;

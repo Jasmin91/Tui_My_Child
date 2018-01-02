@@ -77,6 +77,10 @@ public class PortalController : MonoBehaviour
         }*/
     }
 
+    void OnTriggerExit2D(Collider2D col)
+    {
+        Manager.getAnimalByName(col.name).BeSilent();
+    }
     public void destroyObject()
     {
          Destroy(this.gameObject); //Zerstören des betretenen Portals
