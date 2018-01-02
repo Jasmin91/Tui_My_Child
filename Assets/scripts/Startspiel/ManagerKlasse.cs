@@ -45,6 +45,8 @@ public class ManagerKlasse {
 
     public Konsole console;
 
+    private BasketScript basket;
+
   
 
 
@@ -181,6 +183,7 @@ public class ManagerKlasse {
     public void CollectNut()
     {
         this.NutCounter++;
+        this.basket.UpdateBasket(NutCounter);
     }
 
     /// <summary>  
@@ -188,7 +191,6 @@ public class ManagerKlasse {
     /// </summary> 
     public void AddNut(NutScript nut)
     {
-        Debug.Log(nut.name + " wird gezählt");
         this.NutList.Add(nut);
     }
 
@@ -344,11 +346,11 @@ public class ManagerKlasse {
         }
     }
 
-    public void setConsole(Konsole c)
+    public void setBasket(BasketScript basket)
     {
-        if (this.console == null)
+        if (this.basket == null)
         {
-            this.console = c;
+            this.basket = basket;
         }
     }
 
@@ -379,4 +381,15 @@ public class ManagerKlasse {
     {
         getAnimalByName(name).Speak(text);
     }
+
+    public void LetAnimalSaySomething(string name, string text, float x)
+    {
+        getAnimalByName(name).Speak(text, x);
+    }
+
+    public void LetAnimalBeQuiet(string name)
+    {
+        getAnimalByName(name).BeSilent();
+    }
+
 }

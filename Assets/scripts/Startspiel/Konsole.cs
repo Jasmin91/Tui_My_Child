@@ -25,7 +25,7 @@ public class Konsole : MonoBehaviour
     void Start()
     {
         this.Manager = ManagerKlasse.Instance;
-        this.Manager.setConsole(this);
+       // this.Manager.setConsole(this);
         
         
     }

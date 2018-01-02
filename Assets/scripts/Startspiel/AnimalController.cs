@@ -189,6 +189,12 @@ public class AnimalController : MonoBehaviour
 
     }
 
+    public void Speak(String s, float x)
+    {
+        this.Sprechblase.DisplayText(s,x);
+
+    }
+
     public void BeSilent()
     {
         this.Sprechblase.Hide();
