@@ -110,7 +110,9 @@ public class ManagerKlasse {
             {
                 if (PortalList[i].name == s)
                 {
+                    this.getPortalByName(s).animal.setHasFood(true);
                    PortalList[i].destroyObject(); //Löscht Portal, das in DeletedPortalList und PortalList zu finden ist
+
                     ready = true;
                 }
                 else if (i == PortalList.Count - 1)
@@ -374,6 +376,21 @@ public class ManagerKlasse {
             }
         }
         Debug.Log("Animal:" + result.name);
+        return result;
+    }
+
+    public PortalController getPortalByName(string name)
+    {
+        PortalController result = null;
+
+        foreach (PortalController portal in PortalList)
+        {
+            if (portal.name == name)
+            {
+                result = portal;
+            }
+        }
+        Debug.Log("Portal:" + result.name);
         return result;
     }
 

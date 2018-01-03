@@ -9,7 +9,7 @@ public class PortalController : MonoBehaviour
 {
     private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
     public bool done = false;
-    public String animal = "nicht vergeben";
+    public AnimalController animal;
 
 
     void Awake()
@@ -26,20 +26,24 @@ public class PortalController : MonoBehaviour
 
     void Update()
     {
-        
+        /**if (done)
+            Debug.Log("destroy!");
+        {
+            destroyObject();
+        }*/
     }
 
     //Collider, der erkennt ob Tier und Portal kollidieren
     void OnTriggerEnter2D(Collider2D col)
     {
           
-          if (col.gameObject.name == this.animal)
+          if (col.gameObject.name == this.animal.name)
           {
               this.Manager.AddVisitedPortal(this);
               Manager.ClearScene();
 
             String scenename = "Startspiel";
-            switch (animal)
+            switch (animal.name)
             {
                 case "horse":
                     scenename = "Apfelspiel2";
@@ -55,39 +59,37 @@ public class PortalController : MonoBehaviour
                     break;
                     
             }
+            
               SceneManager.LoadScene(scenename);
-          }else
+            animal.setHasFood(true);
+        }
+        else
             {
-            Manager.LetAnimalSaySomething(col.gameObject.name, "Ich möchte meinem Freund " + animal + " das Essen nicht wegnehmen!");
+            Manager.LetAnimalSaySomething(col.gameObject.name, "Ich möchte meinem Freund " + animal.getNickname() + " das Essen nicht wegnehmen!");
                 Debug.Log("Ich möchte meinem Freund " + animal + " das Essen nicht wegnehmen!");
             }
       
 
-
-          /**
-        if (this.gameObject.name == "apple")
-        {
-            if (col.gameObject.name == "horse")
-            {
-                this.Manager.addVisitedPortal(this);
-                Manager.clearScene();
-                SceneManager.LoadScene("Apfelspiel2");
-            }
-            
-        }*/
+         
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
         Manager.getAnimalByName(col.name).BeSilent();
     }
-    public void destroyObject()
+    public void TestdestroyObject()
     {
-         Destroy(this.gameObject); //Zerstören des betretenen Portals
-        //this.gameObject.SetActive(false);
-        Debug.Log(name+ " stirbt");
+        // Destroy(this.gameObject); //Zerstören des betretenen Portals
+        this.transform.position = animal.transform.position;
+       Collider2D  m_ObjectCollider = GetComponent<Collider2D>();
+        //Here the GameObject's Collider is not a trigger
+        m_ObjectCollider.isTrigger = false;
+
     }
 
-
+    public void destroyObject()
+    {
+        Destroy(this.gameObject); //Zerstören des betretenen Portals
+    }
 }
 

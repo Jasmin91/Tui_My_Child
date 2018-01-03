@@ -29,9 +29,13 @@ using UnityEngine;
 /// </summary>  
 public class AnimalController : MonoBehaviour
 {
+
+
     public int MarkerID = 0;
     private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
+    public String Nickname = "kein Name vergeben";
     Talk Sprechblase;
+    private bool hasFood = false;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     public float Geschwindigkeit = 0.01f;
@@ -205,7 +209,22 @@ public class AnimalController : MonoBehaviour
         this.Sprechblase = speaker;
     }
 
-    
+    public String getNickname()
+    {
+        return Nickname;
+    }
+
+    public bool getHasFood()
+    {
+        return hasFood;
+    }
+
+    public void setHasFood(bool var)
+    {
+        this.hasFood = var;
+        Debug.Log("Hat was zu Essen?" + var);
+    }
+
 
     #region Getter
 

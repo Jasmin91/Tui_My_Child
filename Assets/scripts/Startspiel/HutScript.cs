@@ -50,9 +50,21 @@ public class HutScript : MonoBehaviour
         }
         else
         {
-            String s = "Ich warte noch auf meine Freunde!";
-            Debug.Log(col.name + " wartet auf seine Freunde"+Manager.GetVistors().Count);
-            Manager.LetAnimalSaySomething(col.name, s, 2);
+            String s = "";
+            Debug.Log("Geht in if:" + Manager.getAnimalByName(col.name).getHasFood());
+            if (Manager.getAnimalByName(col.name).getHasFood())
+            {
+                s += "Ich warte noch auf meine Freunde!";
+                animal.Speak(s, 2);
+            }
+            else
+            {
+                s += "Ich hab noch nichts zu Essen dabei!";
+                animal.Speak(s);
+            }
+            //Debug.Log(col.name + " wartet auf seine Freunde"+Manager.GetVistors().Count);
+           
+           // Manager.LetAnimalSaySomething(col.name, s, 2);
         }
     }
 
