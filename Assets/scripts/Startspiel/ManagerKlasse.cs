@@ -305,7 +305,7 @@ public class ManagerKlasse {
     public bool AnimalsComplete()
     {
         bool result = false;
-        Debug.Log("AnimalCount:" + AnimalList.Count);
+        //Debug.Log("AnimalCount:" + AnimalList.Count);
         if (this.AnimalList.Count == PlayerCount)
         {
             result = true;
@@ -314,7 +314,7 @@ public class ManagerKlasse {
     }
     public bool LoadingComplete()
     {
-        Debug.Log("Update: Manager.NutsComplete():" + Manager.NutsComplete() + "&&Manager.PortalsComplete():" + Manager.PortalsComplete() + "&&Manager.AnimalsComplete():" + Manager.AnimalsComplete());
+      //  Debug.Log("Update: Manager.NutsComplete():" + Manager.NutsComplete() + "&&Manager.PortalsComplete():" + Manager.PortalsComplete() + "&&Manager.AnimalsComplete():" + Manager.AnimalsComplete());
 
         bool result = false;
         if (Manager.NutsComplete() && Manager.PortalsComplete() && Manager.AnimalsComplete()) //Checkt, ob alle Nüsse, Portale und Tiere geladen wurden
@@ -371,12 +371,17 @@ public class ManagerKlasse {
 
         foreach (AnimalController animal in AnimalList)
         {
+            Debug.Log("Ausgabe: " + animal.name + " (size:" + AnimalList.Count + ")");
             if (animal.name == name)
             {
                 result = animal;
             }
         }
-        Debug.Log("Animal:" + result.name);
+        string s = "nicht vergeben";
+        if (result != null) { 
+         s = result.name; }
+
+        //Debug.Log("Animal:" + s);
         return result;
     }
 
@@ -391,7 +396,7 @@ public class ManagerKlasse {
                 result = portal;
             }
         }
-        Debug.Log("Portal:" + result.name);
+     //   Debug.Log("Portal:" + result.name);
         return result;
     }
 

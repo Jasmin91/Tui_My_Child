@@ -36,6 +36,7 @@ public class AnimalController : MonoBehaviour
     public String Nickname = "kein Name vergeben";
     Talk Sprechblase;
     private bool hasFood = false;
+    private Quaternion actRotation;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     public float Geschwindigkeit = 0.01f;
@@ -91,6 +92,7 @@ public class AnimalController : MonoBehaviour
     {
         //get reference to main camera
         this.m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        this.actRotation = GetComponent<Rigidbody2D>().transform.rotation;
 
         //check if the main camera exists
         if (this.m_MainCamera == null)
@@ -110,7 +112,8 @@ public class AnimalController : MonoBehaviour
             && this.m_TuioManager.IsMarkerAlive(this.MarkerID))
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.5f, 0);//Setze Geschwindigkeit, sobald Fiducial sichtbar
-            TUIO.TuioObject marker = this.m_TuioManager.GetMarker(this.MarkerID);
+            
+             TUIO.TuioObject marker = this.m_TuioManager.GetMarker(this.MarkerID);
 
             //update parameters
             this.m_Angle = marker.getAngle() * RotationMultiplier;
@@ -119,13 +122,13 @@ public class AnimalController : MonoBehaviour
 
             //update transform component
             UpdateTransform();
+            this.actRotation = GetComponent<Rigidbody2D>().transform.rotation;
         }
         else
         {
-            {
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Setze Geschwindigkeit auf 0, sobald Fiducial unsichtbar
-               
-            }
+            GetComponent<Rigidbody2D>().transform.rotation=this.actRotation;
+            
             
         }
     }
@@ -222,7 +225,7 @@ public class AnimalController : MonoBehaviour
     public void setHasFood(bool var)
     {
         this.hasFood = var;
-        Debug.Log("Hat was zu Essen?" + var);
+       // Debug.Log("Hat was zu Essen?" + var);
     }
 
 

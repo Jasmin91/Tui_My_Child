@@ -41,7 +41,7 @@ namespace UniducialLibrary
                 {
                     m_Instance = new TuioManager();
                 }
-                Debug.Log("TuioManagement Instance:" + m_Instance);
+               // Debug.Log("TuioManagement Instance:" + m_Instance);
                 return m_Instance;
             }
         }

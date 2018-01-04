@@ -211,7 +211,7 @@ public class GelenkController : MonoBehaviour
         {
             this.RightRotation = false;
         }
-        Debug.Log(this.name + ": " + this.RightRotation);
+      //  Debug.Log(this.name + ": " + this.RightRotation);
         
     }
 

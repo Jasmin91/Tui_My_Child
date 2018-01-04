@@ -66,7 +66,7 @@ public class PortalController : MonoBehaviour
         else
             {
             Manager.LetAnimalSaySomething(col.gameObject.name, "Ich möchte meinem Freund " + animal.getNickname() + " das Essen nicht wegnehmen!");
-                Debug.Log("Ich möchte meinem Freund " + animal + " das Essen nicht wegnehmen!");
+               // Debug.Log("Ich möchte meinem Freund " + animal + " das Essen nicht wegnehmen!");
             }
       
 

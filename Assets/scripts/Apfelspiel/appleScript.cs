@@ -71,7 +71,6 @@ public class appleScript : MonoBehaviour
                 gameObject.transform.localScale = new Vector3(size, size, 1f); //Setzt die neue Größe/
 
             }
-            Debug.Log("size:"+size);
             if (size >= 0.2f)
             {
                 grown = true;
@@ -86,7 +85,7 @@ public class appleScript : MonoBehaviour
         {
             appleNumber = sunDuration;
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("apfel_" + appleNumber, typeof(Sprite)) as Sprite; //Setzt neues (reiferes) Bild
-            Debug.Log("appleNumber:" + appleNumber);
+            
             if(appleNumber == 5)
             {
                 red = true;

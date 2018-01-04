@@ -131,7 +131,7 @@ public class Talk : MonoBehaviour
 
     private IEnumerator showXSeconds(float countdownValue = 0)
     {
-        Debug.Log("Coundown gestartet!");
+      //  Debug.Log("Coundown gestartet!");
         while (countdownValue < showTime)
         {
             yield return new WaitForSeconds(1.0f);

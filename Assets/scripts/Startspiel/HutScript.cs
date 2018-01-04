@@ -44,14 +44,14 @@ public class HutScript : MonoBehaviour
             else
             {
                 String s = "Wir haben noch nicht genug zu essen!";
-                Debug.Log(s);
+              //  Debug.Log(s);
                 Manager.LetAnimalSaySomething(col.name, s, 2);
             }
         }
         else
         {
             String s = "";
-            Debug.Log("Geht in if:" + Manager.getAnimalByName(col.name).getHasFood());
+           // Debug.Log("Geht in if:" + Manager.getAnimalByName(col.name).getHasFood());
             if (Manager.getAnimalByName(col.name).getHasFood())
             {
                 s += "Ich warte noch auf meine Freunde!";
@@ -59,7 +59,7 @@ public class HutScript : MonoBehaviour
             }
             else
             {
-                s += "Ich hab noch nichts zu Essen dabei!";
+                s += "Ich habe noch nichts zu essen!";
                 animal.Speak(s);
             }
             //Debug.Log(col.name + " wartet auf seine Freunde"+Manager.GetVistors().Count);
