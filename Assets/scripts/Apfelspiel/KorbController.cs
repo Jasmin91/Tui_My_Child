@@ -117,7 +117,7 @@ public class KorbController : MonoBehaviour
 
         if (appleCounter >= 4)
         {
-            SceneManager.LoadScene("Startspiel");
+            this.ms_Instance.finishGame();
         }
    
     }

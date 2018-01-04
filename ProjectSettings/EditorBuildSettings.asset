@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scenes/Startspiel.unity
     guid: ab98c7a0377eb3d42bf448d15713ca72
+  - enabled: 1
+    path: Assets/scenes/Knochenspiel.unity
+    guid: c711bc4d86882f04ea6a984ed1c1b0dd

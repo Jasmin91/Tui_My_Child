@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>  
 ///  Diese Klasse steuert das Upaten des Startspiels nach einem Minispiel
@@ -21,16 +22,18 @@ public class GameState : MonoBehaviour
         this.Manager = ManagerKlasse.Instance;
         this.km_Instance = KnochenManager.Instance;
     }
-
-    /// <summary>  
-    ///  Die Methode leitet das Updaten ein, wenn das Startspiel gestartet wurde
-    /// </summary> 
+    
     void Update()
     {
-        if (km_Instance.getRightWay())
+        if (km_Instance.getGameSolved())
         {
-            Debug.Log("Spiel beendet!");
+            this.finishGame();
         }
+    }
+
+    private void finishGame()
+    {
+        SceneManager.LoadScene("Startspiel");
     }
     
 }

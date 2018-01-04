@@ -11,6 +11,7 @@ public class KnochenManager {
     private static KnochenManager km_Instance; //Erstellt eine Instanz der KnochenManager-Klasse
     /// <summary> Liste, die die Gelenke speichert </summary>
     private List<GelenkController> GelenkList = new List<GelenkController>();
+    private bool GameSolved = false;
 
 
     public static KnochenManager Instance
@@ -52,10 +53,9 @@ public class KnochenManager {
         this.GelenkList.Add(gc);
     }
 
-    public bool getRightWay()
+    public bool getRightWayFound()
     {
         bool result = true;
-        string s = "";
         foreach (GelenkController gk in GelenkList)
         {
             if (!gk.getRightRotation())
@@ -63,10 +63,18 @@ public class KnochenManager {
                 result = false;
                 
             }
-            s += "--" +gk.name + ": " + result;
         }
-        Debug.Log("Ausgabe:"+s);
         return result;
+    }
+    
+    public bool getGameSolved()
+    {
+        return this.GameSolved;
+    }
+
+    public void setGameSolved(bool var)
+    {
+        this.GameSolved = var;
     }
    
  

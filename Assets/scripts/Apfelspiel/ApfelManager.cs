@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>  
 ///  Diese Management-Klasse steuert und verbindet alle anderen Klassen
@@ -116,6 +117,9 @@ public class ApfelManager {
 
         }
     }
- 
 
+    public void finishGame()
+    {
+        SceneManager.LoadScene("Startspiel");
+    }
 }

@@ -52,7 +52,7 @@ public class PortalController : MonoBehaviour
                     scenename = "Startspiel";
                     break;
                 case "dog":
-                    scenename = "Startspiel";
+                    scenename = "Knochenspiel";
                     break;
                 case "rabbit":
                     scenename = "Startspiel";
