@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>  
 ///  Diese Management-Klasse steuert und verbindet alle anderen Klassen
@@ -76,7 +77,11 @@ public class KnochenManager {
     {
         this.GameSolved = var;
     }
-   
- 
+
+    public void FinishGame()
+    {
+        SceneManager.LoadScene("Startspiel");
+    }
+
 
 }

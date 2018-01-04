@@ -25,10 +25,10 @@ public class GameState : MonoBehaviour
     
     void Update()
     {
-        if (km_Instance.getGameSolved())
-        {
-            this.finishGame();
-        }
+       // if (km_Instance.getGameSolved())
+       // {
+         //   this.finishGame();
+       // }
     }
 
     private void finishGame()

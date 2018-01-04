@@ -12,7 +12,7 @@ public class Knochen : MonoBehaviour
 {
 
     private KnochenManager km_Instance; //Erstellt eine Instanz der KnochenManager-Klasse
-    public float speed = 1;
+    public float speed = 2f;
     /// <summary> Liste, die alle Punkte des Pfades speichert </summary>
     private List<Point> KnotList = new List<Point>();
 
