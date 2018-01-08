@@ -44,7 +44,8 @@ public class FiducialController_Ruebe : MonoBehaviour
 
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
-    private UniducialLibrary.TuioManager m_TuioManager;
+	private UniducialLibrary.TuioManager m_TuioManager;
+	//private Rueben_TuioManager rm_Instance;
     private Camera m_MainCamera;
 
     //members
@@ -65,7 +66,8 @@ public class FiducialController_Ruebe : MonoBehaviour
 
     void Awake()
     {
-        this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
+		this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
+	//	this.rm_Instance = Rueben_TuioManager.Instance;
 
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;
