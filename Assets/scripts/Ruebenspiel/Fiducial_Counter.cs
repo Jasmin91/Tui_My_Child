@@ -30,16 +30,24 @@ public class Fiducial_Counter : MonoBehaviour {
 			time = Time.time;
 			// ziehe die Rübe aus der Mitte
 			GameObject carrot = GameObject.Find ("Ruebe" + count);
-			//carrot.active = false; 
-            carrot.GetComponent<Renderer>().enabled = false;
+			carrot.active = false; 
+            //carrot.GetComponent<Renderer>().enabled = false;
+			if(count >= 4 && !GameObject.Find("Ruebe1").active && !GameObject.Find("Ruebe2").active && !GameObject.Find("Ruebe3").active && !GameObject.Find("Ruebe4").active){
+				// lade Start-Bildschirm
+				SceneManager.LoadScene("Startspiel");
+			}
 			count++;
 
 			for (int i = 0; i < 4; i++) {
 					RuebenController.ScreenArray [i] = 0;
 			}
-            }}
+          }
+		}
 
-             int fertig = 0;
+	
+
+
+     /*        int fertig = 0;
              for (int i = 0; i < 4; i++) {
 					GameObject carrot2 = GameObject.Find ("Ruebe" + i);
                 if(carrot2!=null){
@@ -59,9 +67,8 @@ public class Fiducial_Counter : MonoBehaviour {
              fertig = 0;
                
                
-                }
+                }*/
                 
 
-		      }
-        
+	}        
 }
