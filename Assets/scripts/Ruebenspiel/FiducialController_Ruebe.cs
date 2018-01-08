@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class RuebenController : MonoBehaviour
+public class FiducialController_Ruebe : MonoBehaviour
 {
     public int MarkerID = 0;
 
@@ -50,6 +50,7 @@ public class RuebenController : MonoBehaviour
     //members
     private Vector2 m_ScreenPosition;
     private Vector3 m_WorldPosition;
+	private Vector2 previous_ScreenPosition;
     private Vector2 m_Direction;
     private float m_Angle;
     private float m_AngleDegrees;
@@ -58,6 +59,7 @@ public class RuebenController : MonoBehaviour
     private float m_RotationSpeed;
     private float m_RotationAcceleration;
     private bool m_IsVisible;
+	public static float[] ScreenArray = new float[4];
 
     public float RotationMultiplier = 1;
 
@@ -108,17 +110,16 @@ public class RuebenController : MonoBehaviour
 	private float time0, time1;
 
     void Update()
-    {
+	{
 		
-		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
+		if (this.m_TuioManager.IsMarkerAlive (this.MarkerID)) {
 			//Debug.Log("FidcialController Zeile 110:this.m_TuioManager.IsMarkerAlive(this.MarkerID)");
 		}
 
 
-        if (this.m_TuioManager.IsConnected
-            && this.m_TuioManager.IsMarkerAlive(this.MarkerID))
-        {
-            TUIO.TuioObject marker = this.m_TuioManager.GetMarker(this.MarkerID);
+		if (this.m_TuioManager.IsConnected
+		          && this.m_TuioManager.IsMarkerAlive (this.MarkerID)) {
+			TUIO.TuioObject marker = this.m_TuioManager.GetMarker (this.MarkerID);
 
 			/*
 			if (!recognized) {
@@ -134,57 +135,78 @@ public class RuebenController : MonoBehaviour
 			}
 			*/
 
-            //update parameters
-            this.m_ScreenPosition.x = marker.getX();
-            this.m_ScreenPosition.y = marker.getY();
-            this.m_Angle = marker.getAngle() * RotationMultiplier;
-            this.m_AngleDegrees = marker.getAngleDegrees() * RotationMultiplier;
-            this.m_Speed = marker.getMotionSpeed();
-            this.m_Acceleration = marker.getMotionAccel();
-            this.m_RotationSpeed = marker.getRotationSpeed() * RotationMultiplier;
-            this.m_RotationAcceleration = marker.getRotationAccel();
-            this.m_Direction.x = marker.getXSpeed();
-            this.m_Direction.y = marker.getYSpeed();
-            this.m_IsVisible = true;
+			//update parameters
+			this.m_ScreenPosition.x = marker.getX ();
+			this.m_ScreenPosition.y = marker.getY ();
+			this.m_Angle = marker.getAngle () * RotationMultiplier;
+			this.m_AngleDegrees = marker.getAngleDegrees () * RotationMultiplier;
+			this.m_Speed = marker.getMotionSpeed ();
+			this.m_Acceleration = marker.getMotionAccel ();
+			this.m_RotationSpeed = marker.getRotationSpeed () * RotationMultiplier;
+			this.m_RotationAcceleration = marker.getRotationAccel ();
+			this.m_Direction.x = marker.getXSpeed ();
+			this.m_Direction.y = marker.getYSpeed ();
+			this.m_IsVisible = true;
 
-            //set game object to visible, if it was hidden before
-            ShowGameObject();
+			//set game object to visible, if it was hidden before
+			ShowGameObject ();
 
-            //update transform component
-            UpdateTransform();
+			//update transform component
+			UpdateTransform ();
+			if (Time.time - Fiducial_Counter.time > 5) {
+				if (this.name.IndexOf ("Ruebe" + Fiducial_Counter.count) > -1) {
+					if (this.name.Equals ("Ruebe" + Fiducial_Counter.count + "_" + (this.MarkerID + 1))) {
 
-			if (this.name.IndexOf ("Ruebe" + Fiducial_Counter.count) > -1) {
+						GameObject circle = GameObject.Find (this.name.Replace ("Ruebe", "Kreis"));
+						SpriteRenderer renderer = circle.GetComponents<SpriteRenderer> () [0];
+						renderer.color = new Color(0.133f, 0.545f, 0.133f);
+
+						float diff = this.handleMarkerMovement ();
+						diff *= MarkerID == 0 && MarkerID == 3 ? -1 : 1;
+
+						//	Debug.Log (diff);
+						if (diff > 0) {
+							ScreenArray [MarkerID] += diff;
+						}
+				
+						// logik für Fortschritt ... :)
+					}
+				} else {
+					GameObject circle = GameObject.Find (this.name.Replace ("Ruebe", "Kreis"));
+					SpriteRenderer renderer = circle.GetComponents<SpriteRenderer> () [0];
+					renderer.color = new Color (0.35f, 0.19f, 0.1f);
+				}
+
+			} else {
+				//automatically hide game object when marker is not visible
+				if (this.AutoHideGO) {
+					HideGameObject ();
+				}
+
+				recognized = false; 
+
 				GameObject circle = GameObject.Find (this.name.Replace ("Ruebe", "Kreis"));
 				SpriteRenderer renderer = circle.GetComponents<SpriteRenderer> () [0];
-				renderer.color = Color.green;
-
-				// logik für Fortschritt ... :)
-
-				Fiducial_Counter.UpdateCount ();
-			} else {
-				GameObject circle = GameObject.Find (this.name.Replace ("Ruebe", "Kreis"));
-				SpriteRenderer renderer = circle.GetComponents<SpriteRenderer> ()[0];
 				renderer.color = new Color (0.35f, 0.19f, 0.1f);
+
+				this.m_IsVisible = false;
 			}
 
-        }
-        else
-        {
-            //automatically hide game object when marker is not visible
-            if (this.AutoHideGO)
-            {
-                HideGameObject();
-            }
+		}else {
+			//automatically hide game object when marker is not visible
+			if (this.AutoHideGO) {
+				HideGameObject ();
+			}
 
 			recognized = false; 
 
 			GameObject circle = GameObject.Find (this.name.Replace ("Ruebe", "Kreis"));
-			SpriteRenderer renderer = circle.GetComponents<SpriteRenderer> ()[0];
+			SpriteRenderer renderer = circle.GetComponents<SpriteRenderer> () [0];
 			renderer.color = new Color (0.35f, 0.19f, 0.1f);
 
-            this.m_IsVisible = false;
-        }
-    }
+			this.m_IsVisible = false;
+		}
+	}
 
 
     void OnApplicationQuit()
@@ -296,6 +318,17 @@ public class RuebenController : MonoBehaviour
             }
         }
     }
+
+	private float handleMarkerMovement(){
+		float diff = 0f;
+		if (previous_ScreenPosition != null) {
+			float prevValue = MarkerID % 2 == 0 ? previous_ScreenPosition.y : previous_ScreenPosition.x;
+			float currentValue = MarkerID % 2 == 0 ? m_ScreenPosition.y : m_ScreenPosition.x;
+			diff = currentValue - prevValue;
+		}
+		previous_ScreenPosition = new Vector2(m_ScreenPosition.x, m_ScreenPosition.y);
+		return diff;
+	}
 
     #region Getter
 
