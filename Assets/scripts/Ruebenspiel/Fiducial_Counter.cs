@@ -30,15 +30,42 @@ public class Fiducial_Counter : MonoBehaviour {
 			time = Time.time;
 			// ziehe die Rübe aus der Mitte
 			GameObject carrot = GameObject.Find ("Ruebe" + count);
-			carrot.active = false; 
+		//	GameObject carrot = GameObject.Find ("Ruebe1");
+		//	GameObject carrot1 = GameObject.Find ("Ruebe2");
+		//	GameObject carrot2 = GameObject.Find ("Ruebe3");
+		//	GameObject carrot3 = GameObject.Find ("Ruebe4");
+
+			GameObject carrot1 = GameObject.Find ("Ruebe1");
+			GameObject carrot2 = GameObject.Find ("Ruebe2");
+			GameObject carrot3 = GameObject.Find ("Ruebe3");
+			GameObject carrot4 = GameObject.Find ("Ruebe4");
+			//carrot.active = false; 
             //carrot.GetComponent<Renderer>().enabled = false;
+			carrot.GetComponent<Renderer>().enabled = false;
+		//	carrot1.GetComponent<Renderer>().enabled = false;
+		//	carrot2.GetComponent<Renderer>().enabled = false;
+		//	carrot3.GetComponent<Renderer>().enabled = false;
+			
+			if (carrot.GetComponent<Renderer> ().enabled = false && count == 0) {
+					carrot1 = GameObject.Find ("Ruebe1");
+			}
+			if (carrot.GetComponent<Renderer> ().enabled = false && count == 1) {
+					carrot2 = GameObject.Find ("Ruebe2");
+			}
+			if (carrot.GetComponent<Renderer> ().enabled = false && count == 2) {
+					carrot3 = GameObject.Find ("Ruebe3");
+			}
+			if (carrot.GetComponent<Renderer> ().enabled = false && count == 3) {
+					carrot4 = GameObject.Find ("Ruebe4");
+			}
+			//if(count >= 4 && !GameObject.Find("Ruebe1").activeSelf && !GameObject.Find("Ruebe2").activeSelf && !GameObject.Find("Ruebe3").activeSelf && !GameObject.Find("Ruebe4").activeSelf){
+				if(count >= 4 && !carrot1.GetComponent<Renderer>().enabled && !carrot2.GetComponent<Renderer>().enabled && !carrot3.GetComponent<Renderer>().enabled && !carrot4.GetComponent<Renderer>().enabled){
+					// lade Start-Bildschirm
+				SceneManager.LoadScene("Startspiel");				
+			}
 			count++;
 			for (int i = 0; i < 4; i++) {
 					RuebenController.ScreenArray [i] = 0;
-			}
-			if(count >= 4 && !GameObject.Find("Ruebe1").active && !GameObject.Find("Ruebe2").active && !GameObject.Find("Ruebe3").active && !GameObject.Find("Ruebe4").active){
-				// lade Start-Bildschirm
-				SceneManager.LoadScene("Startspiel");
 			}
           }
 		}
