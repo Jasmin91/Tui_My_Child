@@ -32,14 +32,13 @@ public class Fiducial_Counter : MonoBehaviour {
 			GameObject carrot = GameObject.Find ("Ruebe" + count);
 			carrot.active = false; 
             //carrot.GetComponent<Renderer>().enabled = false;
+			count++;
+			for (int i = 0; i < 4; i++) {
+					RuebenController.ScreenArray [i] = 0;
+			}
 			if(count >= 4 && !GameObject.Find("Ruebe1").active && !GameObject.Find("Ruebe2").active && !GameObject.Find("Ruebe3").active && !GameObject.Find("Ruebe4").active){
 				// lade Start-Bildschirm
 				SceneManager.LoadScene("Startspiel");
-			}
-			count++;
-
-			for (int i = 0; i < 4; i++) {
-					RuebenController.ScreenArray [i] = 0;
 			}
           }
 		}
