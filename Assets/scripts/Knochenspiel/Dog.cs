@@ -4,17 +4,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>  
-///  Diese Klasse steuert die Funktionen des Knochens
+///  Diese Klasse steuert die Funktionen des Hundes
 /// </summary> 
-
-
 public class Dog : MonoBehaviour
 {
 
-    private KnochenManager km_Instance; //Erstellt eine Instanz der KnochenManager-Klasse
+    /// <summary>
+    ///Erstellt eine Instanz der KnochenManager-Klasse 
+    /// </summary>
+    private KnochenManager km_Instance; 
+
+    /// <summary>
+    /// Geschwindigkeit, mit der Hund springt
+    /// </summary>
     public float speed = 1.5f;
+
+    /// <summary>
+    /// Höhe, die Hund nach erfolgreicher Lösung springt.
+    /// </summary>
     public float height = 0.25f;
-    /// <summary> Liste, die alle Punkte des Pfades speichert </summary>
+
+    /// <summary> 
+    /// Liste, die alle Punkte des Knochen-Pfades speichert 
+    /// </summary>
     private List<Point> KnotList = new List<Point>();
 
 
@@ -31,11 +43,11 @@ public class Dog : MonoBehaviour
         {
             if (!KnotList[0].getVisited())
             {
-                this.move(KnotList[0]);
+                this.Move(KnotList[0]);
             }
             else if (!KnotList[1].getVisited())
             {
-                this.move(KnotList[1]);
+                this.Move(KnotList[1]);
             }
             else
             {
@@ -45,13 +57,20 @@ public class Dog : MonoBehaviour
 
     }
 
-    private void move(Point pos)
+    /// <summary>
+    /// Bewegt den Hund
+    /// </summary>
+    /// <param name="pos">Position, zu der Hund springen soll</param>
+    private void Move(Point pos)
     {
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, pos.getPosition(), step);
         pos.Reached(this.transform.position);
     }
     
+    /// <summary>
+    /// Berechne Pfad, dem entlang der Hund springt
+    /// </summary>
     private void defineWay()
     {
         float x = this.transform.position.x;

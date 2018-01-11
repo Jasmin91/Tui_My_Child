@@ -25,13 +25,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// Kontrolliert den Regen
+/// </summary>
 public class regenController : MonoBehaviour
 {
     public int MarkerID = 0;
-    private float rainDuration = 0; //Dauer, die die Sonne scheint
-    public float countdownDuration = 5; //Dauer, die die Sonne scheinen soll
-    private bool RainReady = false; //es hat genug geregnet
+
+    /// <summary>
+    /// Dauer, die es regnet
+    /// </summary>
+    private float rainDuration = 0;
+
+    /// <summary>
+    /// Dauer, die es regnen soll
+    /// </summary>
+    public float countdownDuration = 5; 
+
+    /// <summary>
+    /// Bool, ob es genug geregnet hat
+    /// </summary>
+    private bool RainReady = false;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     float currCountdownValue;
@@ -157,8 +171,13 @@ public class regenController : MonoBehaviour
         }
     }
 
- 
-    //Methode mit Zähler, sorgt dafür, dass das Regen-Fiducial mindestens countdownDuration Sekunden in die Kamera gehalten werden muss
+
+
+    /// <summary>
+    ///Methode mit Zähler, sorgt dafür, dass das Regen-Fiducial mindestens countdownDuration Sekunden in die Kamera gehalten werden muss
+    /// </summary>
+    /// <param name="countdownValue"></param>
+    /// <returns></returns>
     public IEnumerator StartCountdownToGrow(float countdownValue = 0)
     {
         if (!RainReady)
@@ -172,7 +191,7 @@ public class regenController : MonoBehaviour
                 yield return new WaitForSeconds(1.0f);
                 if (rainDuration >= countdownDuration)
                 {
-                    this.setRainReady(true); //Es hat genug geregnet
+                    this.SetRainReady(true); //Es hat genug geregnet
                  }
 
             }
@@ -204,29 +223,45 @@ public class regenController : MonoBehaviour
         }
     }
 
-    public void setRainReady(bool rain)
+
+    #region Getter&Setter
+
+    /// <summary>
+    /// Setzt bool, ob es genug geregnet hat
+    /// </summary>
+    /// <param name="rain">bool, ob es genug geregnet hat</param>
+    public void SetRainReady(bool rain)
     {
         this.RainReady = rain;
 
     }
 
-    public bool getRainReady()
+    /// <summary>
+    /// Getter, ob es genug geregnet hat
+    /// </summary>
+    /// <returns>bool, ob es genug geregnet hat</returns>
+    public bool GetRainReady()
     {
         return this.RainReady;
     }
 
-    public float getRainDuration()
+    /// <summary>
+    /// Getter, wie lang es bisher geregnet hat
+    /// </summary>
+    /// <returns>Bisherige Regendauer</returns>
+    public float GetRainDuration()
     {
         return this.rainDuration;
     }
 
-    public void setRainDuration(float duration)
+    /// <summary>
+    /// Setter, wie lang es bisher geregnet hat
+    /// </summary>
+    /// <param name="duration">Bisherige Regendauer</param>
+    public void SetRainDuration(float duration)
     {
         this.rainDuration = duration;
     }
-    #region Getter
-
-
 
     public bool isAttachedToGUIComponent()
     {

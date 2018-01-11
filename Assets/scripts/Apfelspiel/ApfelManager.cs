@@ -4,16 +4,39 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>  
-///  Diese Management-Klasse steuert und verbindet alle anderen Klassen
+///  Diese ApfelManagement-Klasse steuert und verbindet alle anderen Klassen des Apfelspiels
 /// </summary>
 public class ApfelManager {
 
-    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
-    private static ApfelManager ms_Instance; //Erstellt eine Instanz der ApfelManager-Klasse
-    public regenController Rain {get; set; } //Speichert das Regen-Objekt
-    public sonneController Sun { get; set; } //Speichert das Sonnen-Objekt
-    private bool windBlowing = false; //der Wind weht gerade
-    private List<appleScript> appleArray = new List<appleScript>(); //Array, dass die Äpfel am Baum speichert
+    /// <summary>  
+    ///  Erstellt eine Instanz der Manager-Klasse
+    /// </summary> 
+    private ManagerKlasse Manager;
+
+    /// <summary>  
+    ///  Erstellt eine Instanz der ApfelManager-Klasse
+    /// </summary> 
+    private static ApfelManager ms_Instance; 
+
+    /// <summary>  
+    ///  Speichert das Regen-Objekt
+    /// </summary> 
+    public regenController Rain {get; set; } 
+
+    /// <summary>  
+    ///  Speichert das Sonnen-Objekt
+    /// </summary> 
+    public sonneController Sun { get; set; } 
+
+    /// <summary>  
+    ///  der Wind weht gerade
+    /// </summary> 
+    private bool windBlowing = false; 
+
+    /// <summary>  
+    ///  Array, dass die Äpfel am Baum speichert
+    /// </summary> 
+    private List<appleScript> appleArray = new List<appleScript>(); 
 
 
     public static ApfelManager Instance
@@ -30,7 +53,9 @@ public class ApfelManager {
 	}
 
 
-
+    /// <summary>  
+    ///  Constructor
+    /// </summary>
     public ApfelManager()
     {
         if (ms_Instance != null)
@@ -44,47 +69,30 @@ public class ApfelManager {
     }
 
 
-	public void setWindBlowing(bool wind){
-        this.windBlowing = wind;
 
-    }
-
-    public bool getWindBlowing()
-    {
-        return this.windBlowing;
-    }
-
-    public ManagerKlasse getManager()
-    {
-        return Manager;
-    }
-
-
-    //Methode testet, ob Sonne und Regen-Fiducials lang genug gezeigt wurden und damit die Äpfel bereit zum Ernten sind
-    public bool getHarvestingReady(){
-        bool result = false;
-		if (this.Sun.getSunReady()&&this.Rain.getRainReady()) {
-            result = true;
-        }
-        return result;
-	}
-
-
-    //Fügt einen Apfel dem Apfel-Array hinzu
-    public void addApple(appleScript apple)
+    /// <summary>  
+    /// Fügt einen Apfel dem Apfel-Array hinzu
+    /// </summary>  
+    /// <param name="apple">Dem Array hinzuzufügender Apfel</param>
+    public void AddApple(appleScript apple)
     {
         this.appleArray.Add(apple);
     }
 
-    //Methode, die das Fallen eines Apfels ermöglicht
-    public void einApfelFaellt()
+    /// <summary>  
+    /// Methode, die das Fallen eines Apfels ermöglicht
+    /// </summary> 
+        public void EinApfelFaellt()
     {
-       this.setWindBlowing(true);
-       this.fallApple();
-       this.setWindBlowing(false);//Wird wieder auf false gesetzt, damit Fiducial erneut gezeigt werden muss, damit der nächste Apfel fällt
+       this.SetWindBlowing(true);
+       this.FallApple();
+       this.SetWindBlowing(false); //Wird wieder auf false gesetzt, damit Fiducial erneut gezeigt werden muss, damit der nächste Apfel fällt
     }
 
-    //Lässt jeden Apfel im Array wachsen
+    /// <summary>  
+    ///Lässt jeden Apfel im Array wachsen
+    /// </summary>
+    /// <param name="rainDuration">Dauer, die es bereits regnet</param>
     public void ApfelWachsenLassen(float rainDuration)
     {
         foreach (appleScript apfel in appleArray)
@@ -93,7 +101,11 @@ public class ApfelManager {
         }
     }
 
-    //Lässt jeden Apfel im Array reifen
+
+    /// <summary>  
+    ///Lässt jeden Apfel im Array reifen
+    /// </summary>
+    /// <param name="sunDuration">Dauer, die Sonne bereits scheint</param>
     public void ApfelReifenLassen(float sunDuration)
     {
         foreach (appleScript apfel in appleArray)
@@ -103,23 +115,75 @@ public class ApfelManager {
     }
 
 
-    //Lässt jeden Apfel im Array fallen
-    private void fallApple()
+
+    /// <summary>  
+    ///Lässt jeden Apfel im Array fallen
+    /// </summary>
+    private void FallApple()
     {
         foreach (appleScript apfel in appleArray)
         {
             if (!apfel.GetFallen()) //Findet einen nicht gefallenen Apfel
             {
-                apfel.FallingApple(); //lässt ihn fallen
-                setWindBlowing(false); //Wird wieder auf false gesetzt, damit Fiducial erneut gezeigt werden muss, damit der nächste Apfel fällt
+                apfel.FallableApple(); //lässt ihn fallen
+                SetWindBlowing(false); //Wird wieder auf false gesetzt, damit Fiducial erneut gezeigt werden muss, damit der nächste Apfel fällt
                 break; //bricht die Schleife ab, damit nur ein Apfel fällt
             }
 
         }
     }
 
-    public void finishGame()
+    /// <summary>  
+    /// Beendet das Apfelspiel und lädt wieder Startspiel
+    /// </summary>
+    public void FinishGame()
     {
         SceneManager.LoadScene("Startspiel");
     }
+
+    #region Getter&Setter
+
+    /// <summary>  
+    ///  Setter gut bool wind
+    /// </summary>
+    /// <param name="wind">Bool, ob Wind gerade weht.</param>
+    public void SetWindBlowing(bool wind)
+    {
+        this.windBlowing = wind;
+
+    }
+
+    /// <summary>  
+    ///  Getter gut bool wind
+    /// </summary>
+    /// <returns>Bool, ob Wind gerade weht</returns>
+    public bool GetWindBlowing()
+    {
+        return this.windBlowing;
+    }
+
+    /// <summary>  
+    ///  Getter für Manager
+    /// </summary>
+    public ManagerKlasse GetManager()
+    {
+        return Manager;
+    }
+
+    /// <summary>  
+    ///  Methode testet, ob Sonne und Regen-Fiducials lang genug gezeigt wurden und damit die Äpfel bereit zum Ernten sind
+    /// </summary>
+    /// <return> bool, ob Äpfel bereit für Ernte sind </return>
+    public bool GetHarvestingReady()
+    {
+        bool result = false;
+        if (this.Sun.GetSunReady() && this.Rain.GetRainReady())
+        {
+            result = true;
+        }
+        return result;
+    }
+
+    #endregion
+
 }

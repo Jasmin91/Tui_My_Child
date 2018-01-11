@@ -111,7 +111,7 @@ public class windController : MonoBehaviour
             //set game object to visible, if it was hidden before
             ShowGameObject();
             if (warWeg) {
-                ms_Instance.einApfelFaellt();
+                ms_Instance.EinApfelFaellt();
                 this.warWeg = false;
             }
             
@@ -125,7 +125,7 @@ public class windController : MonoBehaviour
                 HideGameObject();
             }            
             this.m_IsVisible = false;
-            this.warWeg = true;
+            this.warWeg = true; //Stellt sicher, dass Fiducial für jeden Apfel neu gezeigt werden muss
         }
     }
 

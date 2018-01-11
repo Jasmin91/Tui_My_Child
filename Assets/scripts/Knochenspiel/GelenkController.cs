@@ -24,15 +24,33 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//wird nicht genutzt! Dient als Kopiervorlage
+/// <summary>
+/// Kontrolliert die Drehung der Gelenke
+/// </summary>
 public class GelenkController : MonoBehaviour
 {
     public int MarkerID = 0;
     bool RightRotation = false;
-    Quaternion reference;
+
+    /// <summary>
+    /// Ziel-Drehung des Gelenkes
+    /// </summary>
+    private Quaternion reference;
+
+    /// <summary>
+    /// Instanz des Knochen-Managers
+    /// </summary>
     private KnochenManager Manager;
+
+    /// <summary>
+    /// Bool, ob rotiert werden soll
+    /// </summary>
     private bool rotate = true;
+
+    /// <summary>
+    /// Wert, um welchen Drehung abweichen darf
+    /// </summary>
+    private float deviation = 0.05f;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 
@@ -69,7 +87,7 @@ public class GelenkController : MonoBehaviour
 
         this.m_TuioManager.Connect();
         this.Manager = KnochenManager.Instance;
-        this.Manager.addGelenk(this);
+        this.Manager.AddGelenk(this);
 
 
         //check if the game object needs to be transformed in normalized 2d space
@@ -105,6 +123,7 @@ public class GelenkController : MonoBehaviour
         }
 
 
+        //Setzt je nach Gelenk den richtigen Zielwert
         switch (this.name)
         {
             case "red":
@@ -157,9 +176,9 @@ public class GelenkController : MonoBehaviour
             this.m_IsVisible = false;
         }
 
-        if (this.Manager.getRightWayFound())
+        if (this.Manager.GetRightWayFound())
         {
-            this.rotate = false;
+            this.rotate = false; //Lässt Gelenk nur drehen, solang der richtige Weg noch nicht gefunden wurde
         }
     }
 
@@ -203,6 +222,7 @@ public class GelenkController : MonoBehaviour
             transform.localRotation = rotation;
         
 
+        //Überprüft, ob die Rotation mit Zielrotation übereinstimmt
         if (Equal(rotation))
         {
             this.RightRotation = true;
@@ -211,14 +231,18 @@ public class GelenkController : MonoBehaviour
         {
             this.RightRotation = false;
         }
-      //  Debug.Log(this.name + ": " + this.RightRotation);
         
     }
 
+    /// <summary>
+    /// Vergleich aktuelle Rotation mit Zielrotation (hier nur z-Wert relevant)
+    /// </summary>
+    /// <param name="q">Abzugleichender, aktuellert Wert</param>
+    /// <returns>Bool, ob übereinstimmend</returns>
     private bool Equal(Quaternion q)
     {
         bool result = false;
-        if (check(q.z, reference.z))
+        if (Check(q.z, reference.z))
         {
             result = true;
         }
@@ -226,17 +250,30 @@ public class GelenkController : MonoBehaviour
         return result;
     }
 
-    private bool check(float value, float reference)
+    /// <summary>
+    /// Prüft, ob Wert ungefähr dem Zielwert entspricht
+    /// </summary>
+    /// <param name="value">Zu überprüfender Wert</param>
+    /// <param name="reference">Zielwert</param>
+    /// <returns></returns>
+    private bool Check(float value, float reference)
     {
         bool result = false;
         
 
-        if (IsBetween(value, calcUpperBound(reference), calcLowerBound(reference))){
+        if (IsBetween(value, CalcUpperBound(reference), CalcLowerBound(reference))){
             result = true;
         }
         return result;
     }
 
+    /// <summary>
+    /// Prüft ob Wert zwischen zwei Werten lieg
+    /// </summary>
+    /// <param name="value">Zu überprüfender Wert</param>
+    /// <param name="upper">Oberer Grenzwert</param>
+    /// <param name="lower">Unterer Grenzwert</param>
+    /// <returns></returns>
     private bool IsBetween(float value, float upper, float lower)
     {
         bool result = false;
@@ -249,27 +286,42 @@ public class GelenkController : MonoBehaviour
         return result;
     }
 
-    private float calcUpperBound(float value)
+    /// <summary>
+    /// Berechnet oberen Grenzwert
+    /// </summary>
+    /// <param name="value">Ursprungswert</param>
+    /// <returns>Berechnete Obergrenze</returns>
+    private float CalcUpperBound(float value)
     {
-        float add = 0.05f;
+        float add = deviation;
         float result = value + add; ;
         return result;
     }
 
-    private float calcLowerBound(float value)
+    /// <summary>
+    /// Berechnet unteren Grenzwert
+    /// </summary>
+    /// <param name="value">Ursprungswert</param>
+    /// <returns>Berechnete Untergrenze</returns>
+    private float CalcLowerBound(float value)
     {
-        float sub = 0.05f;
+        float sub = deviation;
         float result = value - sub; ;
         return result;
     }
 
-    public bool getRightRotation()
-    {
-        return RightRotation;
-    }
+
 
     #region Getter
 
+    /// <summary>
+    /// Getter, ob richtige Drehung gefunden wurde
+    /// </summary>
+    /// <returns>Bool, ob richtige Drehung gefunden wurde</returns>
+    public bool GetRightRotation()
+    {
+        return RightRotation;
+    }
     public bool isAttachedToGUIComponent()
     {
         return (gameObject.GetComponent<GUIText>() != null || gameObject.GetComponent<GUITexture>() != null);

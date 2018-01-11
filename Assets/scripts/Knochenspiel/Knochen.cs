@@ -10,10 +10,19 @@ using UnityEngine.SceneManagement;
 
 public class Knochen : MonoBehaviour
 {
+    /// <summary>
+    ///Erstellt eine Instanz der KnochenManager-Klasse 
+    /// </summary>
+    private KnochenManager km_Instance; 
 
-    private KnochenManager km_Instance; //Erstellt eine Instanz der KnochenManager-Klasse
+    /// <summary>
+    /// Geschwindigkeit, mit der Knochen zum Hund schwebt
+    /// </summary>
     public float speed = 2f;
-    /// <summary> Liste, die alle Punkte des Pfades speichert </summary>
+
+    /// <summary> 
+    /// Liste, die alle Punkte des Pfades speichert 
+    /// </summary>
     private List<Point> KnotList = new List<Point>();
 
 
@@ -26,7 +35,8 @@ public class Knochen : MonoBehaviour
 
     void Update()
     {
-        if (km_Instance.getRightWayFound())
+        //Bewegt Knochen zu jedem einzelnen Punkt
+        if (km_Instance.GetRightWayFound())
         {
             if (!KnotList[0].getVisited())
             {
@@ -72,6 +82,10 @@ public class Knochen : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Bewegt den Hund
+    /// </summary>
+    /// <param name="pos">Position, zu der Hund bewegt werden soll</param>
     private void move(Point pos)
     {
         float step = speed * Time.deltaTime;
@@ -79,6 +93,9 @@ public class Knochen : MonoBehaviour
         pos.Reached(this.transform.position);
     }
     
+    /// <summary>
+    /// Definition des Weges, den der Knochen zurücklegen soll
+    /// </summary>
     private void defineWay()
     {
         float z = this.transform.position.z;

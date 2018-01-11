@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>  
-///  Diese Klasse steuert die Ausgabe des Scores
+///  Diese Klasse steuert ein Sprechblasen-Objekt
 /// </summary> 
 
 
@@ -16,13 +16,18 @@ public class Talk : MonoBehaviour
     /// </summary>
     private ManagerKlasse Manager;
 
+    /// <summary>
+    /// Zugehöriges Tier
+    /// </summary>
     public AnimalController animal;
-
-  
-
+    
     /// <summary> Text der ausgegeben werden soll </summary>
     public Text Ausgabe;
-    private float showTime = 3;
+
+    /// <summary>
+    /// Dauer die Sprechblase angezeigt werden soll
+    /// </summary>
+    private float showTime = 4;
 
 
 
@@ -31,30 +36,32 @@ public class Talk : MonoBehaviour
         this.Manager = ManagerKlasse.Instance;
         this.Hide();
         Ausgabe.rectTransform.sizeDelta=new Vector2(95,45);
-        animal.setSpeaker(this);
+        animal.SetSpeaker(this);
 
     }
 
     void Update()
     {
-        setPositionText();
-        setPositiont();
-        setRotationText();
+        SetPositionText();
+        SetPositiont();
+        SetRotationText();
     }
 
-    
-    public void setPositionText()
+
+    /// <summary>
+    /// Setzt die Position der Sprechblase
+    /// </summary>
+    public void SetPositiont()
     {
+        this.transform.localPosition = CalcPosition();
+    }
 
-        float x = this.transform.position.x;
-        float y = this.transform.position.y;
-        float z = Ausgabe.transform.position.z;
 
-        Vector3 pos = new Vector3(x, y, z);
-        Ausgabe.rectTransform.position = pos;
-     }
-
-    public Vector3 calcPosition()
+    /// <summary>
+    /// Berechnet die Position der Sprechblase
+    /// </summary>
+    /// <returns></returns>
+    private Vector3 CalcPosition()
     {
         float trans = 1.5f;
 
@@ -91,26 +98,49 @@ public class Talk : MonoBehaviour
         return result;
 }
 
-    public void setPositiont()
+    /// <summary>
+    /// Setzt die Position des Textes
+    /// </summary>
+    public void SetPositionText()
     {
-        this.transform.localPosition = calcPosition();
+
+        float x = this.transform.position.x;
+        float y = this.transform.position.y;
+        float z = Ausgabe.transform.position.z;
+
+        Vector3 pos = new Vector3(x, y, z);
+        Ausgabe.rectTransform.position = pos;
     }
 
-    public void setRotationText()
+    /// <summary>
+    /// Setzt die Rotation des Textes
+    /// </summary>
+    public void SetRotationText()
     {
         Ausgabe.transform.localRotation = this.transform.rotation;
     }
 
+    /// <summary>
+    /// Zeigt die Sprechblase
+    /// </summary>
     public void Show()
     {
         this.GetComponent<Renderer>().enabled = true;
     }
 
+    /// <summary>
+    /// Blendet die Sprechblase aus
+    /// </summary>
     public void Hide()
     {
         this.GetComponent<Renderer>().enabled = false;
         this.Ausgabe.text = "";
     }
+
+    /// <summary>
+    /// Zeigt den Text
+    /// </summary>
+    /// <param name="s">Anzuzeigender Text</param>
     public void DisplayText(String s)
     {
         this.Show();
@@ -118,18 +148,27 @@ public class Talk : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Zeigt den Text eine bestimmte Zeit
+    /// </summary>
+    /// <param name="s">Anzuzeigender Text</param>
+    /// <param name="x">Dauer der Anzeige</param>
     public void DisplayText(String s, float x)
     {
         Debug.Log("DisplayText mit Zeit");
         this.Show();
         this.Ausgabe.text = s;
         this.showTime = x;
-        StartCoroutine(this.showXSeconds());
-
-
+        StartCoroutine(this.ShowXSeconds());
+        
     }
 
-    private IEnumerator showXSeconds(float countdownValue = 0)
+    /// <summary>
+    /// Timer steuert, wie lang Sprechblase angezeigt wird
+    /// </summary>
+    /// <param name="countdownValue"></param>
+    /// <returns></returns>
+    private IEnumerator ShowXSeconds(float countdownValue = 0)
     {
       //  Debug.Log("Coundown gestartet!");
         while (countdownValue < showTime)

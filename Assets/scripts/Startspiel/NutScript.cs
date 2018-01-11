@@ -35,10 +35,7 @@ public class NutScript : MonoBehaviour
         this.Manager.AddNut(this);
         
     }
-
-    void Update()
-    {
-    }
+    
 
 
     /// <summary>  
@@ -47,21 +44,32 @@ public class NutScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         {
-            this.collectNut();
+            this.CollectNut();
         }
     }
 
-    public void collectNut()
+    /// <summary>
+    /// Sammelt Nuss: Löscht Nuss-Objekt und erhöht Nusszähler
+    /// </summary>
+    public void CollectNut()
     {
         Destroy(this.gameObject); //Zerstören des gesammelten Nuss-Objekts
         Manager.CollectNut(); //Zähler der gesammelten Nüsse im Manager wird erhöht
         Manager.RemoveNut(this);
     }
 
-    public void destroyObject()
+    /// <summary>
+    /// Löscht das Nuss-Objekt
+    /// </summary>
+    public void DestroyObject()
     {
         Destroy(this.gameObject); //Zerstören des gesammelten Nuss-Objekts
     }
+
+    /// <summary>
+    /// Getter für den Namen der Nuss
+    /// </summary>
+    /// <returns>Nussname</returns>
     public String getName()
     {
         return this.namenut;

@@ -9,9 +9,15 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    
-    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
-    private bool updated = false; //Wurde bereits geupdated
+    /// <summary>
+    ///Erstellt eine Instanz der Manager-Klasse 
+    /// </summary>   
+    private ManagerKlasse Manager;
+
+    /// <summary>
+    ///Wurde bereits geupdated 
+    /// </summary>
+    private bool updated = false; 
 
 
 

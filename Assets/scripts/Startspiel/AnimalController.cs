@@ -32,10 +32,30 @@ public class AnimalController : MonoBehaviour
 
 
     public int MarkerID = 0;
-    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
+
+    /// <summary>
+    ///Erstellt eine Instanz der Manager-Klasse
+    /// </summary>
+    private ManagerKlasse Manager; 
+
+    /// <summary>
+    /// Name, der in Sprechblase angezeigt werden soll
+    /// </summary>
     public String Nickname = "kein Name vergeben";
+
+    /// <summary>
+    /// Sprechblase des Tieres
+    /// </summary>
     Talk Sprechblase;
+
+    /// <summary>
+    /// Bool, ob Tier bereits sein Essen hat
+    /// </summary>
     private bool hasFood = false;
+
+    /// <summary>
+    /// Aktuelle Rotation des Tieres
+    /// </summary>
     private Quaternion actRotation;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
@@ -78,7 +98,7 @@ public class AnimalController : MonoBehaviour
 
 
         //check if the game object needs to be transformed in normalized 2d space
-        if (isAttachedToGUIComponent())
+        if (IsAttachedToGUIComponent())
         {
             Debug.LogWarning("Rotation of GUIText or GUITexture is not supported. Use a plane with a texture instead.");
             this.m_ControlsGUIElement = true;
@@ -154,23 +174,18 @@ public class AnimalController : MonoBehaviour
             {
                 case RotationAxis.Forward:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.forward);
-                  //  GetComponent<Rigidbody2D>().velocity = Vector3.forward;
                     break;
                 case RotationAxis.Back:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.back);
-                  //  GetComponent<Rigidbody2D>().velocity = Vector3.back;
                     break;
                 case RotationAxis.Up:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.up);
-                   // GetComponent<Rigidbody2D>().velocity = Vector3.up;
                     break;
                 case RotationAxis.Down:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.down);
-                   // GetComponent<Rigidbody2D>().velocity = Vector3.down;
                     break;
                 case RotationAxis.Left:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.left);
-                   // GetComponent<Rigidbody2D>().velocity = Vector3.left;
                     break;
                 case RotationAxis.Right:
                     rotation = Quaternion.AngleAxis(this.m_AngleDegrees, Vector3.right);
@@ -182,56 +197,84 @@ public class AnimalController : MonoBehaviour
             float Geschwindigkeit = this.Geschwindigkeit; //Setzt die Geschwindigkeit
           
             if (transform.right.x < -0.5) {
-                Geschwindigkeit = Geschwindigkeit * 2; //Erhöht Geschwindigkeit, wenn sich Tier nach links bewegt (Ausgleich)
+                Geschwindigkeit = Geschwindigkeit * 2.2f; //Erhöht Geschwindigkeit, wenn sich Tier nach links bewegt (Ausgleich)
             }
             transform.position += transform.right * Geschwindigkeit; //Bewegt das Tier
             
         }
     }
 
-
+    /// <summary>
+    /// Lässt das Tier in Sprechblase "sprechen"
+    /// </summary>
+    /// <param name="s">Auszugebender Text</param>
     public void Speak(String s)
     {
         this.Sprechblase.DisplayText(s);
 
     }
 
+    /// <summary>
+    /// Lässt das Tier in Sprechblase für bestimmte Dauer "sprechen"
+    /// </summary>
+    /// <param name="s">Auszugebender Text</param>
+    /// <param name="x">Anzuzeigende Dauer</param>
     public void Speak(String s, float x)
     {
         this.Sprechblase.DisplayText(s,x);
 
     }
 
+    /// <summary>
+    /// Lässt Sprechblase verschwinden 
+    /// </summary>
     public void BeSilent()
     {
         this.Sprechblase.Hide();
     }
 
-    public void setSpeaker(Talk speaker)
+
+
+    #region Getter&Setter
+
+
+    /// <summary>
+    /// Setzt die Sprechblase
+    /// </summary>
+    /// <param name="speaker">Zuzuweisende Sprechblase</param>
+    public void SetSpeaker(Talk speaker)
     {
         this.Sprechblase = speaker;
     }
 
-    public String getNickname()
+    /// <summary>
+    /// Getter für Nickname
+    /// </summary>
+    /// <returns>Nickname</returns>
+    public String GetNickname()
     {
         return Nickname;
     }
 
-    public bool getHasFood()
+    /// <summary>
+    /// Getter, ob Tier bereits Essen hat
+    /// </summary>
+    /// <returns>Bool, ob Tier bereits Essen hat</returns>
+    public bool GetHasFood()
     {
         return hasFood;
     }
 
-    public void setHasFood(bool var)
+    /// <summary>
+    /// Setter, ob Tier bereits Essen hat
+    /// </summary>
+    /// <param name="var">Bool, ob Tier bereits Essen hat</param>
+    public void SetHasFood(bool var)
     {
         this.hasFood = var;
-       // Debug.Log("Hat was zu Essen?" + var);
     }
 
-
-    #region Getter
-
-    public bool isAttachedToGUIComponent()
+    public bool IsAttachedToGUIComponent()
     {
         return (gameObject.GetComponent<GUIText>() != null || gameObject.GetComponent<GUITexture>() != null);
     }

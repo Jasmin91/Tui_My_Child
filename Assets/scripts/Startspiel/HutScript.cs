@@ -9,10 +9,24 @@ using UnityEngine;
 
 public class HutScript : MonoBehaviour
 {
-    
-    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
-    private bool finished = false; //Spiel beendet
+    /// <summary>
+    ///Erstellt eine Instanz der Manager-Klasse
+    /// </summary>
+    private ManagerKlasse Manager;
+
+    /// <summary>
+    ///Spiel beendet 
+    /// </summary>
+    private bool finished = false; 
+
+    /// <summary>
+    /// Geschwindigkeit, mit der Ballon fliegen soll
+    /// </summary>
     public float BaloonSpeed = -0.01f;
+
+    /// <summary>
+    /// Zugehöriges Ballon-Objekt
+    /// </summary>
     public GameObject baloon;
 
 
@@ -30,7 +44,7 @@ public class HutScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         Manager.VisitHut(col.name); //Merkt sich im Manager, dass Tier gerade auf Hütte ist
-        AnimalController animal = Manager.getAnimalByName(col.name);
+        AnimalController animal = Manager.GetAnimalByName(col.name);
 
         if (Manager.GetVistors().Count == Manager.PlayerCount) { //Schaut, ob alle Tiere auf der Hütte sind
             if (Manager.GetFoundAllFood()) { //Schaut, ob alles Essen gesammelt wurde
@@ -44,27 +58,22 @@ public class HutScript : MonoBehaviour
             else
             {
                 String s = "Wir haben noch nicht genug zu essen!";
-              //  Debug.Log(s);
-                Manager.LetAnimalSaySomething(col.name, s, 2);
+                Manager.LetAnimalSaySomething(col.name, s, 4);
             }
         }
         else
         {
             String s = "";
-           // Debug.Log("Geht in if:" + Manager.getAnimalByName(col.name).getHasFood());
-            if (Manager.getAnimalByName(col.name).getHasFood())
+            if (Manager.GetAnimalByName(col.name).GetHasFood())
             {
                 s += "Ich warte noch auf meine Freunde!";
-                animal.Speak(s, 2);
+                animal.Speak(s, 4);
             }
             else
             {
                 s += "Ich habe noch nichts zu essen!";
                 animal.Speak(s);
             }
-            //Debug.Log(col.name + " wartet auf seine Freunde"+Manager.GetVistors().Count);
-           
-           // Manager.LetAnimalSaySomething(col.name, s, 2);
         }
     }
 
@@ -72,11 +81,7 @@ public class HutScript : MonoBehaviour
     void OnTriggerExit2D(Collider2D col)
     {
         Manager.LeaveHut(col.name); //Merkt sich im Manager, dass Tier Hütte verlassen hat
-        Manager.LetAnimalBeQuiet(col.name);
+        Manager.LetAnimalBeQuiet(col.name); 
     }
-
-    void Update()
-    {
-
-    }
+    
 }

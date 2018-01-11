@@ -4,14 +4,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>  
-///  Diese Management-Klasse steuert und verbindet alle anderen Klassen
+///  Diese KnochenManagement-Klasse steuert und verbindet alle anderen Klassen des Knochen-Spiels
 /// </summary>
 public class KnochenManager {
 
-    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
-    private static KnochenManager km_Instance; //Erstellt eine Instanz der KnochenManager-Klasse
+    /// <summary>
+    ///Erstellt eine Instanz der Manager-Klasse 
+    /// </summary>
+    private ManagerKlasse Manager; 
+
+    /// <summary>
+    ///Erstellt eine Instanz der KnochenManager-Klasse 
+    /// </summary>
+    private static KnochenManager km_Instance;
+
     /// <summary> Liste, die die Gelenke speichert </summary>
     private List<GelenkController> GelenkList = new List<GelenkController>();
+
+    /// <summary>
+    /// Bool, ob Spiel gelöst wurde
+    /// </summary>
     private bool GameSolved = false;
 
 
@@ -29,7 +41,6 @@ public class KnochenManager {
 	}
 
 
-
     public KnochenManager()
     {
         if (km_Instance != null)
@@ -43,45 +54,67 @@ public class KnochenManager {
     }
 
 
-
-    public ManagerKlasse getManager()
+    /// <summary>
+    /// Getter für die ManagerKlasse
+    /// </summary>
+    /// <returns>Die ManagerKlasse für das gesamte Spiel</returns>
+    public ManagerKlasse GetManager()
     {
         return Manager;
     }
 
-    public void addGelenk(GelenkController gc)
+    /// <summary>
+    /// Fügt Gelenk der Gelenk-Liste hinzu
+    /// </summary>
+    /// <param name="gc">Hinzuzufügendes Gelenk</param>
+    public void AddGelenk(GelenkController gc)
     {
         this.GelenkList.Add(gc);
     }
 
-    public bool getRightWayFound()
-    {
-        bool result = true;
-        foreach (GelenkController gk in GelenkList)
-        {
-            if (!gk.getRightRotation())
-            {
-                result = false;
-                
-            }
-        }
-        return result;
-    }
-    
-    public bool getGameSolved()
-    {
-        return this.GameSolved;
-    }
-
-    public void setGameSolved(bool var)
-    {
-        this.GameSolved = var;
-    }
 
     public void FinishGame()
     {
         SceneManager.LoadScene("Startspiel");
     }
+    #region Getter&Setter
 
 
+    /// <summary>
+    /// Getter, ob Lösungsweg gefunden wurde
+    /// </summary>
+    /// <returns>Bool, ob Lösungsweg gefunden wurde</returns>
+    public bool GetRightWayFound()
+    {
+        bool result = true;
+        foreach (GelenkController gk in GelenkList)
+        {
+            if (!gk.GetRightRotation())
+            {
+                result = false;
+
+            }
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// Getter, ob Spiel gelöst wurde
+    /// </summary>
+    /// <returns>Bool, ob Spiel gelöst wurde</returns>
+    public bool getGameSolved()
+    {
+        return this.GameSolved;
+    }
+
+    /// <summary>
+    /// Setter, ob Spiel gelöst wurde
+    /// </summary>
+    /// <param name="var">Bool, ob Spiel gelöst wurde</param>
+    public void setGameSolved(bool var)
+    {
+        this.GameSolved = var;
+    }
+    #endregion
 }
+

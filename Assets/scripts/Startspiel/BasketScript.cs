@@ -10,17 +10,22 @@ using UnityEngine.UI;
 
 public class BasketScript : MonoBehaviour
 {
-    
-    private ManagerKlasse Manager; //Erstellt eine Instanz der Manager-Klasse
-    /// <summary> Zeigt Text an </summary>
+    /// <summary>
+    ///Erstellt eine Instanz der Manager-Klasse 
+    /// </summary>
+    private ManagerKlasse Manager; 
+
+    /// <summary> 
+    /// Zeigt Text (Anzal der Nüsse) an 
+    /// </summary>
     public Text Ausgabe;
 
 
     void Start()
     {
         this.Manager = ManagerKlasse.Instance;
-        Manager.setBasket(this);
-        this.setPositionText();
+        Manager.SetBasket(this);
+        this.SetPositionText();
         this.UpdateBasket(Manager.NutCounter);
     }
 
@@ -30,17 +35,28 @@ public class BasketScript : MonoBehaviour
         this.ShowScore(this.Manager.NutCounter + "");
     }
 
+    /// <summary>
+    /// Gibt den Score als Text aus
+    /// </summary>
+    /// <param name="txt"></param>
     public void ShowScore(string txt)
     {
         this.Ausgabe.text = txt;
     }
 
+    /// <summary>
+    /// Updated das Bild des Korbes, passend zur Anzahl der Nüsse
+    /// </summary>
+    /// <param name="count">Anzahl der anzuzeigenden Nüsse</param>
     public void UpdateBasket(float count)
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Nuts/nut_"+count, typeof(Sprite)) as Sprite;
     }
 
-    public void setPositionText()
+    /// <summary>
+    /// Setzt die Position des Textes auf den Korb
+    /// </summary>
+    public void SetPositionText()
     {
         Ausgabe.rectTransform.position = this.transform.position;
     }

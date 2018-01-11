@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>  
-///  Diese Klasse steuert die  Funktion der Sonne
+///  Diese Klasse steuert die Funktion der Sonne
 /// </summary> 
 
 public class sonneController : MonoBehaviour
@@ -34,9 +34,20 @@ public class sonneController : MonoBehaviour
     public int MarkerID = 0;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
+    /// <summary>
+    /// Dauer, die Sonne scheinen soll
+    /// </summary>
     public float sunDuration = 0;
-    public float countdownDuration = 5; //Dauer, die die Sonne scheint
-    private bool sunReady = false; //die Sonne hat genug geschienen
+
+    /// <summary>
+    ///Dauer, die die Sonne scheint 
+    /// </summary>
+    public float countdownDuration = 5;
+
+    /// <summary>
+    ///die Sonne hat genug geschienen 
+    /// </summary>
+    private bool sunReady = false; 
     //translation
     public bool IsPositionMapped = false;
     public bool InvertX = false;
@@ -137,7 +148,7 @@ public class sonneController : MonoBehaviour
     
     private void ShowGameObject()
     {
-        if (ms_Instance.Rain.getRainReady()) {
+        if (ms_Instance.Rain.GetRainReady()) {
             StartCoroutine(StartCountdownToRed());
         }
         if (this.m_ControlsGUIElement)
@@ -185,7 +196,11 @@ public class sonneController : MonoBehaviour
         }
     }
 
-    //Methode mit Zähler, sorgt dafür, dass das Sonnen-Fiducial mindestens countdownDuration Sekunden in die Kamera gehalten werden muss
+    /// <summary>
+    ///Methode mit Zähler, sorgt dafür, dass das Sonnen-Fiducial mindestens countdownDuration Sekunden in die Kamera gehalten werden muss
+    /// </summary>
+    /// <param name="countdownValue"></param>
+    /// <returns></returns>
     public IEnumerator StartCountdownToRed(float countdownValue = 0)
     {
         sunDuration = countdownValue;
@@ -196,24 +211,32 @@ public class sonneController : MonoBehaviour
             ms_Instance.ApfelReifenLassen(this.sunDuration);
             if (sunDuration == 5)
             {
-                this.setSunReady(true); //Sonne hat genug geschienen
+                this.SetSunReady(true); //Sonne hat genug geschienen
             }
         }
 
 
     }
 
-    public void setSunReady(bool sun)
+    #region Getter
+
+    /// <summary>
+    /// Setter, ob Sonne genug gescheint hat
+    /// </summary>
+    /// <param name="sun">Bool, ob Sonne genug gescheint hat</param>
+    public void SetSunReady(bool sun)
     {
         this.sunReady = sun;
-
     }
 
-    public bool getSunReady()
+    /// <summary>
+    /// Getter, ob Sonne genug gescheint hat
+    /// </summary>
+    /// <returns>Bool, ob Sonne genug gescheint hat</returns>
+    public bool GetSunReady()
     {
         return this.sunReady;
     }
-    #region Getter
 
     public bool isAttachedToGUIComponent()
     {
