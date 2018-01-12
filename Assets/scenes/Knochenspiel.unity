@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bf82d4c19154c4d8b887ffd8cd93ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarkerID: 0
+  MarkerID: 1
   CameraOffset: 10
   RotateAround: 1
   RotationMultiplier: 1
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bf82d4c19154c4d8b887ffd8cd93ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarkerID: 1
+  MarkerID: 2
   CameraOffset: 10
   RotateAround: 1
   RotationMultiplier: 1
@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bf82d4c19154c4d8b887ffd8cd93ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarkerID: 4
+  MarkerID: 0
   CameraOffset: 10
   RotateAround: 1
   RotationMultiplier: 1
