@@ -35,7 +35,7 @@ public class Talk : MonoBehaviour
     {
         this.Manager = ManagerKlasse.Instance;
         this.Hide();
-        Ausgabe.rectTransform.sizeDelta=new Vector2(95,45);
+        Ausgabe.rectTransform.sizeDelta=new Vector2(125,65);
         animal.SetSpeaker(this);
 
     }

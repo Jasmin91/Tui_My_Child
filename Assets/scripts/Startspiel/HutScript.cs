@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>  
 ///  Diese Klasse steuert die Funktionen der Hütte und erkennt das Ende des Spiels
@@ -37,6 +38,13 @@ public class HutScript : MonoBehaviour
         this.Manager = ManagerKlasse.Instance;
         baloon.GetComponent<Renderer>().enabled = false;
     }
+    void Update()
+    {
+        if (baloon.transform.position.y > 6)
+        {
+            SceneManager.LoadScene("Closing");
+        }
+    }
 
     /// <summary>  
     ///  Erkennt die Kollision eines Tieres mit der Hütte
@@ -54,6 +62,7 @@ public class HutScript : MonoBehaviour
                 baloon.GetComponent<Renderer>().enabled = true;
                 baloon.GetComponent<Rigidbody2D>().gravityScale = BaloonSpeed;
                 Debug.Log("Spiel beendet!");
+               
             }
             else
             {

@@ -49,8 +49,13 @@ public class ManagerKlasse {
     /// </summary>
     private BasketScript basket;
 
-  
-    
+    /// <summary>
+    /// Timer-Objekt
+    /// </summary>
+    private Timer T;
+
+
+
     public static ManagerKlasse Instance
 	{
 		get
@@ -73,6 +78,7 @@ public class ManagerKlasse {
             return;
         }
         Manager = this;
+
 
     }
     
@@ -420,6 +426,24 @@ public class ManagerKlasse {
             this.basket = basket;
         }
     }
+
+    public int[] GetAllIDs(){
+
+        int[] allIDs = new int[4];
+        int counter = 0;
+
+         foreach (AnimalController animal in AnimalList)
+        {
+            allIDs[counter] = animal.MarkerID;
+            counter++;
+        }
+         if(counter != 4){
+            Debug.Log("Sende default-IDs");
+            allIDs = new int[4]{0,1,2,3};
+          }
+         return allIDs;
+       }
+
     #endregion
 
     #region Adder
@@ -457,6 +481,16 @@ public class ManagerKlasse {
     public void AddVisitedPortal(PortalController portal)
     {
         this.DeletedPortalList.Add(portal.name);
+    }
+
+    public void SetTimer(Timer t)
+    {
+        this.T = t;
+    }
+
+    public Timer GetTimer()
+    {
+        return this.T;
     }
     #endregion
 

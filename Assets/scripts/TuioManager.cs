@@ -56,6 +56,10 @@ namespace UniducialLibrary
                 Debug.LogError("Trying to create two instances of singleton.");
                 return;
             }
+            else
+            {
+                Debug.Log("Neuer TUIO Manager");
+            }
 
             m_Instance = this;
 

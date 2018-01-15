@@ -180,6 +180,7 @@ public class GelenkController : MonoBehaviour
         {
             this.rotate = false; //Lässt Gelenk nur drehen, solang der richtige Weg noch nicht gefunden wurde
         }
+        
     }
 
 

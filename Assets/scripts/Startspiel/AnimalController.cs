@@ -22,6 +22,7 @@ THE SOFTWARE.
 
 using System;
 using UnityEngine;
+using System.Collections;
 [System.Serializable]
 
 /// <summary>  
@@ -29,7 +30,7 @@ using UnityEngine;
 /// </summary>  
 public class AnimalController : MonoBehaviour
 {
-
+    float WaitingToExit = 3;
 
     public int MarkerID = 0;
 
@@ -57,6 +58,8 @@ public class AnimalController : MonoBehaviour
     /// Aktuelle Rotation des Tieres
     /// </summary>
     private Quaternion actRotation;
+
+    
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     public float Geschwindigkeit = 0.01f;
@@ -87,6 +90,7 @@ public class AnimalController : MonoBehaviour
     {
 
         this.Manager = ManagerKlasse.Instance;
+        
         Manager.AddAnimal(this);
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
 		this.ms_Instance = ApfelManager.Instance;
@@ -123,14 +127,12 @@ public class AnimalController : MonoBehaviour
 
     void Update()
     {
-
-		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
-		}
-
+      
 
         if (this.m_TuioManager.IsConnected
             && this.m_TuioManager.IsMarkerAlive(this.MarkerID))
         {
+           
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.5f, 0);//Setze Geschwindigkeit, sobald Fiducial sichtbar
             
              TUIO.TuioObject marker = this.m_TuioManager.GetMarker(this.MarkerID);
@@ -146,11 +148,15 @@ public class AnimalController : MonoBehaviour
         }
         else
         {
+          
+            
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);//Setze Geschwindigkeit auf 0, sobald Fiducial unsichtbar
             GetComponent<Rigidbody2D>().transform.rotation=this.actRotation;
-            
-            
+
+             
+		
         }
+        
     }
 
 
@@ -164,8 +170,6 @@ public class AnimalController : MonoBehaviour
 
     private void UpdateTransform()
     {
-     
-      
         {
             Quaternion rotation = Quaternion.identity;
             
@@ -192,7 +196,6 @@ public class AnimalController : MonoBehaviour
                     
                     break;
             }
-
             transform.localRotation = rotation; //Rotiert das Tier
             float Geschwindigkeit = this.Geschwindigkeit; //Setzt die Geschwindigkeit
           
@@ -200,9 +203,31 @@ public class AnimalController : MonoBehaviour
                 Geschwindigkeit = Geschwindigkeit * 2.2f; //Erhöht Geschwindigkeit, wenn sich Tier nach links bewegt (Ausgleich)
             }
             transform.position += transform.right * Geschwindigkeit; //Bewegt das Tier
-            
         }
     }
+
+   /// <summary>
+   ///
+   ///</summary>
+
+   public IEnumerator StartEndTimerFirst(float countdownValue = 0)
+    {
+        {
+            while (countdownValue <= WaitingToExit)
+            {
+                countdownValue++;
+
+                
+                yield return new WaitForSeconds(1.0f);
+
+            }
+            if(countdownValue==WaitingToExit){
+            Debug.Log("Spiel wird beendet...");
+            }
+        }
+    }
+
+   
 
     /// <summary>
     /// Lässt das Tier in Sprechblase "sprechen"
@@ -255,6 +280,8 @@ public class AnimalController : MonoBehaviour
     {
         return Nickname;
     }
+
+  
 
     /// <summary>
     /// Getter, ob Tier bereits Essen hat
