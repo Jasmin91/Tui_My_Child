@@ -379,6 +379,7 @@ public class ManagerKlasse {
     public AnimalController GetAnimalByName(string name)
     {
         AnimalController result = null;
+        Debug.Log("GetAnimalByName, suche folgendes Tier" + name+ "--- AnimalList ist so lang:"+ AnimalList.Count);
 
         foreach (AnimalController animal in AnimalList)
         {
@@ -387,11 +388,7 @@ public class ManagerKlasse {
                 result = animal;
             }
         }
-        string s = "nicht vergeben";
-        if (result != null)
-        {
-            s = result.name;
-        }
+        Debug.Log("GetAnimalByName, gebe folgendes Tier zurück:" + result);
 
         return result;
     }
@@ -431,7 +428,7 @@ public class ManagerKlasse {
 
         int[] allIDs = new int[4];
         int counter = 0;
-
+        
          foreach (AnimalController animal in AnimalList)
         {
             allIDs[counter] = animal.MarkerID;
@@ -463,8 +460,10 @@ public class ManagerKlasse {
     /// </summary> 
     public void AddAnimal(AnimalController animal)
     {
-        this.AnimalList.Add(animal);
-    
+        if (animal != null)
+        {
+            this.AnimalList.Add(animal);
+        }
     }
 
     /// <summary>  

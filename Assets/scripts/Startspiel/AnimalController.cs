@@ -91,7 +91,7 @@ public class AnimalController : MonoBehaviour
 
         this.Manager = ManagerKlasse.Instance;
         
-        Manager.AddAnimal(this);
+       
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
 		this.ms_Instance = ApfelManager.Instance;
         //uncomment next line to set port explicitly (default is 3333)
@@ -117,7 +117,7 @@ public class AnimalController : MonoBehaviour
         //get reference to main camera
         this.m_MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         this.actRotation = GetComponent<Rigidbody2D>().transform.rotation;
-
+        Manager.AddAnimal(this);
         //check if the main camera exists
         if (this.m_MainCamera == null)
         {

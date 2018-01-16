@@ -35,7 +35,7 @@ public class Timer : MonoBehaviour
         Ausgabe.text = "";
 
 
-        go = new GameObject("Neu");
+        go = new GameObject("Cloud");
         SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
         GUITexture te = go.AddComponent<GUITexture>();
         go.GetComponent<SpriteRenderer>().sprite = Resources.Load("Cloud", typeof(Sprite)) as Sprite;
@@ -47,7 +47,6 @@ public class Timer : MonoBehaviour
 
         void Update()
     {
-        Debug.Log("update timer");
         if (!paused)
         {
             targetTime -= Time.deltaTime;
@@ -81,7 +80,6 @@ public class Timer : MonoBehaviour
 
     public void StartTimer(float duration)
     {
-        Debug.Log("Start Timer");
         ResetTime = duration;
         targetTime = duration;
         WaitingTime = duration - 5;
@@ -91,7 +89,6 @@ public class Timer : MonoBehaviour
     }
     public void ResetTimer()
     {
-        Debug.Log("Pausiere Timer");
         paused = true;
         Ausgabe.text = "";
         targetTime = ResetTime;
@@ -108,7 +105,6 @@ public class Timer : MonoBehaviour
     {
         paused = true;
         SceneManager.LoadScene("Opening");
-        Debug.Log("Spiel wird beendet...");
     }
 
     private void printTimer(float time)

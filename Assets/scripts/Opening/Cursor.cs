@@ -40,7 +40,6 @@ public class Cursor : MonoBehaviour
     public bool InvertX = false;
 
     //rotation
-    public bool AutoHideGO = false;
     private bool m_ControlsGUIElement = false;
 
 
@@ -101,6 +100,7 @@ public class Cursor : MonoBehaviour
     void Update()
     {
         this.transform.position = new Vector3 (this.transform.position.x, PosY, this.transform.position.z);
+        
 
         if (this.m_TuioManager.IsConnected
             && this.m_TuioManager.IsMarkerAlive(this.MarkerID))
@@ -132,7 +132,7 @@ public class Cursor : MonoBehaviour
         else if (col.gameObject.name == "Ende")
         {
             Application.Quit();
-            UnityEditor.EditorApplication.isPlaying = false;
+           // UnityEditor.EditorApplication.isPlaying = false;
             Debug.Log("Spiel wird beendet...");
         }
     }
