@@ -37,7 +37,7 @@ public class AnimalController : MonoBehaviour
     /// <summary>
     ///Erstellt eine Instanz der Manager-Klasse
     /// </summary>
-    private ManagerKlasse Manager; 
+    private ManagerKlasse Manager;
 
     /// <summary>
     /// Name, der in Sprechblase angezeigt werden soll
@@ -59,7 +59,9 @@ public class AnimalController : MonoBehaviour
     /// </summary>
     private Quaternion actRotation;
 
-    
+    private bool waiting = false;
+
+    public float WaitingToMove = 1;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     public float Geschwindigkeit = 0.01f;
@@ -77,7 +79,7 @@ public class AnimalController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private ApfelManager ms_Instance;
+    private ApfelManager ms_Instance;
     private Camera m_MainCamera;
 
     //members
@@ -90,10 +92,10 @@ public class AnimalController : MonoBehaviour
     {
 
         this.Manager = ManagerKlasse.Instance;
-        
-       
+
+
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
-		this.ms_Instance = ApfelManager.Instance;
+        this.ms_Instance = ApfelManager.Instance;
         //uncomment next line to set port explicitly (default is 3333)
         //m_TuioManager.TuioPort = 7777;
 
@@ -107,7 +109,7 @@ public class AnimalController : MonoBehaviour
             Debug.LogWarning("Rotation of GUIText or GUITexture is not supported. Use a plane with a texture instead.");
             this.m_ControlsGUIElement = true;
         }
-        
+
         this.m_Angle = 0f;
         this.m_AngleDegrees = 0;
     }
@@ -123,14 +125,28 @@ public class AnimalController : MonoBehaviour
         {
             Debug.LogError("There is no main camera defined in your scene.");
         }
-    }
 
+        waiting = true;
+    }
+   
     void Update()
     {
-      
+
+        
+        if (waiting)
+        {
+            WaitingToMove -= Time.deltaTime;
+            Debug.Log(WaitingToMove);
+            if (WaitingToMove <= 0.0f)
+            {
+                waiting = false;
+            }
+        }
+     
+
 
         if (this.m_TuioManager.IsConnected
-            && this.m_TuioManager.IsMarkerAlive(this.MarkerID))
+            && this.m_TuioManager.IsMarkerAlive(this.MarkerID)&&!waiting)
         {
            
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.5f, 0);//Setze Geschwindigkeit, sobald Fiducial sichtbar

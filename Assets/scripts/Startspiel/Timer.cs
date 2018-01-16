@@ -47,6 +47,12 @@ public class Timer : MonoBehaviour
 
         void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if (!paused)
         {
             targetTime -= Time.deltaTime;

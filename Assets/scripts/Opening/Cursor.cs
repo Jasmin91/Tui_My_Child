@@ -30,7 +30,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class Cursor : MonoBehaviour
 {
-    public int MarkerID = 0;
+    public int MarkerID;
 
     
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
@@ -94,11 +94,16 @@ public class Cursor : MonoBehaviour
             Debug.LogError("There is no main camera defined in your scene.");
         }
 
-        
+        System.Random rnd = new System.Random();
+        int id = rnd.Next(0, 4);
+        MarkerID = id;
+        Debug.Log("Marker ID:" + this.MarkerID);
+
     }
 
     void Update()
     {
+
         this.transform.position = new Vector3 (this.transform.position.x, PosY, this.transform.position.z);
         
 
@@ -112,7 +117,10 @@ public class Cursor : MonoBehaviour
             //update transform component
             UpdateTransform();
         }
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 
     }
 
@@ -127,12 +135,13 @@ public class Cursor : MonoBehaviour
         Debug.Log("Collide");
         if (col.gameObject.name == "Start")
         {
-            SceneManager.LoadScene("Startspiel");
+            // SceneManager.LoadScene("Startspiel");
+            Application.LoadLevel("Startspiel");
         }
         else if (col.gameObject.name == "Ende")
         {
             Application.Quit();
-           // UnityEditor.EditorApplication.isPlaying = false;
+           UnityEditor.EditorApplication.isPlaying = false;
             Debug.Log("Spiel wird beendet...");
         }
     }

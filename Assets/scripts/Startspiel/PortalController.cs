@@ -75,7 +75,7 @@ public class PortalController : MonoBehaviour
                 result = "Startspiel";
                 break;
             case "dog":
-                result = "Knochenspiel";
+               result = "Knochenspiel";
                 break;
             case "rabbit":
                 result = "Ruebenspiel";

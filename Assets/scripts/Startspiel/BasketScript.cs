@@ -58,6 +58,6 @@ public class BasketScript : MonoBehaviour
     /// </summary>
     public void SetPositionText()
     {
-        Ausgabe.rectTransform.position = this.transform.position;
+       // Ausgabe.rectTransform.position = this.transform.position;
     }
 }

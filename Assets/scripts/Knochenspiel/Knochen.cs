@@ -99,14 +99,16 @@ public class Knochen : MonoBehaviour
     private void defineWay()
     {
         float z = this.transform.position.z;
-        KnotList.Add(new Point(new Vector3(-4.0f, 0.3f, z)));
-        KnotList.Add(new Point(new Vector3(-0.8f, 0.3f, z)));
-        KnotList.Add(new Point(new Vector3(-0.7f, -2.8f, z)));
-        KnotList.Add(new Point(new Vector3(3.1f, -2.7f, z)));
-        KnotList.Add(new Point(new Vector3(3.0f, -0.65f, z)));
-        KnotList.Add(new Point(new Vector3(0.85f, -0.47f, z)));
-        KnotList.Add(new Point(new Vector3(0.8f, 1.0f, z)));
-        KnotList.Add(new Point(new Vector3(3.95f, 1.16f, z)));
-        KnotList.Add(new Point(new Vector3(4.0f, 3.6f, z)));
+
+        KnotList.Add(new Point(new Vector3(-21f, 2.8f, z)));
+        KnotList.Add(new Point(new Vector3(-4.1f, 2.8f, z)));
+        KnotList.Add(new Point(new Vector3(-4.1f, -14f, z)));
+        KnotList.Add(new Point(new Vector3(17.8f, -14f, z)));
+        KnotList.Add(new Point(new Vector3(17.8f, -1.6f, z)));
+        KnotList.Add(new Point(new Vector3(5.1f, -1.6f, z)));
+        KnotList.Add(new Point(new Vector3(5.1f, 6.3f, z)));
+        KnotList.Add(new Point(new Vector3(22.4f, 6.3f, z)));
+        KnotList.Add(new Point(new Vector3(22.4f, 19.2f, z)));
+        
     }
 }

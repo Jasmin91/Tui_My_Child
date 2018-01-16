@@ -57,8 +57,10 @@ public class HutScript : MonoBehaviour
         if (Manager.GetVistors().Count == Manager.PlayerCount) { //Schaut, ob alle Tiere auf der Hütte sind
             if (Manager.GetFoundAllFood()) { //Schaut, ob alles Essen gesammelt wurde
                 finished = true;
+                
                 gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("hut_open", typeof(Sprite)) as Sprite;
                 Manager.HideAnimals();
+                Manager.Reset();
                 baloon.GetComponent<Renderer>().enabled = true;
                 baloon.GetComponent<Rigidbody2D>().gravityScale = BaloonSpeed;
                 Debug.Log("Spiel beendet!");

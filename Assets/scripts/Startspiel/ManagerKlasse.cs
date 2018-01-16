@@ -43,7 +43,12 @@ public class ManagerKlasse {
 
     /// <summary> Speichert die Anzahl der gesammelten Nüsse </summary>
     public int NutCounter = 0;
-    
+
+    /// <summary>
+    ///Spiel beendet 
+    /// </summary>
+    private bool finished = false;
+
     /// <summary>
     /// Speichert das Nuss-Korb-Objekt
     /// </summary>
@@ -159,6 +164,7 @@ public class ManagerKlasse {
         foreach (AnimalController animal in AnimalList)
         {
             animal.GetComponent<Renderer>().enabled = false ;
+            animal.BeSilent();
         }
     }
 
@@ -208,13 +214,31 @@ public class ManagerKlasse {
     }
 
     /// <summary>  
+    ///  Leert die befüllten Listen
+    /// </summary> 
+    public void Reset()
+    {
+        AnimalPositionList.Clear();
+        AnimalList.Clear();
+        NutList.Clear();
+        PortalList.Clear();
+        VisitingHut.Clear();
+        DeletedNutList.Clear();
+        DeletedPortalList.Clear();
+        NutCounter = 0;
+    }
+
+    /// <summary>  
     ///  Diese Methode stellt den alten Stand des Startspiels wieder her
     /// </summary> 
     public void GetOldState()
     {
-        this.DeleteCollectedNutsInit();
-        this.DeleteVisitedPortalsInit();
-        this.SetOldAnimalPosition();
+      //  if (!finished)
+        {
+            this.DeleteCollectedNutsInit();
+            this.DeleteVisitedPortalsInit();
+            this.SetOldAnimalPosition();
+        }
     }
 
     /// <summary>  
@@ -381,14 +405,17 @@ public class ManagerKlasse {
         AnimalController result = null;
         Debug.Log("GetAnimalByName, suche folgendes Tier" + name+ "--- AnimalList ist so lang:"+ AnimalList.Count);
 
-        foreach (AnimalController animal in AnimalList)
+        if (AnimalList.Count == this.PlayerCount)
         {
-            if (animal.name == name)
+            foreach (AnimalController animal in AnimalList)
             {
-                result = animal;
+                if (animal.name == name)
+                {
+                    result = animal;
+                }
             }
         }
-        Debug.Log("GetAnimalByName, gebe folgendes Tier zurück:" + result);
+        Debug.Log("GetAnimalByName, gebe folgendes Tier zurück:" + result + "--- AnimalList ist so lang:" + AnimalList.Count);
 
         return result;
     }
@@ -426,15 +453,18 @@ public class ManagerKlasse {
 
     public int[] GetAllIDs(){
 
-        int[] allIDs = new int[4];
+        int[] allIDs = new int[PlayerCount];
         int counter = 0;
-        
-         foreach (AnimalController animal in AnimalList)
+        Debug.Log("Animallist size:" + AnimalList.Count);
+        if (AnimalList.Count == allIDs.Length)
         {
-            allIDs[counter] = animal.MarkerID;
-            counter++;
+            foreach (AnimalController animal in AnimalList)
+            {
+                allIDs[counter] = animal.MarkerID;
+                counter++;
+            }
         }
-         if(counter != 4){
+         else{
             Debug.Log("Sende default-IDs");
             allIDs = new int[4]{0,1,2,3};
           }
@@ -460,7 +490,14 @@ public class ManagerKlasse {
     /// </summary> 
     public void AddAnimal(AnimalController animal)
     {
-        if (animal != null)
+        string s = animal.name+" soll hinzugefügt werden";
+        foreach(AnimalController a in AnimalList)
+        {
+            s += a.name + "ist in Liste"; ;
+        }
+        Debug.Log(s);
+
+        if (animal != null&&!AnimalList.Contains(animal))
         {
             this.AnimalList.Add(animal);
         }
@@ -486,6 +523,7 @@ public class ManagerKlasse {
     {
         this.T = t;
     }
+
 
     public Timer GetTimer()
     {
