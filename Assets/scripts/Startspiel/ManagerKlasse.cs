@@ -176,7 +176,11 @@ public class ManagerKlasse {
     /// <param name="text">Auszugebender Text</param>
     public void LetAnimalSaySomething(string name, string text)
     {
-        GetAnimalByName(name).Speak(text);
+        AnimalController animal = GetAnimalByName(name);
+        if (animal != null)
+        {
+            animal.Speak(text);
+        }
     }
 
     /// <summary>
@@ -185,8 +189,11 @@ public class ManagerKlasse {
     /// <param name="name">Tiername, des zu sprechenden Tieres</param>
     /// <param name="text">Auszugebender Text</param>
     public void LetAnimalSaySomething(string name, string text, float x)
-    {
-        GetAnimalByName(name).Speak(text, x);
+    { AnimalController animal = GetAnimalByName(name);
+        if (animal != null)
+        {
+            animal.Speak(text, x);
+        }
     }
 
     /// <summary>
@@ -195,7 +202,10 @@ public class ManagerKlasse {
     /// <param name="name">Tiername, des zu sprechenden Tieres</param>
     public void LetAnimalBeQuiet(string name)
     {
-        GetAnimalByName(name).BeSilent();
+        AnimalController animal = GetAnimalByName(name);
+            if (animal != null) {
+            animal.BeSilent();
+        }
     }
 
     #region Funktionen um Spielstand zu speichern und wiederherzustellen
