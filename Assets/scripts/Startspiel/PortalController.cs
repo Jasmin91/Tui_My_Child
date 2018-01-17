@@ -69,16 +69,16 @@ public class PortalController : MonoBehaviour
         switch (animal.name)
         {
             case "horse":
-               // result = "Apfelspiel2";
+                result = "Apfelspiel2";
                 break;
             case "bear":
-                result = "Startspiel";
+                result = "biene";
                 break;
             case "dog":
-               //result = "Knochenspiel";
+               result = "Knochenspiel";
                 break;
             case "rabbit":
-                //result = "Ruebenspiel";
+                result = "Ruebenspiel";
                 break;
          }
         

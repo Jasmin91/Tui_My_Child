@@ -11,6 +11,7 @@ public class BienenManager {
     
     private static BienenManager manager;
     private List<Biene> honigListe = new List<Biene>();
+    private int anzahlBienen = 3;
 
 
     public static BienenManager Instance
@@ -44,7 +45,7 @@ public class BienenManager {
     internal bool GetReady()
     {
         bool result = false;
-        if (honigListe.Count == 4)
+        if (honigListe.Count == anzahlBienen)
         {
             result = true;
         }
@@ -54,7 +55,7 @@ public class BienenManager {
     internal int GetFilling()
     {
         int result = 0;
-        if (honigListe.Count >= 0 && honigListe.Count <= 4)
+        if (honigListe.Count >= 0 && honigListe.Count <= anzahlBienen)
         {
             result = honigListe.Count;
         }
@@ -68,7 +69,7 @@ public class BienenManager {
             honigListe.Add(h);
         }
 
-        if (honigListe.Count == 4)
+        if (honigListe.Count == anzahlBienen)
         {
             Debug.Log("Alle Gläser sind voll");
         }

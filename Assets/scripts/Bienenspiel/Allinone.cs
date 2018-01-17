@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class Allinone : MonoBehaviour {
     public AudioSource tickSource;
+    public AudioSource sound;
     private BienenManager manager;
     public int counter=0;
     bool play = false;
-    
+    float targetTime = 3;
+
     // Use this for initialization
     void Start ()
     {
@@ -20,7 +22,6 @@ public class Allinone : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Bin in Update");
 
         int filling = manager.GetFilling();
         string name = "glas" + filling;
@@ -31,7 +32,19 @@ public class Allinone : MonoBehaviour {
         {
             Debug.Log("In if");
             tickSource.Play();
+            sound.Pause();
             play = true;
+            
+            
+        }
+
+        if(play){
+            targetTime -= Time.deltaTime;
+            Debug.Log(targetTime);
+            if (targetTime <= 0.0f)
+            {
+                SceneManager.LoadScene("Startspiel");
+            }
         }
 
     }

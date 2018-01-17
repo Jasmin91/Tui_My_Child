@@ -8,12 +8,12 @@ public class Biene : MonoBehaviour {
     public GameObject glas;
     private BienenManager manager;
     private float deviation = 0.1f;
-    private int counter_left = 0;
-    private int counter_right = 0;
-    private bool WarZuletztLinks = true;
-    private bool WarZuletztRechts = true;
+    public int counter_left = 0;
+    public int counter_right = 0;
+    public bool WarZuletztLinks = true;
+    public bool WarZuletztRechts = true;
     private int numberRotations = 3;
-    private bool onFlower = false;
+    public bool onFlower = false;
     
 
     // Use this for initialization
@@ -64,22 +64,28 @@ public class Biene : MonoBehaviour {
     private void CheckRotation()
     {
 
-        Quaternion referenceLeft = new Quaternion(0.0f, 0.0f, 0.5f, 0.8f);
-        Quaternion referenceRight = new Quaternion(0.0f, 0.0f, -0.3f, 0.9f);
+        Quaternion referenceLeft = new Quaternion(0.0f, 0.0f, -0.3f, 1f);
+        Quaternion referenceRight = new Quaternion(0.0f, 0.0f, 0.5f, 0.8f); 
         Quaternion ActRotation = gameObject.transform.rotation;
+        GetRotation();
         //tada
 
-        Debug.Log(this.name+"---ZuletztLinks:"+WarZuletztLinks+"----ZuletztRechts"+WarZuletztRechts+ "counter_left<numberRotations"+ (counter_left < numberRotations) + "Equal("+ ActRotation + ", "+referenceLeft+")"+ Equal(gameObject.transform.rotation, referenceLeft));
+        //Debug.Log(this.name+"---ZuletztLinks:"+WarZuletztLinks+"----ZuletztRechts"+WarZuletztRechts+ "counter_left<numberRotations"+ (counter_left < numberRotations) + "Equal("+ ActRotation + ", "+referenceLeft+")"+ Equal(gameObject.transform.rotation, referenceLeft));
 
-        if (counter_left<numberRotations && Equal(ActRotation, referenceLeft) && WarZuletztRechts)
-        {
+        if ((counter_left < numberRotations) && (Equal(ActRotation, referenceLeft)) && WarZuletztRechts)
+        // if (Equal(ActRotation, referenceLeft) && WarZuletztRechts)
+        
+            //if (counter_left < numberRotations && Equal(ActRotation, referenceLeft))
+            {
             counter_left++;
             WarZuletztLinks = true;
             WarZuletztRechts = false;
         }
 
-        if (counter_right < numberRotations && Equal(ActRotation, referenceRight) && WarZuletztLinks)
-        {
+        if ((counter_right < numberRotations) && (Equal(ActRotation, referenceRight)) && WarZuletztLinks)
+            //if (Equal(ActRotation, referenceRight) && WarZuletztLinks)
+          //  if (counter_right < numberRotations && Equal(ActRotation, referenceRight))
+            {
             counter_right++;
             WarZuletztRechts = true;
             WarZuletztLinks = false;
@@ -116,7 +122,7 @@ public class Biene : MonoBehaviour {
         {
             result = true;
         }
-
+       // Debug.Log("Check("+q.z+","+ reference.z+")" + Check(q.z, reference.z));
         return result;
     }
 
