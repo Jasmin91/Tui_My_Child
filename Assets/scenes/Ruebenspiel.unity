@@ -4882,7 +4882,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1355318321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 376.67, y: 302.36, z: -5}
+  m_LocalPosition: {x: 376.67, y: 302.36, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2055286374}
@@ -6379,8 +6379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTime: 60
-  width: 1
-  height: 1
+  width: 0.85
+  height: 0.8
   ShowCloud: 1
   Ausgabe: {fileID: 1355318323}
 --- !u!1 &1608599768
