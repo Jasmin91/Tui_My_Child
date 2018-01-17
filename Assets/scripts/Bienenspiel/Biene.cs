@@ -67,7 +67,7 @@ public class Biene : MonoBehaviour {
         Quaternion referenceLeft = new Quaternion(0.0f, 0.0f, 0.5f, 0.8f);
         Quaternion referenceRight = new Quaternion(0.0f, 0.0f, -0.3f, 0.9f);
         Quaternion ActRotation = gameObject.transform.rotation;
-
+        //tada
 
         Debug.Log(this.name+"---ZuletztLinks:"+WarZuletztLinks+"----ZuletztRechts"+WarZuletztRechts+ "counter_left<numberRotations"+ (counter_left < numberRotations) + "Equal("+ ActRotation + ", "+referenceLeft+")"+ Equal(gameObject.transform.rotation, referenceLeft));
 
