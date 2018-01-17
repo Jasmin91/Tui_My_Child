@@ -34,9 +34,9 @@ public class ApfelManager {
     private bool windBlowing = false; 
 
     /// <summary>  
-    ///  Array, dass die Äpfel am Baum speichert
+    ///  Liste, die die Äpfel am Baum speichert
     /// </summary> 
-    private List<appleScript> appleArray = new List<appleScript>(); 
+    private List<appleScript> appleList = new List<appleScript>(); 
 
 
     public static ApfelManager Instance
@@ -76,7 +76,7 @@ public class ApfelManager {
     /// <param name="apple">Dem Array hinzuzufügender Apfel</param>
     public void AddApple(appleScript apple)
     {
-        this.appleArray.Add(apple);
+        this.appleList.Add(apple);
     }
 
     /// <summary>  
@@ -95,7 +95,7 @@ public class ApfelManager {
     /// <param name="rainDuration">Dauer, die es bereits regnet</param>
     public void ApfelWachsenLassen(float rainDuration)
     {
-        foreach (appleScript apfel in appleArray)
+        foreach (appleScript apfel in appleList)
         {
             apfel.GrowingApple(rainDuration);
         }
@@ -108,7 +108,7 @@ public class ApfelManager {
     /// <param name="sunDuration">Dauer, die Sonne bereits scheint</param>
     public void ApfelReifenLassen(float sunDuration)
     {
-        foreach (appleScript apfel in appleArray)
+        foreach (appleScript apfel in appleList)
         {
             apfel.RipingApple(sunDuration);
         }
@@ -121,7 +121,7 @@ public class ApfelManager {
     /// </summary>
     private void FallApple()
     {
-        foreach (appleScript apfel in appleArray)
+        foreach (appleScript apfel in appleList)
         {
             if (!apfel.GetFallen()) //Findet einen nicht gefallenen Apfel
             {

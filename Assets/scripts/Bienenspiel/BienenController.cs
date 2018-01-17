@@ -26,7 +26,7 @@ using UnityEngine;
 
 
 
-public class FiducialController : MonoBehaviour
+public class BienenController : MonoBehaviour
 {
     public int MarkerID = 0;
 

@@ -91,7 +91,12 @@ public class PortalController : MonoBehaviour
     /// <param name="col">Collider</param>
     void OnTriggerExit2D(Collider2D col)
     {
-        Manager.GetAnimalByName(col.name).BeSilent();
+
+        AnimalController animal = Manager.GetAnimalByName(col.name);
+        if (animal != null)
+        {
+            animal.BeSilent();
+        }
     }
 
     /// <summary>

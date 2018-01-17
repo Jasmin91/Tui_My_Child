@@ -136,7 +136,6 @@ public class AnimalController : MonoBehaviour
         if (waiting)
         {
             WaitingToMove -= Time.deltaTime;
-            Debug.Log(WaitingToMove);
             if (WaitingToMove <= 0.0f)
             {
                 waiting = false;

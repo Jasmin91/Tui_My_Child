@@ -465,7 +465,6 @@ public class ManagerKlasse {
 
         int[] allIDs = new int[PlayerCount];
         int counter = 0;
-        Debug.Log("Animallist size:" + AnimalList.Count);
         if (AnimalList.Count == allIDs.Length)
         {
             foreach (AnimalController animal in AnimalList)
@@ -499,13 +498,13 @@ public class ManagerKlasse {
     ///  Fügt ein Tier dem Tier-Array hinzu
     /// </summary> 
     public void AddAnimal(AnimalController animal)
-    {
+    {/**
         string s = animal.name+" soll hinzugefügt werden";
         foreach(AnimalController a in AnimalList)
         {
             s += a.name + "ist in Liste"; ;
         }
-        Debug.Log(s);
+        Debug.Log(s);*/
 
         if (animal != null&&!AnimalList.Contains(animal))
         {

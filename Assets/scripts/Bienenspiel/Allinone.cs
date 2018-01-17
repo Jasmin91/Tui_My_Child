@@ -4,26 +4,35 @@ using UnityEngine;
 
 
 public class Allinone : MonoBehaviour {
-public GameObject All_in_one;
-public AudioSource tickSource;
-public int counter=0;
+    public AudioSource tickSource;
+    private BienenManager manager;
+    public int counter=0;
+    bool play = false;
     
     // Use this for initialization
     void Start ()
     {
-        tickSource = GetComponent<AudioSource>();
-        All_in_one.SetActive(false);
+       // tickSource.Play();
+        manager = BienenManager.Instance;
+        gameObject.GetComponent<Collider2D>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        //if (counter == 4)
-        //{
-        //    All_in_one.SetActive(true);
-        //    tickSource.Play();
-        //}
+        Debug.Log("Bin in Update");
+
+        int filling = manager.GetFilling();
+        string name = "glas" + filling;
+        Debug.Log(name);
+        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load(name, typeof(Sprite)) as Sprite;
+
+        if (manager.GetReady()&&play==false)
+        {
+            Debug.Log("In if");
+            tickSource.Play();
+            play = true;
+        }
 
     }
     public void OnTriggerEnter2D(Collider2D other)
@@ -33,7 +42,6 @@ public int counter=0;
                 counter++;
                 if (counter == 4)
                 {
-                    All_in_one.SetActive(true);
                     tickSource.Play();
                 }
             }   
