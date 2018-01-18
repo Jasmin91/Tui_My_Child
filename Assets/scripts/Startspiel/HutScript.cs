@@ -40,9 +40,15 @@ public class HutScript : MonoBehaviour
     }
     void Update()
     {
+
+        if(Manager.GetFoundAllFood()){
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("hut_open", typeof(Sprite)) as Sprite;
+            baloon.GetComponent<Renderer>().enabled = true;
+            baloon.GetComponent<Rigidbody2D>().gravityScale = BaloonSpeed;
+        }
         if (baloon.transform.position.y > 6)
         {
-            SceneManager.LoadScene("Closing");
+           // SceneManager.LoadScene("Closing");
         }
     }
 
@@ -54,15 +60,18 @@ public class HutScript : MonoBehaviour
         Manager.VisitHut(col.name); //Merkt sich im Manager, dass Tier gerade auf Hütte ist
         AnimalController animal = Manager.GetAnimalByName(col.name);
 
+
+
         if (Manager.GetVistors().Count == Manager.PlayerCount) { //Schaut, ob alle Tiere auf der Hütte sind
             if (Manager.GetFoundAllFood()) { //Schaut, ob alles Essen gesammelt wurde
                 finished = true;
                 
-                gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("hut_open", typeof(Sprite)) as Sprite;
-                Manager.HideAnimals();
+                //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("hut_open", typeof(Sprite)) as Sprite;
+                //Manager.HideAnimals();
                 Manager.Reset();
-                baloon.GetComponent<Renderer>().enabled = true;
-                baloon.GetComponent<Rigidbody2D>().gravityScale = BaloonSpeed;
+                SceneManager.LoadScene("Closing");
+                // baloon.GetComponent<Renderer>().enabled = true;
+                // baloon.GetComponent<Rigidbody2D>().gravityScale = BaloonSpeed;
                 Debug.Log("Spiel beendet!");
                
             }
