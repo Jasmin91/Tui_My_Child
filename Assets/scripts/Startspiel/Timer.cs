@@ -16,6 +16,7 @@ public class Timer : MonoBehaviour
     public float width = 1;
     public float height = 1;
     public bool ShowCloud = true;
+    public float AxeZ = -3f;
     private bool paused = true;
     Text ausgaben;
     public Text Ausgabe;
@@ -39,7 +40,7 @@ public class Timer : MonoBehaviour
         SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
         GUITexture te = go.AddComponent<GUITexture>();
         go.GetComponent<SpriteRenderer>().sprite = Resources.Load("Cloud", typeof(Sprite)) as Sprite;
-        go.transform.position = new Vector3(Ausgabe.rectTransform.position.x, Ausgabe.rectTransform.position.y, -3);
+        go.transform.position = new Vector3(Ausgabe.rectTransform.position.x, Ausgabe.rectTransform.position.y, AxeZ);
         //Ausgabe.rectTransform.position = new Vector3(0, 0, 0);
         go.transform.localScale = new Vector3(width, height, 0);
         go.SetActive(false);
