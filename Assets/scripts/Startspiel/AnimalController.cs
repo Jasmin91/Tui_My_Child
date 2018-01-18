@@ -213,11 +213,10 @@ public class AnimalController : MonoBehaviour
             }
             transform.localRotation = rotation; //Rotiert das Tier
             float Geschwindigkeit = this.Geschwindigkeit; //Setzt die Geschwindigkeit
-          
-            if (transform.right.x < -0.5) {
-                Geschwindigkeit = Geschwindigkeit * 2.2f; //Erhöht Geschwindigkeit, wenn sich Tier nach links bewegt (Ausgleich)
-            }
-            transform.position += transform.right * Geschwindigkeit; //Bewegt das Tier
+
+           
+            GetComponent<Rigidbody2D>().velocity = transform.right * Geschwindigkeit; //Bewegt das Tier
+             
         }
     }
 
