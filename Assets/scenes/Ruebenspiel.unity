@@ -6396,12 +6396,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fdb8a9fc7fdea45b0591500a8be83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTime: 60
+  Countdown: 30
   width: 0.85
   height: 0.8
   ShowCloud: 1
   AxeZ: -3
   Ausgabe: {fileID: 1355318323}
+  WaitingTime: 10
+  Opening: 0
 --- !u!1 &1608599768
 GameObject:
   m_ObjectHideFlags: 0

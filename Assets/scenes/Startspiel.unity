@@ -4532,7 +4532,7 @@ GameObject:
   - component: {fileID: 1022640736}
   - component: {fileID: 1022640735}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: SprechblasenCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9671,13 +9671,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fdb8a9fc7fdea45b0591500a8be83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTime: 20
+  Countdown: 30
   width: 0.1
   height: 0.1
   ShowCloud: 1
   AxeZ: -1
   Ausgabe: {fileID: 831542061}
-  WaitingTime: 5
+  WaitingTime: 10
   Opening: 0
 --- !u!1 &2075965323
 GameObject:
