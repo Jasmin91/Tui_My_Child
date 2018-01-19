@@ -119,6 +119,7 @@ public class Timer : MonoBehaviour
         }
         else
         {
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             SceneManager.LoadScene("Opening");
         }
     }

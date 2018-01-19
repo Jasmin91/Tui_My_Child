@@ -243,12 +243,10 @@ public class ManagerKlasse {
     /// </summary> 
     public void GetOldState()
     {
-      //  if (!finished)
-        {
             this.DeleteCollectedNutsInit();
             this.DeleteVisitedPortalsInit();
             this.SetOldAnimalPosition();
-        }
+        
     }
 
     /// <summary>  
