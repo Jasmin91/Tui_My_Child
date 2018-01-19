@@ -15,7 +15,7 @@ public class Fiducial_Counter : MonoBehaviour {
 	void Start () {
 	
 		time = Time.time;
-		
+		count = 1;
 	}
 	
 	// Update is called once per frame
@@ -23,7 +23,7 @@ public class Fiducial_Counter : MonoBehaviour {
 		if(Time.time - time > 2){
 		bool done = true;
 		for(int i = 0; i < 4 ;i++){
-				done &= RuebenController.ScreenArray [i] >= 3f;	
+				done &= RuebenController.ScreenArray [i] >= 2f;	
 		}
         
 

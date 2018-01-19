@@ -103,7 +103,6 @@ public class RuebenController : MonoBehaviour
         {
             Debug.LogError("There is no main camera defined in your scene.");
         }
-
     }
 
 	private bool recognized = false ; 
@@ -164,11 +163,10 @@ public class RuebenController : MonoBehaviour
 						float diff = this.handleMarkerMovement ();
 						diff *= MarkerID == 0 && MarkerID == 3 ? -1 : 1;
 
-						//	Debug.Log (diff);
+					//	Debug.Log (diff);
 						if (diff > 0) {
 							ScreenArray [MarkerID] += diff;
 						}
-				
 						// logik für Fortschritt ... :)
 					}
 				} else {

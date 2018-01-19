@@ -25,6 +25,6 @@ public class LoadScreen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		fill.fillAmount = RuebenController.ScreenArray [0]/3;
+		fill.fillAmount = RuebenController.ScreenArray [0]/2;
 	}
 }

@@ -2663,7 +2663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   done: 0
   animal: {fileID: 2130643997}
-  Aktiv: 0
+  Aktiv: 1
 --- !u!58 &483863339
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7716,7 +7716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   done: 0
   animal: {fileID: 705104567}
-  Aktiv: 0
+  Aktiv: 1
 --- !u!58 &1564022177
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9768,7 +9768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   done: 0
   animal: {fileID: 1380129405}
-  Aktiv: 0
+  Aktiv: 1
 --- !u!58 &2075965327
 CircleCollider2D:
   m_ObjectHideFlags: 0
