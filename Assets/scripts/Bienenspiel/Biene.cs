@@ -27,8 +27,7 @@ public class Biene : MonoBehaviour {
 
     void Update()
     {
-
-        Debug.Log(this.name+"OnFlower:" + onFlower);
+        
         if (onFlower)
         {
             CheckRotation();
@@ -107,6 +106,14 @@ public class Biene : MonoBehaviour {
             manager.HoneyReady(this);
         }
     }
+
+    public void ResetBee()
+    {
+        counter_right = 0;
+        counter_left = 0;
+        WarZuletztLinks = true;
+        WarZuletztRechts = true;
+}
 
 
 

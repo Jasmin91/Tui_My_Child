@@ -141,7 +141,7 @@ public class Cursor : MonoBehaviour
         else if (col.gameObject.name == "Ende")
         {
             Application.Quit();
-           UnityEditor.EditorApplication.isPlaying = false;
+           //UnityEditor.EditorApplication.isPlaying = false;
             Debug.Log("Spiel wird beendet...");
         }
     }

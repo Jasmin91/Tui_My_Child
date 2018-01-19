@@ -29,7 +29,7 @@ public class Knochen : MonoBehaviour
     void Start()
     {
         this.km_Instance = KnochenManager.Instance;
-        this.defineWay();
+        this.DefineWay();
     }
 
 
@@ -40,39 +40,39 @@ public class Knochen : MonoBehaviour
         {
             if (!KnotList[0].getVisited())
             {
-                this.move(KnotList[0]);
+                this.Move(KnotList[0]);
             }
             else if (!KnotList[1].getVisited())
             {
-                this.move(KnotList[1]);
+                this.Move(KnotList[1]);
             }
             else if (!KnotList[2].getVisited())
             {
-                this.move(KnotList[2]);
+                this.Move(KnotList[2]);
             }
             else if (!KnotList[3].getVisited())
             {
-                this.move(KnotList[3]);
+                this.Move(KnotList[3]);
             }
             else if (!KnotList[4].getVisited())
             {
-                this.move(KnotList[4]);
+                this.Move(KnotList[4]);
             }
             else if (!KnotList[5].getVisited())
             {
-                this.move(KnotList[5]);
+                this.Move(KnotList[5]);
             }
             else if (!KnotList[6].getVisited())
             {
-                this.move(KnotList[6]);
+                this.Move(KnotList[6]);
             }
             else if (!KnotList[7].getVisited())
             {
-                this.move(KnotList[7]);
+                this.Move(KnotList[7]);
             }
             else if (!KnotList[8].getVisited())
             {
-                this.move(KnotList[8]);
+                this.Move(KnotList[8]);
             }
             else
             {
@@ -83,10 +83,10 @@ public class Knochen : MonoBehaviour
     }
 
     /// <summary>
-    /// Bewegt den Hund
+    /// Bewegt den Knochen
     /// </summary>
     /// <param name="pos">Position, zu der Hund bewegt werden soll</param>
-    private void move(Point pos)
+    private void Move(Point pos)
     {
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, pos.getPosition(), step);
@@ -96,7 +96,7 @@ public class Knochen : MonoBehaviour
     /// <summary>
     /// Definition des Weges, den der Knochen zurücklegen soll
     /// </summary>
-    private void defineWay()
+    private void DefineWay()
     {
         float z = this.transform.position.z;
 

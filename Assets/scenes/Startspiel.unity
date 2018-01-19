@@ -3519,7 +3519,7 @@ MonoBehaviour:
   MarkerID: 3
   Nickname: Hund
   WaitingToMove: 1
-  Geschwindigkeit: 1
+  Geschwindigkeit: 0.9
   IsPositionMapped: 0
   InvertX: 0
   InvertY: 0
@@ -4876,7 +4876,7 @@ MonoBehaviour:
   MarkerID: 1
   Nickname: Pferd
   WaitingToMove: 1
-  Geschwindigkeit: 1
+  Geschwindigkeit: 0.9
   IsPositionMapped: 0
   InvertX: 0
   InvertY: 0
@@ -6718,7 +6718,7 @@ MonoBehaviour:
   MarkerID: 2
   Nickname: Hase
   WaitingToMove: 1
-  Geschwindigkeit: 1
+  Geschwindigkeit: 0.9
   IsPositionMapped: 0
   InvertX: 0
   InvertY: 0
@@ -9670,7 +9670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fdb8a9fc7fdea45b0591500a8be83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTime: 60
+  targetTime: 20
   width: 0.1
   height: 0.1
   ShowCloud: 1
@@ -10011,7 +10011,7 @@ MonoBehaviour:
   MarkerID: 0
   Nickname: "B\xE4r"
   WaitingToMove: 1
-  Geschwindigkeit: 1
+  Geschwindigkeit: 0.9
   IsPositionMapped: 0
   InvertX: 0
   InvertY: 0

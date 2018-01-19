@@ -91,8 +91,6 @@ public class Timer : MonoBehaviour
         targetTime = duration;
         WaitingTime = duration - 5;
         paused = false;
-        
-        //IsRunning = true;
     }
     public void ResetTimer()
     {
@@ -111,6 +109,7 @@ public class Timer : MonoBehaviour
     void timerEnded()
     {
         paused = true;
+        Manager.Reset();
         SceneManager.LoadScene("Opening");
     }
 

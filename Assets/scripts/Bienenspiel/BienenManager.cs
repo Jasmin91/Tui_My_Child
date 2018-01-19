@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class BienenManager {
     
     private static BienenManager manager;
-    private List<Biene> honigListe = new List<Biene>();
+    private List<Biene> BienenListe = new List<Biene>();
     private int anzahlBienen = 3;
 
 
@@ -45,7 +45,7 @@ public class BienenManager {
     internal bool GetReady()
     {
         bool result = false;
-        if (honigListe.Count == anzahlBienen)
+        if (BienenListe.Count == anzahlBienen)
         {
             result = true;
         }
@@ -55,21 +55,21 @@ public class BienenManager {
     internal int GetFilling()
     {
         int result = 0;
-        if (honigListe.Count >= 0 && honigListe.Count <= anzahlBienen)
+        if (BienenListe.Count >= 0 && BienenListe.Count <= anzahlBienen)
         {
-            result = honigListe.Count;
+            result = BienenListe.Count;
         }
         return result;
     }
 
     public void HoneyReady(Biene h)
     {
-        if (!honigListe.Contains(h))
+        if (!BienenListe.Contains(h))
         {
-            honigListe.Add(h);
+            BienenListe.Add(h);
         }
 
-        if (honigListe.Count == anzahlBienen)
+        if (BienenListe.Count == anzahlBienen)
         {
             Debug.Log("Alle Gläser sind voll");
         }
@@ -81,8 +81,14 @@ public class BienenManager {
     /// <summary>  
     /// Beendet das Bienenspiel und lädt wieder Startspiel
     /// </summary>
-    public void FinishGame()
+    public void FinisfhGame()
     {
+
+        foreach(Biene b in BienenListe)
+        {
+            b.ResetBee();
+        }
+        BienenListe.Clear();
         SceneManager.LoadScene("Startspiel");
     }
 

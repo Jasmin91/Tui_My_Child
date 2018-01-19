@@ -71,10 +71,19 @@ public class KnochenManager {
     {
         this.GelenkList.Add(gc);
     }
-
+    
+    /// <summary>
+    /// Methode resettet das Spiel, damit es später neu gestartet werden kann
+    /// </summary>
+    public void ResetGame()
+    {
+        GelenkList.Clear();
+        GameSolved = false;
+    }
 
     public void FinishGame()
     {
+        this.ResetGame();
         SceneManager.LoadScene("Startspiel");
     }
     #region Getter&Setter

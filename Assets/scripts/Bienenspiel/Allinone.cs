@@ -43,7 +43,9 @@ public class Allinone : MonoBehaviour {
             Debug.Log(targetTime);
             if (targetTime <= 0.0f)
             {
-                SceneManager.LoadScene("Startspiel");
+                
+                play = false;
+                manager.FinisfhGame();
             }
         }
 
