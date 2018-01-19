@@ -135,8 +135,8 @@ public class Cursor : MonoBehaviour
         Debug.Log("Collide");
         if (col.gameObject.name == "Start")
         {
-            // SceneManager.LoadScene("Startspiel");
-            Application.LoadLevel("Startspiel");
+            SceneManager.LoadScene("Startspiel");
+           // Application.LoadLevel("Startspiel");
         }
         else if (col.gameObject.name == "Ende")
         {
@@ -156,7 +156,7 @@ public class Cursor : MonoBehaviour
 
 
     /// <summary>
-    ///Bewegung des Apfels, allerdings nur auf der x-Achse
+    ///Bewegung des Cursors, allerdings nur auf der x-Achse
     /// </summary>
     private void UpdateTransform()
     {

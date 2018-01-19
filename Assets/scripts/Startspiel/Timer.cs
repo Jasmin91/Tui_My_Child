@@ -3,6 +3,10 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
+/// <summary>
+/// Steuert die Funktionen des Countdowbs, bevor das Spiel automatisch abschält
+/// </summary>
 public class Timer : MonoBehaviour
 {
 
@@ -11,39 +15,66 @@ public class Timer : MonoBehaviour
     ///Erstellt eine Instanz der Manager-Klasse
     /// </summary>
     private ManagerKlasse Manager;
+    /// <summary>
+    /// Speichert die Zeit, um den Timer resetten zu können
+    /// </summary>
     private float ResetTime;
-    public float targetTime = 60.0f;
+    /// <summary>
+    /// Zeit, die Countdown dauern soll
+    /// </summary>
+    public float Countdown = 60.0f;
+
+    /// <summary>
+    /// Breite der Wolke
+    /// </summary>
     public float width = 1;
+
+    /// <summary>
+    /// Höhe der Wolke
+    /// </summary>
     public float height = 1;
+
+    /// <summary>
+    /// Bool, ob Wolke gezeigt werden soll
+    /// </summary>
     public bool ShowCloud = true;
+
+    /// <summary>
+    /// Bestimmt die xAchse der Wolke
+    /// </summary>
     public float AxeZ = -3f;
-    private bool paused = true;
+
+    /// <summary>
+    /// Bool, ob Timer resetted wurde
+    /// </summary>
+    private bool resetted = true;
+
+
     Text ausgaben;
     public Text Ausgabe;
     UniducialLibrary.TuioManager m_TuioManager;
-    private float WaitingTime;
-    GameObject go;
+    private float TimeToWarn;
+    public float WaitingTime = 10;
+    GameObject Cloud;
+    public bool Opening = false;
 
 
     void Awake()
     {
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
-        WaitingTime = targetTime - 5;
-        ResetTime = targetTime;
         this.m_TuioManager.Connect();
         this.Manager = ManagerKlasse.Instance;
         Manager.SetTimer(this);
         Ausgabe.text = "";
 
 
-        go = new GameObject("Cloud");
-        SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
-        GUITexture te = go.AddComponent<GUITexture>();
-        go.GetComponent<SpriteRenderer>().sprite = Resources.Load("Cloud", typeof(Sprite)) as Sprite;
-        go.transform.position = new Vector3(Ausgabe.rectTransform.position.x, Ausgabe.rectTransform.position.y, AxeZ);
-        //Ausgabe.rectTransform.position = new Vector3(0, 0, 0);
-        go.transform.localScale = new Vector3(width, height, 0);
-        go.SetActive(false);
+        Cloud = new GameObject("Cloud");
+        SpriteRenderer renderer = Cloud.AddComponent<SpriteRenderer>();
+        GUITexture te = Cloud.AddComponent<GUITexture>();
+        Cloud.GetComponent<SpriteRenderer>().sprite = Resources.Load("Cloud", typeof(Sprite)) as Sprite;
+        Cloud.transform.position = new Vector3(Ausgabe.rectTransform.position.x, Ausgabe.rectTransform.position.y, AxeZ);
+        Cloud.transform.localScale = new Vector3(width, height, 0);
+        Cloud.SetActive(false);
     }
 
         void Update()
@@ -54,29 +85,30 @@ public class Timer : MonoBehaviour
             Application.Quit();
         }
 
-        if (!paused)
+        if (!resetted)
         {
-            targetTime -= Time.deltaTime;
-           
-            if (targetTime <= WaitingTime)
+            Countdown -= Time.deltaTime;
+
+            Debug.Log((int)Countdown + "<=" + (int)TimeToWarn + "=" + true);
+            if (Countdown <= TimeToWarn)
             {
-                this.printTimer(targetTime);
+                this.PrintTimer(Countdown);
 
                 if (ShowCloud)
                 {
-                    go.SetActive(true);
+                    Cloud.SetActive(true);
                 }
             }
-            if (targetTime <= 0.0f)
+            if (Countdown <= 0.0f)
             {
-                timerEnded();
+                TimerEnded();
             }
         }
 
         int[] IDs = this.Manager.GetAllIDs();
         if (!IsRunning() && !this.m_TuioManager.IsMarkerAlive(0) && !this.m_TuioManager.IsMarkerAlive(1) && !this.m_TuioManager.IsMarkerAlive(2) && !this.m_TuioManager.IsMarkerAlive(3))
         {
-            Manager.GetTimer().StartTimer(targetTime);
+            Manager.GetTimer().StartTimer(Countdown);
         }
         else if (this.m_TuioManager.IsMarkerAlive(0) || this.m_TuioManager.IsMarkerAlive(1) || this.m_TuioManager.IsMarkerAlive(2) || this.m_TuioManager.IsMarkerAlive(3))
         {
@@ -85,38 +117,63 @@ public class Timer : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Startet den Countdown
+    /// </summary>
+    /// <param name="duration">Dauer, die Countdown runterzählen soll</param>
     public void StartTimer(float duration)
     {
         ResetTime = duration;
-        targetTime = duration;
-        WaitingTime = duration - 5;
-        paused = false;
+        Countdown = duration;
+        TimeToWarn = duration - WaitingTime;
+        resetted = false;
     }
+
+    /// <summary>
+    /// Setzt den Countdown zurück
+    /// </summary>
     public void ResetTimer()
     {
-        paused = true;
+        resetted = true;
         Ausgabe.text = "";
-        targetTime = ResetTime;
-        go.SetActive(false);
+        Countdown = ResetTime;
+        Cloud.SetActive(false);
 
     }
 
+    /// <summary>
+    /// Bool, ob Countdown gerade abläuft
+    /// </summary>
+    /// <returns>Bool, ob Countdown gerade abläuft</returns>
     public bool IsRunning()
     {
-        return !paused;
+        return !resetted;
     }
 
-    void timerEnded()
+    /// <summary>
+    /// Methode definiert, was passiert, wenn der Timer abgelaufen ist, Spiel beenden oder zu Startbildschirm zurück 
+    /// </summary>
+    void TimerEnded()
     {
-        paused = true;
+        resetted = true;
         Manager.Reset();
-        SceneManager.LoadScene("Opening");
+        if (Opening)
+        {
+            Application.Quit();
+        }
+        else
+        {
+            SceneManager.LoadScene("Opening");
+        }
     }
-
-    private void printTimer(float time)
+    /// <summary>
+    /// Gibt die Countdown-Zeit zusammen mit einem Beschreibungstext aus
+    /// </summary>
+    /// <param name="time">Auszugebende Zeit</param>
+    private void PrintTimer(float time)
     {
         int IntTime = (int) time;
         Ausgabe.text = "Das Spiel endet in " + (int)time + " Sekunden, wenn kein Fiducial auf dem Tisch steht!";
-        go.GetComponent<GUITexture>().enabled = true;
+        Cloud.GetComponent<GUITexture>().enabled = true;
     }
 }
