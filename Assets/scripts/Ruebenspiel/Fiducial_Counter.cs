@@ -58,7 +58,8 @@ public class Fiducial_Counter : MonoBehaviour {
 
 			if(count >= 4 && !carrot1.GetComponent<Renderer>().enabled && !carrot2.GetComponent<Renderer>().enabled && !carrot3.GetComponent<Renderer>().enabled && !carrot4.GetComponent<Renderer>().enabled){
 					// lade Start-Bildschirm
-				SceneManager.LoadScene("Startspiel");				
+				SceneManager.LoadScene("Startspiel");
+	
 			}
 			count++;
 			for (int i = 0; i < 4; i++) {
