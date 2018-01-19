@@ -139,7 +139,7 @@ public class KorbController : MonoBehaviour
     {
         if (col.gameObject.name == "Apfel")
         {
-            Destroy(col.gameObject); //Zerstören des gesammelten Apfel-Objekts
+            col.GetComponent<Renderer>().enabled = false; //Gesammelter Apfel wird ausgeblendet
             this.appleCounter++; //Zähler der gesammelten Äpfel wird erhöht
         }
     }

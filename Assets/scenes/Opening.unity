@@ -1039,7 +1039,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Testet, mit welchem Fiducial ihr das Eichh\xF6rnchen auf entsprechenden
+  m_Text: "Testet, mit welchem Fiducial ihr das Eichh\xF6rnchen auf den entsprechenden
     Button bewegen k\xF6nnt."
 --- !u!222 &1917532436
 CanvasRenderer:

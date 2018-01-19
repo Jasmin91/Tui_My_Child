@@ -2663,7 +2663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   done: 0
   animal: {fileID: 2130643997}
-  Aktiv: 1
+  Aktiv: 0
 --- !u!58 &483863339
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3122,6 +3122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaloonSpeed: -0.01
   baloon: {fileID: 1900881053}
+  Countdown: 1.5
 --- !u!1 &600136775
 GameObject:
   m_ObjectHideFlags: 0
@@ -7715,7 +7716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   done: 0
   animal: {fileID: 705104567}
-  Aktiv: 1
+  Aktiv: 0
 --- !u!58 &1564022177
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9767,7 +9768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   done: 0
   animal: {fileID: 1380129405}
-  Aktiv: 1
+  Aktiv: 0
 --- !u!58 &2075965327
 CircleCollider2D:
   m_ObjectHideFlags: 0

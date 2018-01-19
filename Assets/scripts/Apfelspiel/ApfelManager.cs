@@ -138,6 +138,7 @@ public class ApfelManager {
     /// </summary>
     public void FinishGame()
     {
+        appleList.Clear();
         SceneManager.LoadScene("Startspiel");
     }
 

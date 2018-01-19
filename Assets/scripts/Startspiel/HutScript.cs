@@ -30,6 +30,11 @@ public class HutScript : MonoBehaviour
     /// </summary>
     public GameObject baloon;
 
+    /// <summary>
+    /// Wartezeit, bevor Hütte sich öffnet
+    /// </summary>
+    public float Countdown = 1.5f;
+
 
 
 
@@ -42,13 +47,16 @@ public class HutScript : MonoBehaviour
     {
 
         if(Manager.GetFoundAllFood()){
-            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("hut_open", typeof(Sprite)) as Sprite;
-            baloon.GetComponent<Renderer>().enabled = true;
-            baloon.GetComponent<Rigidbody2D>().gravityScale = BaloonSpeed;
-        }
-        if (baloon.transform.position.y > 6)
-        {
-           // SceneManager.LoadScene("Closing");
+
+            Countdown -= Time.deltaTime;
+            
+            if (Countdown <= 0.0f)
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("hut_open", typeof(Sprite)) as Sprite;
+                baloon.GetComponent<Renderer>().enabled = true;
+                baloon.GetComponent<Rigidbody2D>().gravityScale = BaloonSpeed;
+            }
+            
         }
     }
 

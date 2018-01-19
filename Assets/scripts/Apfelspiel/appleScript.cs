@@ -37,6 +37,10 @@ public class appleScript : MonoBehaviour
     /// </summary>
     private float appleNumber = 0; 
 
+    void Update()
+    {
+        Debug.Log(this.name + ": I'm alive!");
+    }
 
 
     void Start()

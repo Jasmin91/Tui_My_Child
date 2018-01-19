@@ -60,7 +60,6 @@ public class Timer : MonoBehaviour
         {
             Countdown -= Time.deltaTime;
            
-            Debug.Log(Countdown+"<="+TimeToWarn+"="+true);
             if (Countdown <= TimeToWarn)
             {
                 this.printTimer(Countdown);
@@ -70,9 +69,11 @@ public class Timer : MonoBehaviour
                     go.SetActive(true);
                 }
             }
-            if (Countdown <= 0.0f)
+            if (Countdown <= 0.0f || Input.GetKeyDown(KeyCode.A))
             {
+
                 timerEnded();
+                Manager.GetTimer().ResetTimer();
             }
         }
 
@@ -119,7 +120,6 @@ public class Timer : MonoBehaviour
         }
         else
         {
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
             SceneManager.LoadScene("Opening");
         }
     }
