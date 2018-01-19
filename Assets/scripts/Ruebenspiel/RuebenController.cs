@@ -153,7 +153,7 @@ public class RuebenController : MonoBehaviour
 
 			//update transform component
 			UpdateTransform ();
-			if (Time.time - Fiducial_Counter.time > 5) {
+			if (Time.time - Fiducial_Counter.time > 2) {
 				if (this.name.IndexOf ("Ruebe" + Fiducial_Counter.count) > -1) {
 					if (this.name.Equals ("Ruebe" + Fiducial_Counter.count + "_" + (this.MarkerID + 1))) {
 
