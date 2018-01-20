@@ -60,6 +60,7 @@ public class RuebenController : MonoBehaviour
     private float m_RotationAcceleration;
     private bool m_IsVisible;
 	public static float[] ScreenArray = new float[4];
+//	public static float diff = 0f;
 
     public float RotationMultiplier = 1;
 
@@ -174,7 +175,6 @@ public class RuebenController : MonoBehaviour
 					SpriteRenderer renderer = circle.GetComponents<SpriteRenderer> () [0];
 					renderer.color = new Color (0.35f, 0.19f, 0.1f);
 				}
-
 			} else {
 				//automatically hide game object when marker is not visible
 				if (this.AutoHideGO) {
@@ -189,7 +189,6 @@ public class RuebenController : MonoBehaviour
 
 				this.m_IsVisible = false;
 			}
-
 		}else {
 			//automatically hide game object when marker is not visible
 			if (this.AutoHideGO) {

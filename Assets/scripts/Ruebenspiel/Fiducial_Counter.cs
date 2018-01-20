@@ -37,8 +37,8 @@ public class Fiducial_Counter : MonoBehaviour {
 			GameObject carrot2 = GameObject.Find ("Ruebe2");
 			GameObject carrot3 = GameObject.Find ("Ruebe3");
 			GameObject carrot4 = GameObject.Find ("Ruebe4");
-	
-			
+
+
 
 			carrot.GetComponent<Renderer>().enabled = false;
 
@@ -55,6 +55,7 @@ public class Fiducial_Counter : MonoBehaviour {
 			if (carrot.GetComponent<Renderer> ().enabled = false && count == 3) {
 					carrot4 = GameObject.Find ("Ruebe4");
 			}
+
 
 			if(count >= 4 && !carrot1.GetComponent<Renderer>().enabled && !carrot2.GetComponent<Renderer>().enabled && !carrot3.GetComponent<Renderer>().enabled && !carrot4.GetComponent<Renderer>().enabled){
 					// lade Start-Bildschirm
