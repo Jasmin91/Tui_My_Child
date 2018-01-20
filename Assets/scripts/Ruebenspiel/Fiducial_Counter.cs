@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+//Sound: Music By http://instrumentalsfree.com
+
 public class Fiducial_Counter : MonoBehaviour {
 
 	public static int count = 1;
-	public int fiducialId = 0;
+	//public int fiducialId = 0;
 	public static float time;
 	Color color;
+
+	//public AudioSource sound;
 
 
 	// Use this for initialization
