@@ -19,7 +19,7 @@ public class LoadScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		time = 0;
-		fill.fillAmount = 0f/2; 
+		fill.fillAmount = 0f; 
 	}
 	
 	// Update is called once per frame

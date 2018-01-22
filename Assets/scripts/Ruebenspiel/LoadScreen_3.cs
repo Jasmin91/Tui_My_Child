@@ -19,7 +19,7 @@ public class LoadScreen_3 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		time = 0;
-		fill3.fillAmount = 0f/2;
+		fill3.fillAmount = 0f;
 
 	}
 
