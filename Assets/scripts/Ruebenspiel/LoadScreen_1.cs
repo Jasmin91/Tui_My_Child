@@ -6,12 +6,20 @@ using UnityEngine.UI;
 public class LoadScreen_1 : MonoBehaviour {
 
 	[SerializeField]
+	private float units1;
+	float timeAMT1 = 10;
+	float time;
+	public Text timeText1;
+
+	[SerializeField]
 	private Image fill1;
 
-	private float fillAmount;
+//	private float fillAmount;
 
 	// Use this for initialization
 	void Start () {
+		time = 0;
+		fill1.fillAmount = 0f/2;
 	}
 
 	// Update is called once per frame

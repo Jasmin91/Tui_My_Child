@@ -11,7 +11,7 @@ public class Fiducial_Counter : MonoBehaviour {
 	public static int count = 1;
 	//public int fiducialId = 0;
 	public static float time;
-	Color color;
+
 
 	//public AudioSource sound;
 
@@ -25,7 +25,7 @@ public class Fiducial_Counter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		GameObject circle1 = GameObject.Find ("Kreis1_1");
+/*		GameObject circle1 = GameObject.Find ("Kreis1_1");
 		GameObject circle2 = GameObject.Find ("Kreis2_1");
 		GameObject circle3 = GameObject.Find ("Kreis3_1");
 		GameObject circle4 = GameObject.Find ("Kreis4_1");
@@ -48,7 +48,7 @@ public class Fiducial_Counter : MonoBehaviour {
 		}; 
 
 
-	/*	GameObject[] kreis = new GameObject[]{ 
+		GameObject[] kreis = new GameObject[]{ 
 			circle1, circle2, circle3, circle4
 		};
 
@@ -127,7 +127,7 @@ public class Fiducial_Counter : MonoBehaviour {
 
 				} */
 
-				if (RuebenController.ScreenArray [0] >= 2f && count == 1) {
+/*				if (RuebenController.ScreenArray [0] >= 2f && count == 1) {
 					SpriteRenderer renderer = circle [0].GetComponent<SpriteRenderer> ();
 					renderer.color = new Color (0.133f, 0.545f, 0.133f);
 				}
@@ -190,7 +190,7 @@ public class Fiducial_Counter : MonoBehaviour {
 				if (RuebenController.ScreenArray [3] >= 2f && count == 4) {
 					SpriteRenderer renderer = circle [15].GetComponent<SpriteRenderer> ();
 					renderer.color = new Color (0.133f, 0.545f, 0.133f);
-				}  
+				}  */
 		}
         
 

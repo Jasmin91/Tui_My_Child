@@ -61,6 +61,7 @@ public class RuebenController : MonoBehaviour
     private bool m_IsVisible;
 	public static float[] ScreenArray = new float[4];
 //	public static float diff = 0f;
+	float diff = 0f;
 
     public float RotationMultiplier = 1;
 
@@ -92,6 +93,8 @@ public class RuebenController : MonoBehaviour
         this.m_RotationSpeed = 0f;
         this.m_RotationAcceleration = 0f;
         this.m_IsVisible = true;
+		this.diff = 0f;
+
     }
 
     void Start()
@@ -317,7 +320,6 @@ public class RuebenController : MonoBehaviour
     }
 
 	private float handleMarkerMovement(){
-		float diff = 0f;
 		if (previous_ScreenPosition != null) {
 			float prevValue = MarkerID % 2 == 0 ? previous_ScreenPosition.y : previous_ScreenPosition.x;
 			float currentValue = MarkerID % 2 == 0 ? m_ScreenPosition.y : m_ScreenPosition.x;
