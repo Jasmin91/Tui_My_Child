@@ -35,7 +35,10 @@ public class appleScript : MonoBehaviour
     /// <summary>
     ///Nummer des zu ladenden Apfel-Bildes (ändert sich je nach Reifegrad) 
     /// </summary>
-    private float appleNumber = 0; 
+    private float appleNumber = 0;
+
+    
+
 
     void Update()
     {
@@ -118,13 +121,13 @@ public class appleScript : MonoBehaviour
         }
     }
 
-    #region Getter&Setter
+#region Getter&Setter
 
-    /// <summary>
-    /// Setzt den Wert, ob Apfel bereits gefallen 
-    /// </summary>
-    /// <param name="fallen">Wert, ob Apfel bereits gefallen</param>
-    public void SetFallen(bool fallen)
+/// <summary>
+/// Setzt den Wert, ob Apfel bereits gefallen 
+/// </summary>
+/// <param name="fallen">Wert, ob Apfel bereits gefallen</param>
+public void SetFallen(bool fallen)
     {
         this.fallen = fallen;
     }

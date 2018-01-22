@@ -18,12 +18,18 @@ public class PortalController : MonoBehaviour
     /// <summary>
     /// Bool, ob Portal bereits besucht
     /// </summary>
-    public bool done = false;
+    private bool done = false;
 
     /// <summary>
     /// Zugehöriges Tier
     /// </summary>
     public AnimalController animal;
+
+    public AudioSource sound;
+
+    float CountDownTime = 1.5f;
+
+    bool play = false;
 
     public bool Aktiv = true;
 
@@ -31,6 +37,30 @@ public class PortalController : MonoBehaviour
     {
         this.Manager = ManagerKlasse.Instance;
      }
+
+    void Update()
+    {
+        if (done)
+        {
+            if (!play)
+            {
+                sound.Play();
+                play = true;
+            }
+
+
+            CountDownTime -= Time.deltaTime;
+            Debug.Log(CountDownTime);
+            if (CountDownTime <= 0.0f)
+            {
+                WhatToDoWhenCollected();
+
+
+            }
+
+        }
+         
+    }
 
     void Start()
     {
@@ -46,17 +76,27 @@ public class PortalController : MonoBehaviour
           
           if (col.gameObject.name == this.animal.name)
           {
-              this.Manager.AddVisitedPortal(this);
-              Manager.ClearScene();
-            
-            SceneManager.LoadScene(this.ChooseGame(animal.name));
-            animal.SetHasFood(true);
+
+
+            done = true;
+       
         }
         else
             {
-            Manager.LetAnimalSaySomething(col.gameObject.name, "Ich möchte meinem Freund " + animal.GetNickname() + " das Essen nicht wegnehmen!");
+            Manager.LetAnimalSaySomething(Manager.GetAnimalByName(col.name), "Ich möchte meinem Freund " + animal.GetNickname() + " das Essen nicht wegnehmen!");
             
             }
+    }
+
+    private void WhatToDoWhenCollected()
+    {
+        this.Manager.AddVisitedPortal(this);
+        Manager.ClearScene();
+        animal.SetHasFood(true);
+        SceneManager.LoadScene(this.ChooseGame(animal.name));
+       
+
+
     }
 
     /// <summary>

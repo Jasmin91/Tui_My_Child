@@ -29,6 +29,8 @@ public class Dog : MonoBehaviour
     /// </summary>
     private List<Point> KnotList = new List<Point>();
 
+    public AudioSource DogSound;
+
 
     void Start()
     {
@@ -40,7 +42,9 @@ public class Dog : MonoBehaviour
     void Update()
     {
         if (km_Instance.getGameSolved())
+            
         {
+            DogSound.Play();
             if (!KnotList[0].getVisited())
             {
                 this.Move(KnotList[0]);

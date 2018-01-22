@@ -168,7 +168,20 @@ public class ManagerKlasse {
         }
     }
 
-    
+    /// <summary>
+    /// Lässt das Tier etwas "sagen"
+    /// </summary>
+    /// <param name="animal">Tier</param>
+    /// <param name="text">Auszugebender Text</param>
+    public void LetAnimalSaySomething(AnimalController animal, string text)
+    {
+        
+        if (animal != null)
+        {
+            animal.Speak(text);
+        }
+    }
+
     /// <summary>
     /// Lässt das Tier mit gesuchtem Namen etwas "sagen"
     /// </summary>

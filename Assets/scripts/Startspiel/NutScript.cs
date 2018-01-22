@@ -24,18 +24,43 @@ public class NutScript : MonoBehaviour
     ///  Speichert den Namen der Nuss
     /// </summary>
     private String namenut="noname";
+
+    public AudioSource pling;
     
+    bool play = false;
 
+    float targetTime = 1;
 
-
+    
     void Start()
     {
         this.Manager = ManagerKlasse.Instance;
         this.namenut = this.gameObject.name;
         this.Manager.AddNut(this);
-        
+
     }
     
+    void Update()
+    {
+        if (collected)
+        {
+
+            if (!play) {
+                pling.Play();
+                play = true;
+            }
+                targetTime -= Time.deltaTime;
+                Debug.Log(targetTime);
+                if (targetTime <= 0.0f)
+                {
+                    this.CollectNut();
+                    play = false;
+                }
+            }
+
+        
+
+    }
 
 
     /// <summary>  
@@ -43,9 +68,8 @@ public class NutScript : MonoBehaviour
     /// </summary>
     void OnTriggerEnter2D(Collider2D col)
     {
-        {
-            this.CollectNut();
-        }
+        collected = true;
+         
     }
 
     /// <summary>
@@ -53,6 +77,7 @@ public class NutScript : MonoBehaviour
     /// </summary>
     public void CollectNut()
     {
+        
         Destroy(this.gameObject); //Zerstören des gesammelten Nuss-Objekts
         Manager.CollectNut(); //Zähler der gesammelten Nüsse im Manager wird erhöht
         Manager.RemoveNut(this);

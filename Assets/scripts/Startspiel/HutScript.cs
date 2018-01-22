@@ -35,7 +35,7 @@ public class HutScript : MonoBehaviour
     /// </summary>
     public float Countdown = 1.5f;
 
-
+    public AudioSource DoorSound;
 
 
     void Start()
@@ -53,6 +53,7 @@ public class HutScript : MonoBehaviour
             if (Countdown <= 0.0f)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("hut_open", typeof(Sprite)) as Sprite;
+                DoorSound.Play();
                 baloon.GetComponent<Renderer>().enabled = true;
                 baloon.GetComponent<Rigidbody2D>().gravityScale = BaloonSpeed;
             }
@@ -92,7 +93,7 @@ public class HutScript : MonoBehaviour
         else
         {
             String s = "";
-            if (Manager.GetAnimalByName(col.name).GetHasFood())
+            if (animal.GetHasFood())
             {
                 s += "Ich warte noch auf meine Freunde!";
                 animal.Speak(s, 4);

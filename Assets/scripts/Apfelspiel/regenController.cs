@@ -47,6 +47,10 @@ public class regenController : MonoBehaviour
     /// </summary>
     private bool RainReady = false;
 
+    public AudioSource RainSound;
+
+    private bool PlayingSound = false;
+
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     float currCountdownValue;
 
@@ -101,6 +105,7 @@ public class regenController : MonoBehaviour
         {
             Debug.LogError("There is no main camera defined in your scene.");
         }
+        
     }
 
     void Update()
@@ -149,7 +154,10 @@ public class regenController : MonoBehaviour
     {
         
         StartCoroutine(StartCountdownToGrow());
-       
+        if (!PlayingSound) {
+            RainSound.Play();
+            PlayingSound = true;
+        }
         if (this.m_ControlsGUIElement)
         {
             //show GUI components
@@ -201,6 +209,14 @@ public class regenController : MonoBehaviour
 
     private void HideGameObject()
     {
+
+
+        if (PlayingSound)
+        {
+            RainSound.Stop();
+            PlayingSound = false;
+        }
+
         if (this.m_ControlsGUIElement)
         {
             //hide GUI components

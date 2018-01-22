@@ -30,7 +30,10 @@ using UnityEngine;
 public class windController : MonoBehaviour
 {
     public int MarkerID = 0;
-    
+
+    public AudioSource WindSound;
+
+    private bool PlayingSound = false;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 
@@ -141,7 +144,12 @@ public class windController : MonoBehaviour
     
     private void ShowGameObject()
     {
-        
+        if (!PlayingSound)
+        {
+            WindSound.Play();
+            PlayingSound = true;
+        }
+
         if (this.m_ControlsGUIElement)
         {
             //show GUI components
@@ -166,6 +174,11 @@ public class windController : MonoBehaviour
     private void HideGameObject()
 
     {
+        if (PlayingSound)
+        {
+            WindSound.Stop();
+            PlayingSound = false;
+        }
         if (this.m_ControlsGUIElement)
         { 
             

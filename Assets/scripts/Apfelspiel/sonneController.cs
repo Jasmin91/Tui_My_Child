@@ -47,7 +47,12 @@ public class sonneController : MonoBehaviour
     /// <summary>
     ///die Sonne hat genug geschienen 
     /// </summary>
-    private bool sunReady = false; 
+    private bool sunReady = false;
+
+    public AudioSource SunSound;
+
+    private bool PlayingSound = false;
+
     //translation
     public bool IsPositionMapped = false;
     public bool InvertX = false;
@@ -151,6 +156,12 @@ public class sonneController : MonoBehaviour
         if (ms_Instance.Rain.GetRainReady()) {
             StartCoroutine(StartCountdownToRed());
         }
+        if (!PlayingSound)
+        {
+            SunSound.Play();
+            PlayingSound = true;
+        }
+
         if (this.m_ControlsGUIElement)
         {
             //show GUI components
@@ -174,6 +185,13 @@ public class sonneController : MonoBehaviour
 
     private void HideGameObject()
     {
+
+        if (PlayingSound)
+        {
+            SunSound.Stop();
+            PlayingSound = false;
+        }
+
         if (this.m_ControlsGUIElement)
         {
             //hide GUI components

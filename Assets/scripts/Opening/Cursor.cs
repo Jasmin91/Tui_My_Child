@@ -32,6 +32,8 @@ public class Cursor : MonoBehaviour
 {
     public int MarkerID;
 
+    public AudioSource PlingSound;
+
     
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 
@@ -132,7 +134,7 @@ public class Cursor : MonoBehaviour
     /// <param name="col">Collider</param>
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Collide");
+        PlingSound.Play();
         if (col.gameObject.name == "Start")
         {
             SceneManager.LoadScene("Startspiel");

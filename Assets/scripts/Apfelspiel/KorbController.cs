@@ -35,7 +35,14 @@ public class KorbController : MonoBehaviour
     /// <summary>
     ///Zählt die gesammelten Äpfel 
     /// </summary>
-    private int appleCounter = 0; 
+    private int appleCounter = 0;
+
+    bool play = false;
+    float targetTime = 3;
+
+    public AudioSource WinSound;
+
+    public AudioSource PlingSound;
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 
     //translation
@@ -124,7 +131,22 @@ public class KorbController : MonoBehaviour
 
         if (appleCounter >= 4)
         {
-            this.ms_Instance.FinishGame();
+            if (!play)
+            {
+                WinSound.Play();
+                play = true;
+            }
+            
+            
+                targetTime -= Time.deltaTime;
+                Debug.Log(targetTime);
+                if (targetTime <= 0.0f)
+                {
+                
+                    this.ms_Instance.FinishGame();
+                }
+            
+            
         }
 
     }
@@ -140,6 +162,8 @@ public class KorbController : MonoBehaviour
         if (col.gameObject.name == "Apfel")
         {
             col.GetComponent<Renderer>().enabled = false; //Gesammelter Apfel wird ausgeblendet
+            col.transform.position = new Vector3(0,-10,0);
+            PlingSound.Play();
             this.appleCounter++; //Zähler der gesammelten Äpfel wird erhöht
         }
     }

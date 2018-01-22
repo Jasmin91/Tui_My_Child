@@ -25,6 +25,10 @@ public class Knochen : MonoBehaviour
     /// </summary>
     private List<Point> KnotList = new List<Point>();
 
+    public AudioSource WinSound;
+
+    bool play = false;
+
 
     void Start()
     {
@@ -38,6 +42,11 @@ public class Knochen : MonoBehaviour
         //Bewegt Knochen zu jedem einzelnen Punkt
         if (km_Instance.GetRightWayFound())
         {
+            if (!play)
+            {
+                WinSound.Play();
+                play = true;
+            }
             if (!KnotList[0].getVisited())
             {
                 this.Move(KnotList[0]);

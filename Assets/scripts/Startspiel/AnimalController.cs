@@ -58,10 +58,12 @@ public class AnimalController : MonoBehaviour
     /// Aktuelle Rotation des Tieres
     /// </summary>
     private Quaternion actRotation;
-
+    
     private bool waiting = false;
 
     public float WaitingToMove = 1;
+
+    public AudioSource audioo;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     public float Geschwindigkeit = 0.01f;
@@ -92,8 +94,7 @@ public class AnimalController : MonoBehaviour
     {
 
         this.Manager = ManagerKlasse.Instance;
-
-
+        
         this.m_TuioManager = UniducialLibrary.TuioManager.Instance;
         this.ms_Instance = ApfelManager.Instance;
         //uncomment next line to set port explicitly (default is 3333)
