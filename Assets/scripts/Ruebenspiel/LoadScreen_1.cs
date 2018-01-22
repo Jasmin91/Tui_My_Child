@@ -6,20 +6,13 @@ using UnityEngine.UI;
 public class LoadScreen_1 : MonoBehaviour {
 
 	[SerializeField]
-	private float units1;
-	float timeAMT1 = 10;
-	float time;
-	public Text timeText1;
-
-	[SerializeField]
 	private Image fill1;
 
-//	private float fillAmount;
+	private float fillAmount;
 
 	// Use this for initialization
 	void Start () {
-		time = 0;
-		fill1.fillAmount = 0f;
+		UpdateBar ();
 	}
 
 	// Update is called once per frame
@@ -51,5 +44,9 @@ public class LoadScreen_1 : MonoBehaviour {
 				SpriteRenderer renderer1 = circle [i - 1].GetComponent<SpriteRenderer> ();
 				renderer1.color = new Color (0.35f, 0.19f, 0.1f);
 		} */
+	}
+
+	private void UpdateBar(){
+		fill1.fillAmount = 0f;
 	}
 }

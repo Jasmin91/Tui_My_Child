@@ -4,22 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class LoadScreen_3 : MonoBehaviour {
-	
-	[SerializeField]
-	private float units3;
-	float timeAMT3 = 10;
-	float time;
-	public Text timeText3;
 
 	[SerializeField]
 	private Image fill3;
 
-//	private float fillAmount;
+	private float fillAmount;
 
 	// Use this for initialization
 	void Start () {
-		time = 0;
-		fill3.fillAmount = 0f;
 
 	}
 
@@ -54,5 +46,9 @@ public class LoadScreen_3 : MonoBehaviour {
 				SpriteRenderer renderer1 = circle [i - 1].GetComponent<SpriteRenderer> ();
 				renderer1.color = new Color (0.35f, 0.19f, 0.1f); 
 		} */
+	}
+
+	private void UpdateBar(){
+		fill3.fillAmount = 0f;
 	}
 }
