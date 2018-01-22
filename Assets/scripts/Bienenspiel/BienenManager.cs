@@ -11,7 +11,7 @@ public class BienenManager {
     
     private static BienenManager manager;
     private List<Biene> BienenListe = new List<Biene>();
-    private int anzahlBienen = 3;
+    private int anzahlBienen = 4;
 
 
     public static BienenManager Instance

@@ -52,14 +52,14 @@ public class Allinone : MonoBehaviour {
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
-            if (other.gameObject.name == "bee" || other.gameObject.name == "bee1" || other.gameObject.name == "bee2" || other.gameObject.name == "bee3")
+           /** if (other.gameObject.name == "bee" || other.gameObject.name == "bee1" || other.gameObject.name == "bee2" || other.gameObject.name == "bee3")
             {
                 counter++;
                 if (counter == 4)
                 {
                     tickSource.Play();
                 }
-            }   
+            }   */
     }
     public void OnTriggerExit2D(Collider2D other)
     {

@@ -7,13 +7,21 @@ public class Biene : MonoBehaviour {
     public GameObject Blume;
     public GameObject glas;
     private BienenManager manager;
-    private float deviation = 0.1f;
+    private float deviation = 10f;
     public int counter_left = 0;
     public int counter_right = 0;
     public bool WarZuletztLinks = true;
     public bool WarZuletztRechts = true;
-    private int numberRotations = 3;
+    private int numberRotations = 4;
     public bool onFlower = false;
+    public float ActRotation;
+    float referenceLeft = 50;
+    float referenceRight = 320;
+
+    /// <summary>
+    /// Lässt Sound nur 1x spielen
+    /// </summary>
+    private bool play = false;
     
 
     // Use this for initialization
@@ -22,12 +30,14 @@ public class Biene : MonoBehaviour {
         manager = BienenManager.Instance;
         tickSource = GetComponent<AudioSource>();
         glas.SetActive(true);
+        this.GetReferenceAxes();
     }
 
 
     void Update()
     {
-        
+        Debug.Log(this.transform.eulerAngles.z);
+        ActRotation = this.transform.eulerAngles.z;
         if (onFlower)
         {
             CheckRotation();
@@ -54,7 +64,6 @@ public class Biene : MonoBehaviour {
 
     private void GetRotation()
     {
-        Debug.Log(this.name + "Rotation:" + gameObject.transform.rotation);
         float x=  gameObject.transform.rotation.x;
         float y = gameObject.transform.rotation.y;
         float z = gameObject.transform.rotation.z;
@@ -62,51 +71,72 @@ public class Biene : MonoBehaviour {
 
     private void CheckRotation()
     {
-
-        Quaternion referenceLeft = new Quaternion(0.0f, 0.0f, -0.3f, 1f);
-        Quaternion referenceRight = new Quaternion(0.0f, 0.0f, 0.5f, 0.8f); 
-        Quaternion ActRotation = gameObject.transform.rotation;
-        GetRotation();
-        //tada
-
-        //Debug.Log(this.name+"---ZuletztLinks:"+WarZuletztLinks+"----ZuletztRechts"+WarZuletztRechts+ "counter_left<numberRotations"+ (counter_left < numberRotations) + "Equal("+ ActRotation + ", "+referenceLeft+")"+ Equal(gameObject.transform.rotation, referenceLeft));
-
-        if ((counter_left < numberRotations) && (Equal(ActRotation, referenceLeft)) && WarZuletztRechts)
-        // if (Equal(ActRotation, referenceLeft) && WarZuletztRechts)
         
-            //if (counter_left < numberRotations && Equal(ActRotation, referenceLeft))
+        GetRotation();
+        if ((counter_left < numberRotations) && (Equal(ActRotation, referenceLeft)) && WarZuletztRechts)
             {
+            Debug.Log("Links:"+counter_left + ":" + ActRotation + "ist gleich" + referenceLeft);
             counter_left++;
             WarZuletztLinks = true;
             WarZuletztRechts = false;
         }
 
         if ((counter_right < numberRotations) && (Equal(ActRotation, referenceRight)) && WarZuletztLinks)
-            //if (Equal(ActRotation, referenceRight) && WarZuletztLinks)
-          //  if (counter_right < numberRotations && Equal(ActRotation, referenceRight))
             {
+            Debug.Log("Rechts:"+counter_right+":"+ActRotation + "ist gleich" + referenceRight);
             counter_right++;
             WarZuletztRechts = true;
             WarZuletztLinks = false;
         }
-
-        Debug.Log(this.name + "---" + counter_left + " -- " + counter_right);
+        
 
 
         int filling = counter_left;
         string name = "glas" + filling;
-        Debug.Log(this.name+ "---" + name);
 
         glas.GetComponent<SpriteRenderer>().sprite = Resources.Load(name, typeof(Sprite)) as Sprite;
 
 
-        if (counter_right == numberRotations && counter_left == numberRotations)
+        if (counter_left == numberRotations)
         {
-            tickSource.Play();
+            Debug.Log(numberRotations);
+            if (!play)
+            {
+                tickSource.Play();
+                play = true;
+            }
             manager.HoneyReady(this);
         }
     }
 
+    private void GetReferenceAxes() {
+
+
+        switch (this.name)
+        {
+            case "bee":
+                referenceLeft = 50;
+                referenceRight = 320;
+                break;
+            case "bee1":
+                referenceLeft = 140;
+                referenceRight = 50;
+                break;
+            case "bee2":
+                referenceLeft = 225;
+                referenceRight = 140;
+                break;
+            case "bee3":
+                referenceLeft = 320;
+                referenceRight = 225;
+                break;
+
+        }
+    }
+
+    /// <summary>
+    /// Setzt Biene zurück für neue Runde
+    /// </summary>
     public void ResetBee()
     {
         counter_right = 0;
@@ -122,14 +152,13 @@ public class Biene : MonoBehaviour {
     /// </summary>
     /// <param name="q">Abzugleichender, aktuellert Wert</param>
     /// <returns>Bool, ob übereinstimmend</returns>
-    private bool Equal(Quaternion q, Quaternion reference)
+    private bool Equal(float q, float reference)
     {
         bool result = false;
-        if (Check(q.z, reference.z))
+        if (Check(q, reference))
         {
             result = true;
         }
-       // Debug.Log("Check("+q.z+","+ reference.z+")" + Check(q.z, reference.z));
         return result;
     }
 
