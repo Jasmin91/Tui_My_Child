@@ -12,7 +12,7 @@ public class LoadScreen_3 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		UpdateBar ();
 	}
 
 	// Update is called once per frame

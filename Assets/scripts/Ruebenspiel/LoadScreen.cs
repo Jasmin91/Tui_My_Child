@@ -13,6 +13,7 @@ public class LoadScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		UpdateBar ();
+		Debug.Log ("Start " + fill.fillAmount);
 	}
 	
 	// Update is called once per frame
@@ -28,6 +29,7 @@ public class LoadScreen : MonoBehaviour {
 		}; */
 			
 		fill.fillAmount = RuebenController.ScreenArray [0]/2;
+		Debug.Log ("Update " + fill.fillAmount);
 
 	/*	for (int i = 1; i <= Fiducial_Counter.count; i++) {
 			if (i < Fiducial_Counter.count) {

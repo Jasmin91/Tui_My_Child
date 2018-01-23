@@ -306,8 +306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9dfa8c80b12a405691c0862b94190e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units1: 100
-  timeText1: {fileID: 0}
   fill1: {fileID: 1881733939}
 --- !u!114 &136546524
 MonoBehaviour:
@@ -2434,8 +2432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4084ef87a3fab4a9abde16252335b366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units3: 100
-  timeText3: {fileID: 0}
   fill3: {fileID: 1394836357}
 --- !u!114 &1085400953
 MonoBehaviour:
@@ -2633,8 +2629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0a0641631b046a3a976a1cfedbc312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units2: 100
-  timeText2: {fileID: 0}
   fill2: {fileID: 1828294338}
 --- !u!114 &1142488487
 MonoBehaviour:
@@ -4491,7 +4485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fdb8a9fc7fdea45b0591500a8be83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Countdown: 30
+  Countdown: 20
   width: 0.85
   height: 0.8
   ShowCloud: 1
@@ -4505,7 +4499,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1600318209}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fcecf6fc1285e43d8b4252fef561ebcb, type: 3}
@@ -4813,8 +4807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebaeb7edd25334a1fbeb2a40ffdff014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  units: 100
-  timeText: {fileID: 0}
   fill: {fileID: 688582546}
 --- !u!1 &1684723372
 GameObject:
