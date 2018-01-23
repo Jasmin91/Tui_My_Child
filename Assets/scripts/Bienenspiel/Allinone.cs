@@ -25,12 +25,10 @@ public class Allinone : MonoBehaviour {
 
         int filling = manager.GetFilling();
         string name = "glas" + filling;
-        Debug.Log(name);
         gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load(name, typeof(Sprite)) as Sprite;
 
         if (manager.GetReady()&&play==false)
         {
-            Debug.Log("In if");
             tickSource.Play();
             sound.Pause();
             play = true;
@@ -40,7 +38,6 @@ public class Allinone : MonoBehaviour {
 
         if(play){
             targetTime -= Time.deltaTime;
-            Debug.Log(targetTime);
             if (targetTime <= 0.0f)
             {
                 

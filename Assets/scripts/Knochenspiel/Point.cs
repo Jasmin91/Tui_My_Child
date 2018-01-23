@@ -52,7 +52,7 @@ public class Point
     /// Getter für die Position
     /// </summary>
     /// <returns>Position des Point</returns>
-    public Vector3 getPosition()
+    public Vector3 GetPosition()
     {
         return this.position;
     }
@@ -70,7 +70,7 @@ public class Point
     /// Getter, ob Punkt beeits besucht wurde
     /// </summary>
     /// <returns>Bool, ob Punkt bereits besucht wurde</returns>
-    public bool getVisited()
+    public bool GetVisited()
     {
         return this.visited;
     }

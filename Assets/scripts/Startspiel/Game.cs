@@ -35,7 +35,6 @@ public class Game : MonoBehaviour
         Manager.LoadingComplete();
         if (!updated)
         {
-            Debug.Log("Versucht zu updaten");
             if (Manager.LoadingComplete()) //Checkt, ob das Spiel komplett geladen wurde
             {
                 Manager.GetOldState(); //versucht den alten Stand zu laden

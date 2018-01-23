@@ -152,7 +152,7 @@ public class ManagerKlasse {
     public void RemoveNut(NutScript nut)
     {
         this.NutList.Remove(nut);
-        this.DeletedNutList.Add(nut.getName());
+        this.DeletedNutList.Add(nut.GetName());
     }
     
     
@@ -316,7 +316,7 @@ public class ManagerKlasse {
             bool ready = false;
             while (!ready)
             {
-                if (NutList[i].getName() == s)
+                if (NutList[i].GetName() == s)
                 {
                     NutList[i].DestroyObject(); //Löscht Nuss, die in DeletedNutList und NutList zu finden ist
                     ready = true;
@@ -489,7 +489,7 @@ public class ManagerKlasse {
             foreach (AnimalController animal in AnimalList)
             {
                 allIDs[counter] = animal.MarkerID;
-                result+=", "+animal.MarkerID,
+                result += ", " + animal.MarkerID;
                 counter++;
             }
         }

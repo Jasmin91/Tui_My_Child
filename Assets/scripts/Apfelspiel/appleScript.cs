@@ -4,7 +4,7 @@
 ///  Diese Klasse steuert die  Funktion eines  Apfels
 /// </summary> 
 
-public class appleScript : MonoBehaviour
+public class AppleScript : MonoBehaviour
 {
 
     /// <summary>
@@ -15,27 +15,27 @@ public class appleScript : MonoBehaviour
     /// <summary>
     ///Geschwindigkeit, mit der der Apfel fällt
     /// </summary>
-    public float fallingSpeed = 0.23f; 
+    public float FallingSpeed = 0.23f; 
 
     /// <summary>
     ///Boolscher Wert, ob Apfel bereits gefallen ist 
     /// </summary>
-    private bool fallen = false; 
+    private bool Fallen = false; 
 
     /// <summary>
     ///Boolscher Wert, ob Apfel bereits reif ist 
     /// </summary>
-    private bool red = false; 
+    private bool Red = false; 
 
     /// <summary>
     ///Boolscher Wert, ob Apfel bereits gewachsen ist 
     /// </summary>
-    private bool grown = false; 
+    private bool Grown = false; 
 
     /// <summary>
     ///Nummer des zu ladenden Apfel-Bildes (ändert sich je nach Reifegrad) 
     /// </summary>
-    private float appleNumber = 0;
+    private float AppleNumber = 0;
 
     
 
@@ -62,8 +62,8 @@ public class appleScript : MonoBehaviour
     /// </summary>
     public void FallableApple()
     {
-        if (red&&grown) {
-            gameObject.GetComponent<Rigidbody2D>().gravityScale = this.fallingSpeed; //Schwerkraft auf Fallgeschwindigkeit setzen
+        if (Red&&Grown) {
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = this.FallingSpeed; //Schwerkraft auf Fallgeschwindigkeit setzen
             this.SetFallen(true);
         }
       }
@@ -91,7 +91,7 @@ public class appleScript : MonoBehaviour
             }
             if (size >= 0.2f)
             {
-                grown = true;
+                Grown = true;
             }
         }
     }
@@ -103,14 +103,14 @@ public class appleScript : MonoBehaviour
     /// <param name="sunDuration">Dauer, die die Sonne bereits scheint</param>
     public void RipingApple(float sunDuration)
     {
-        if (appleNumber + 1 == sunDuration && sunDuration <= 5) //checkt, ob das nächste Bild auch wirklich einen Apfel zeigt, der reifer ist, als der vorhergehende
+        if (AppleNumber + 1 == sunDuration && sunDuration <= 5) //checkt, ob das nächste Bild auch wirklich einen Apfel zeigt, der reifer ist, als der vorhergehende
         {
-            appleNumber = sunDuration;
-            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("apfel_" + appleNumber, typeof(Sprite)) as Sprite; //Setzt neues (reiferes) Bild
+            AppleNumber = sunDuration;
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("apfel_" + AppleNumber, typeof(Sprite)) as Sprite; //Setzt neues (reiferes) Bild
             
-            if(appleNumber == 5)
+            if(AppleNumber == 5)
             {
-                red = true;
+                Red = true;
             }
         }
     }
@@ -123,7 +123,7 @@ public class appleScript : MonoBehaviour
 /// <param name="fallen">Wert, ob Apfel bereits gefallen</param>
 public void SetFallen(bool fallen)
     {
-        this.fallen = fallen;
+        this.Fallen = fallen;
     }
 
     /// <summary>
@@ -132,7 +132,7 @@ public void SetFallen(bool fallen)
     /// <returns>Bool, ob Apfel bereits gefallen</returns>
     public bool GetFallen()
     {
-        return this.fallen;
+        return this.Fallen;
     }
 
     #endregion

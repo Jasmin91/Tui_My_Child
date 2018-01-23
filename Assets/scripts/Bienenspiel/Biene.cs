@@ -36,7 +36,6 @@ public class Biene : MonoBehaviour {
 
     void Update()
     {
-        Debug.Log(this.transform.eulerAngles.z);
         ActRotation = this.transform.eulerAngles.z;
         if (onFlower)
         {
@@ -75,7 +74,6 @@ public class Biene : MonoBehaviour {
         GetRotation();
         if ((counter_left < numberRotations) && (Equal(ActRotation, referenceLeft)) && WarZuletztRechts)
             {
-            Debug.Log("Links:"+counter_left + ":" + ActRotation + "ist gleich" + referenceLeft);
             counter_left++;
             WarZuletztLinks = true;
             WarZuletztRechts = false;
@@ -83,7 +81,6 @@ public class Biene : MonoBehaviour {
 
         if ((counter_right < numberRotations) && (Equal(ActRotation, referenceRight)) && WarZuletztLinks)
             {
-            Debug.Log("Rechts:"+counter_right+":"+ActRotation + "ist gleich" + referenceRight);
             counter_right++;
             WarZuletztRechts = true;
             WarZuletztLinks = false;
@@ -99,7 +96,6 @@ public class Biene : MonoBehaviour {
 
         if (counter_left == numberRotations)
         {
-            Debug.Log(numberRotations);
             if (!play)
             {
                 tickSource.Play();
@@ -109,6 +105,9 @@ public class Biene : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Setzt Referenzachsen je nach Biene
+    /// </summary>
     private void GetReferenceAxes() {
 
 

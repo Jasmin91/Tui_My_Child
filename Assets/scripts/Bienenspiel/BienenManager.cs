@@ -68,11 +68,6 @@ public class BienenManager {
         {
             BienenListe.Add(h);
         }
-
-        if (BienenListe.Count == anzahlBienen)
-        {
-            Debug.Log("Alle Gläser sind voll");
-        }
     }
 
   

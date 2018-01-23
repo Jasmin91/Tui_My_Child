@@ -13,12 +13,12 @@ public class Knochen : MonoBehaviour
     /// <summary>
     ///Erstellt eine Instanz der KnochenManager-Klasse 
     /// </summary>
-    private KnochenManager km_Instance; 
+    private KnochenManager Km_Instance; 
 
     /// <summary>
     /// Geschwindigkeit, mit der Knochen zum Hund schwebt
     /// </summary>
-    public float speed = 2f;
+    public float Speed = 2f;
 
     /// <summary> 
     /// Liste, die alle Punkte des Pfades speichert 
@@ -33,12 +33,12 @@ public class Knochen : MonoBehaviour
     /// <summary>
     /// Hilfsbool, damit Sound nur 1x gespielt wird
     /// </summary>
-    bool play = false;
+    bool Play = false;
 
 
     void Start()
     {
-        this.km_Instance = KnochenManager.Instance;
+        this.Km_Instance = KnochenManager.Instance;
         this.DefineWay();
     }
 
@@ -46,52 +46,52 @@ public class Knochen : MonoBehaviour
     void Update()
     {
         //Bewegt Knochen zu jedem einzelnen Punkt
-        if (km_Instance.GetRightWayFound())
+        if (Km_Instance.GetRightWayFound())
         {
-            if (!play)
+            if (!Play)
             {
                 WinSound.Play();
-                play = true;
+                Play = true;
             }
-            if (!KnotList[0].getVisited())
+            if (!KnotList[0].GetVisited())
             {
                 this.Move(KnotList[0]);
             }
-            else if (!KnotList[1].getVisited())
+            else if (!KnotList[1].GetVisited())
             {
                 this.Move(KnotList[1]);
             }
-            else if (!KnotList[2].getVisited())
+            else if (!KnotList[2].GetVisited())
             {
                 this.Move(KnotList[2]);
             }
-            else if (!KnotList[3].getVisited())
+            else if (!KnotList[3].GetVisited())
             {
                 this.Move(KnotList[3]);
             }
-            else if (!KnotList[4].getVisited())
+            else if (!KnotList[4].GetVisited())
             {
                 this.Move(KnotList[4]);
             }
-            else if (!KnotList[5].getVisited())
+            else if (!KnotList[5].GetVisited())
             {
                 this.Move(KnotList[5]);
             }
-            else if (!KnotList[6].getVisited())
+            else if (!KnotList[6].GetVisited())
             {
                 this.Move(KnotList[6]);
             }
-            else if (!KnotList[7].getVisited())
+            else if (!KnotList[7].GetVisited())
             {
                 this.Move(KnotList[7]);
             }
-            else if (!KnotList[8].getVisited())
+            else if (!KnotList[8].GetVisited())
             {
                 this.Move(KnotList[8]);
             }
             else
             {
-                this.km_Instance.setGameSolved(true);
+                this.Km_Instance.SetGameSolved(true);
             }
         }
 
@@ -103,8 +103,8 @@ public class Knochen : MonoBehaviour
     /// <param name="pos">Position, zu der Hund bewegt werden soll</param>
     private void Move(Point pos)
     {
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, pos.getPosition(), step);
+        float step = Speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, pos.GetPosition(), step);
         pos.Reached(this.transform.position);
     }
     

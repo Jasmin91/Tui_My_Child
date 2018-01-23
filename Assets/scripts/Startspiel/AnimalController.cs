@@ -243,7 +243,7 @@ public class AnimalController : MonoBehaviour
 
             }
             if(countdownValue==WaitingToExit){
-            Debug.Log("Spiel wird beendet...");
+            Debug.Log("StartEndTimerFirst:Spiel wird beendet...");
             }
         }
     }

@@ -16,7 +16,7 @@ public class ApfelManager {
     /// <summary>  
     ///  Erstellt eine Instanz der ApfelManager-Klasse
     /// </summary> 
-    private static ApfelManager ms_Instance; 
+    private static ApfelManager Ms_Instance; 
 
     /// <summary>  
     ///  Speichert das Regen-Objekt
@@ -31,23 +31,23 @@ public class ApfelManager {
     /// <summary>  
     ///  der Wind weht gerade
     /// </summary> 
-    private bool windBlowing = false; 
+    private bool WindBlowing = false; 
 
     /// <summary>  
     ///  Liste, die die Äpfel am Baum speichert
     /// </summary> 
-    private List<appleScript> appleList = new List<appleScript>(); 
+    private List<AppleScript> AppleList = new List<AppleScript>(); 
 
 
     public static ApfelManager Instance
 	{
 		get
 		{
-            if (ms_Instance == null)
+            if (Ms_Instance == null)
 			{
-                ms_Instance = new ApfelManager();
+                Ms_Instance = new ApfelManager();
 			}
-            return ms_Instance;
+            return Ms_Instance;
 		}
                 
 	}
@@ -58,12 +58,12 @@ public class ApfelManager {
     /// </summary>
     public ApfelManager()
     {
-        if (ms_Instance != null)
+        if (Ms_Instance != null)
         {
             Debug.LogError("Trying to create two instances of singleton.");
             return;
         }
-            ms_Instance = this;
+            Ms_Instance = this;
         this.Manager = ManagerKlasse.Instance;
 
     }
@@ -74,9 +74,9 @@ public class ApfelManager {
     /// Fügt einen Apfel dem Apfel-Array hinzu
     /// </summary>  
     /// <param name="apple">Dem Array hinzuzufügender Apfel</param>
-    public void AddApple(appleScript apple)
+    public void AddApple(AppleScript apple)
     {
-        this.appleList.Add(apple);
+        this.AppleList.Add(apple);
     }
 
     /// <summary>  
@@ -95,7 +95,7 @@ public class ApfelManager {
     /// <param name="rainDuration">Dauer, die es bereits regnet</param>
     public void ApfelWachsenLassen(float rainDuration)
     {
-        foreach (appleScript apfel in appleList)
+        foreach (AppleScript apfel in AppleList)
         {
             apfel.GrowingApple(rainDuration);
         }
@@ -108,7 +108,7 @@ public class ApfelManager {
     /// <param name="sunDuration">Dauer, die Sonne bereits scheint</param>
     public void ApfelReifenLassen(float sunDuration)
     {
-        foreach (appleScript apfel in appleList)
+        foreach (AppleScript apfel in AppleList)
         {
             apfel.RipingApple(sunDuration);
         }
@@ -121,7 +121,7 @@ public class ApfelManager {
     /// </summary>
     private void FallApple()
     {
-        foreach (appleScript apfel in appleList)
+        foreach (AppleScript apfel in AppleList)
         {
             if (!apfel.GetFallen()) //Findet einen nicht gefallenen Apfel
             {
@@ -138,7 +138,7 @@ public class ApfelManager {
     /// </summary>
     public void FinishGame()
     {
-        appleList.Clear();
+        AppleList.Clear();
         SceneManager.LoadScene("Startspiel");
     }
 
@@ -150,7 +150,7 @@ public class ApfelManager {
     /// <param name="wind">Bool, ob Wind gerade weht.</param>
     public void SetWindBlowing(bool wind)
     {
-        this.windBlowing = wind;
+        this.WindBlowing = wind;
 
     }
 
@@ -160,7 +160,7 @@ public class ApfelManager {
     /// <returns>Bool, ob Wind gerade weht</returns>
     public bool GetWindBlowing()
     {
-        return this.windBlowing;
+        return this.WindBlowing;
     }
 
     /// <summary>  

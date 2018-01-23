@@ -60,7 +60,6 @@ public class NutScript : MonoBehaviour
                 Play = true;
             }
                 Coundown -= Time.deltaTime;
-                Debug.Log(Coundown);
                 if (Coundown <= 0.0f)
                 {
                     this.CollectNut();
@@ -105,7 +104,7 @@ public class NutScript : MonoBehaviour
     /// Getter für den Namen der Nuss
     /// </summary>
     /// <returns>Nussname</returns>
-    public String getName()
+    public String GetName()
     {
         return this.namenut;
     }

@@ -122,7 +122,7 @@ public class Timer : MonoBehaviour
            
             if (Countdown <= TimeToWarn)
             {
-                this.printTimer(Countdown);
+                this.PrintTimer(Countdown);
 
                 if (ShowCloud)
                 {
@@ -132,7 +132,7 @@ public class Timer : MonoBehaviour
             if (Countdown <= 0.0f || Input.GetKeyDown(KeyCode.A))
             {
 
-                timerEnded();
+                TimerEnded();
                 Manager.GetTimer().ResetTimer();
             }
         }
@@ -160,6 +160,10 @@ public class Timer : MonoBehaviour
         TimeToWarn = duration - WaitingTime;
         paused = false;
     }
+
+    /// <summary>
+    /// Setzt den Timer zurück
+    /// </summary>
     public void ResetTimer()
     {
         paused = true;
@@ -169,12 +173,19 @@ public class Timer : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Gibt Bool zurück, ob Warnung gerade läuft
+    /// </summary>
+    /// <returns>Bool, ob Warnung gerade läuft</returns>
     public bool IsRunning()
     {
         return !paused;
     }
 
-    void timerEnded()
+    /// <summary>
+    /// Methode reguliert, was bei Ablaufen des Timers funktioniert
+    /// </summary>
+    void TimerEnded()
     {
         paused = true;
         Manager.Reset();
@@ -188,7 +199,12 @@ public class Timer : MonoBehaviour
         }
     }
 
-    private void printTimer(float time)
+
+    /// <summary>
+    /// Gibt den Warnungs-Text aus
+    /// </summary>
+    /// <param name="time">Aktuelle Countdown Zeit</param>
+    private void PrintTimer(float time)
     {
         int IntTime = (int) time;
         Ausgabe.text = "Das Spiel endet in " + (int)time + " Sekunden, wenn kein Fiducial auf dem Tisch steht!";

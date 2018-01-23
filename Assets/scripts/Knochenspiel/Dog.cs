@@ -38,21 +38,21 @@ public class Dog : MonoBehaviour
     void Start()
     {
         this.km_Instance = KnochenManager.Instance;
-        this.defineWay();
+        this.DefineWay();
     }
 
 
     void Update()
     {
-        if (km_Instance.getGameSolved())
+        if (km_Instance.GetGameSolved())
             
         {
             DogSound.Play();
-            if (!KnotList[0].getVisited())
+            if (!KnotList[0].GetVisited())
             {
                 this.Move(KnotList[0]);
             }
-            else if (!KnotList[1].getVisited())
+            else if (!KnotList[1].GetVisited())
             {
                 this.Move(KnotList[1]);
             }
@@ -71,14 +71,14 @@ public class Dog : MonoBehaviour
     private void Move(Point pos)
     {
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, pos.getPosition(), step);
+        transform.position = Vector3.MoveTowards(transform.position, pos.GetPosition(), step);
         pos.Reached(this.transform.position);
     }
     
     /// <summary>
     /// Berechne Pfad, dem entlang der Hund springt
     /// </summary>
-    private void defineWay()
+    private void DefineWay()
     {
         float x = this.transform.position.x;
         float y = this.transform.position.y+this.height;

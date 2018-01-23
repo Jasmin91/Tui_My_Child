@@ -79,7 +79,6 @@ public class HutScript : MonoBehaviour
                 finished = true;
                 Manager.Reset();
                 SceneManager.LoadScene("Closing");
-                Debug.Log("Spiel beendet!");
                
             }
             else

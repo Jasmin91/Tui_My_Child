@@ -114,9 +114,8 @@ public class KnochenManager {
     /// Getter, ob Spiel gelöst wurde
     /// </summary>
     /// <returns>Bool, ob Spiel gelöst wurde</returns>
-    public bool getGameSolved()
+    public bool GetGameSolved()
     {
-        Debug.Log("getGameSolved:"+GameSolved);
         return this.GameSolved;
     }
 
@@ -124,9 +123,8 @@ public class KnochenManager {
     /// Setter, ob Spiel gelöst wurde
     /// </summary>
     /// <param name="var">Bool, ob Spiel gelöst wurde</param>
-    public void setGameSolved(bool var)
+    public void SetGameSolved(bool var)
     {
-        Debug.Log("fertig!");
         this.GameSolved = var;
     }
     #endregion

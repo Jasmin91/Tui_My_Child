@@ -25,7 +25,6 @@ public class BasketScript : MonoBehaviour
     {
         this.Manager = ManagerKlasse.Instance;
         Manager.SetBasket(this);
-        this.SetPositionText();
         this.UpdateBasket(Manager.NutCounter);
     }
 

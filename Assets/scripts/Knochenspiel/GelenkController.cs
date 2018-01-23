@@ -227,13 +227,11 @@ public class GelenkController : MonoBehaviour
         if (Equal(rotation))
         {
             this.RightRotation = true;
-            Debug.Log(this.name + this.RightRotation);
         }
         else
         {
             this.RightRotation = false;
         }
-        Debug.Log(this.name + this.RightRotation);
 
     }
 

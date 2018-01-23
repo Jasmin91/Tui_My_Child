@@ -110,7 +110,6 @@ public class windController : MonoBehaviour
     {
 
 		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
-			//Debug.Log("FidcialController Zeile 110:this.m_TuioManager.IsMarkerAlive(this.MarkerID)");
 		}
 
 
@@ -220,8 +219,11 @@ public class windController : MonoBehaviour
     }
 
     #region Getter
-
-    public bool getWarWeg()
+    /// <summary>
+    /// Getter, ob Wind ausgeblendet war
+    /// </summary>
+    /// <returns>Bool, ob Wind ausgeblendet war</returns>
+    public bool GetWarWeg()
     {
         return this.warWeg;
     }
