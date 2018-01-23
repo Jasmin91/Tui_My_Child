@@ -32,6 +32,9 @@ public class Cursor : MonoBehaviour
 {
     public int MarkerID;
 
+    /// <summary>
+    /// Sound bei Auswählen eines Buttons
+    /// </summary>
     public AudioSource PlingSound;
 
     
@@ -129,7 +132,7 @@ public class Cursor : MonoBehaviour
 
    
     /// <summary>
-    ///Collider, der erkennt ob Apfel und Korb kollidieren 
+    ///Collider, der erkennt ob Cursor und Button
     /// </summary>
     /// <param name="col">Collider</param>
     void OnTriggerEnter2D(Collider2D col)
@@ -138,13 +141,10 @@ public class Cursor : MonoBehaviour
         if (col.gameObject.name == "Start")
         {
             SceneManager.LoadScene("Startspiel");
-           // Application.LoadLevel("Startspiel");
         }
         else if (col.gameObject.name == "Ende")
         {
             Application.Quit();
-           //UnityEditor.EditorApplication.isPlaying = false;
-            Debug.Log("Spiel wird beendet...");
         }
     }
 

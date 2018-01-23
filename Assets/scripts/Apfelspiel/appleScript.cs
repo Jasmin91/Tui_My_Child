@@ -40,12 +40,6 @@ public class appleScript : MonoBehaviour
     
 
 
-    void Update()
-    {
-        Debug.Log(this.name + ": I'm alive!");
-    }
-
-
     void Start()
     {
         this.ms_Instance = ApfelManager.Instance; 

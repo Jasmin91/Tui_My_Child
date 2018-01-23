@@ -25,11 +25,20 @@ public class NutScript : MonoBehaviour
     /// </summary>
     private String namenut="noname";
 
+    /// <summary>
+    /// Sound beim Sammeln einer Nuss
+    /// </summary>
     public AudioSource pling;
     
-    bool play = false;
+    /// <summary>
+    /// Hilfsbool, damit Sound nur einmal abgespielt wird
+    /// </summary>
+    bool Play = false;
 
-    float targetTime = 1;
+    /// <summary>
+    /// Delay zwischen Sammeln und löschen des Nuss-Objekts
+    /// </summary>
+    float Coundown = 0.5f;
 
     
     void Start()
@@ -43,18 +52,19 @@ public class NutScript : MonoBehaviour
     void Update()
     {
         if (collected)
+            gameObject.GetComponent<Renderer>().enabled = false;
         {
 
-            if (!play) {
+            if (!Play) {
                 pling.Play();
-                play = true;
+                Play = true;
             }
-                targetTime -= Time.deltaTime;
-                Debug.Log(targetTime);
-                if (targetTime <= 0.0f)
+                Coundown -= Time.deltaTime;
+                Debug.Log(Coundown);
+                if (Coundown <= 0.0f)
                 {
                     this.CollectNut();
-                    play = false;
+                    Play = false;
                 }
             }
 

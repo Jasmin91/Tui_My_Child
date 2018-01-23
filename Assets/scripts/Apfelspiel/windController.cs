@@ -31,8 +31,15 @@ public class windController : MonoBehaviour
 {
     public int MarkerID = 0;
 
+
+    /// <summary>
+    /// Sound beim Einblenden des Windes
+    /// </summary>
     public AudioSource WindSound;
 
+    /// <summary>
+    /// Hilfsbool, damit Sound nur 1x abgespielt wird
+    /// </summary>
     private bool PlayingSound = false;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
@@ -52,7 +59,11 @@ public class windController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private ApfelManager ms_Instance; //Erstellt eine Instanz der Manager-Klasse
+
+    /// <summary>
+    ///Erstellt eine Instanz der Manager-Klasse
+    /// </summary>
+	private ApfelManager ms_Instance; 
     private Camera m_MainCamera;
 
     //members
@@ -141,7 +152,9 @@ public class windController : MonoBehaviour
         }
     }
 
-    
+    /// <summary>
+    /// Zeigt Wind
+    /// </summary>
     private void ShowGameObject()
     {
         if (!PlayingSound)
@@ -171,6 +184,9 @@ public class windController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Blendet Wind aus
+    /// </summary>
     private void HideGameObject()
 
     {

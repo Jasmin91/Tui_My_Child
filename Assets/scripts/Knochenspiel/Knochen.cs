@@ -25,8 +25,14 @@ public class Knochen : MonoBehaviour
     /// </summary>
     private List<Point> KnotList = new List<Point>();
 
+    /// <summary>
+    /// Sound nach erfolgreichem Beenden des Spiels
+    /// </summary>
     public AudioSource WinSound;
 
+    /// <summary>
+    /// Hilfsbool, damit Sound nur 1x gespielt wird
+    /// </summary>
     bool play = false;
 
 

@@ -81,6 +81,9 @@ public class KnochenManager {
         GameSolved = false;
     }
 
+    /// <summary>
+    /// Methode regelt, was passiert, wenn Spiel beendet ist
+    /// </summary>
     public void FinishGame()
     {
         this.ResetGame();

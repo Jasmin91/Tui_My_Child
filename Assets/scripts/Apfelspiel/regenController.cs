@@ -22,7 +22,6 @@ THE SOFTWARE.
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -47,8 +46,14 @@ public class regenController : MonoBehaviour
     /// </summary>
     private bool RainReady = false;
 
+    /// <summary>
+    /// Sound bei Anzeigen der Wolke
+    /// </summary>
     public AudioSource RainSound;
 
+    /// <summary>
+    /// Hilfsbool, damit Sound nur 1xgespielt wird
+    /// </summary>
     private bool PlayingSound = false;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
@@ -66,7 +71,11 @@ public class regenController : MonoBehaviour
     public float CameraOffset = 10;
     public RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
-	private ApfelManager ms_Instance; //Erstellt eine Instanz der Manager-Klasse
+
+    /// <summary>
+    ///Erstellt eine Instanz der Manager-Klasse 
+    /// </summary>
+	private ApfelManager ms_Instance; 
     private Camera m_MainCamera;
 
     //members
@@ -112,7 +121,6 @@ public class regenController : MonoBehaviour
     {
 
 		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
-			//Debug.Log("FidcialController Zeile 110:this.m_TuioManager.IsMarkerAlive(this.MarkerID)");
 		}
 
 
@@ -149,7 +157,9 @@ public class regenController : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Zeigt die Regenwolke
+    /// </summary>
     private void ShowGameObject()
     {
         
@@ -206,7 +216,9 @@ public class regenController : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Blendet Regenwolke aus
+    /// </summary>
     private void HideGameObject()
     {
 

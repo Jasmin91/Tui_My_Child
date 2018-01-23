@@ -49,8 +49,14 @@ public class sonneController : MonoBehaviour
     /// </summary>
     private bool sunReady = false;
 
+    /// <summary>
+    /// Sound, wenn Sonne angezeigt wird
+    /// </summary>
     public AudioSource SunSound;
 
+    /// <summary>
+    /// Hilfsbool, damit Sound nur 1x gespielt wird
+    /// </summary>
     private bool PlayingSound = false;
 
     //translation
@@ -150,7 +156,9 @@ public class sonneController : MonoBehaviour
         }
     }
 
-    
+    /// <summary>
+    /// Zeigt Sonne
+    /// </summary>
     private void ShowGameObject()
     {
         if (ms_Instance.Rain.GetRainReady()) {
@@ -183,6 +191,9 @@ public class sonneController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Blendet Sonne aus
+    /// </summary>
     private void HideGameObject()
     {
 

@@ -52,12 +52,5 @@ public class BasketScript : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Nuts/nut_"+count, typeof(Sprite)) as Sprite;
     }
-
-    /// <summary>
-    /// Setzt die Position des Textes auf den Korb
-    /// </summary>
-    public void SetPositionText()
-    {
-       // Ausgabe.rectTransform.position = this.transform.position;
-    }
+    
 }

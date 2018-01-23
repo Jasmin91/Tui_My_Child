@@ -30,6 +30,9 @@ using System.Collections;
 /// </summary>  
 public class AnimalController : MonoBehaviour
 {
+    /// <summary>
+    /// Wartezeit, bevor Spiel beendet wird
+    /// </summary>
     float WaitingToExit = 3;
 
     public int MarkerID = 0;
@@ -58,12 +61,17 @@ public class AnimalController : MonoBehaviour
     /// Aktuelle Rotation des Tieres
     /// </summary>
     private Quaternion actRotation;
-    
-    private bool waiting = false;
 
+    /// <summary>
+    /// Hilfsbool gibt an, dass Tiere warten sollen nach Zurückkehren ins Spiel
+    /// </summary>
+    private bool ShouldWait = false;
+
+    /// <summary>
+    /// Zeit, die Tiere nicht zu bewegen sind, bei Zurückehren ins Spiel
+    /// </summary>
     public float WaitingToMove = 1;
-
-    public AudioSource audioo;
+    
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     public float Geschwindigkeit = 0.01f;
@@ -127,26 +135,26 @@ public class AnimalController : MonoBehaviour
             Debug.LogError("There is no main camera defined in your scene.");
         }
 
-        waiting = true;
+        ShouldWait = true;
     }
    
     void Update()
     {
 
         
-        if (waiting)
+        if (ShouldWait)
         {
             WaitingToMove -= Time.deltaTime;
             if (WaitingToMove <= 0.0f)
             {
-                waiting = false;
+                ShouldWait = false;
             }
         }
      
 
 
         if (this.m_TuioManager.IsConnected
-            && this.m_TuioManager.IsMarkerAlive(this.MarkerID)&&!waiting)
+            && this.m_TuioManager.IsMarkerAlive(this.MarkerID)&&!ShouldWait)
         {
            
             GetComponent<Rigidbody2D>().velocity = new Vector2(0.5f, 0);//Setze Geschwindigkeit, sobald Fiducial sichtbar
@@ -231,8 +239,6 @@ public class AnimalController : MonoBehaviour
             while (countdownValue <= WaitingToExit)
             {
                 countdownValue++;
-
-                
                 yield return new WaitForSeconds(1.0f);
 
             }

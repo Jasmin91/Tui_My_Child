@@ -25,12 +25,24 @@ public class PortalController : MonoBehaviour
     /// </summary>
     public AnimalController animal;
 
+    /// <summary>
+    /// Sound, der bei Betreten des Portals abgespielt wird
+    /// </summary>
     public AudioSource sound;
 
+    /// <summary>
+    /// Delay, bevor Minigame gestartet wird
+    /// </summary>
     float CountDownTime = 1.5f;
 
+    /// <summary>
+    /// Hilfsbool, damit Sound nur 1x gespielt wird
+    /// </summary>
     bool play = false;
 
+    /// <summary>
+    /// Bool, ob Portal gerade aktiv ist (ob Minispiel bei betreten gestartet wird). Nur zu Debugging Zwecken
+    /// </summary>
     public bool Aktiv = true;
 
     void Awake()
@@ -50,7 +62,6 @@ public class PortalController : MonoBehaviour
 
 
             CountDownTime -= Time.deltaTime;
-            Debug.Log(CountDownTime);
             if (CountDownTime <= 0.0f)
             {
                 WhatToDoWhenCollected();
@@ -88,6 +99,9 @@ public class PortalController : MonoBehaviour
             }
     }
 
+    /// <summary>
+    /// Methode regelt, was beim Sammeln der Nuss passiert
+    /// </summary>
     private void WhatToDoWhenCollected()
     {
         this.Manager.AddVisitedPortal(this);

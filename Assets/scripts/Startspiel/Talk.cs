@@ -60,7 +60,7 @@ public class Talk : MonoBehaviour
     /// <summary>
     /// Berechnet die Position der Sprechblase
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Berechnete Position</returns>
     private Vector3 CalcPosition()
     {
         float trans = 1.5f;
@@ -155,7 +155,6 @@ public class Talk : MonoBehaviour
     /// <param name="x">Dauer der Anzeige</param>
     public void DisplayText(String s, float x)
     {
-        Debug.Log("DisplayText mit Zeit");
         this.Show();
         this.Ausgabe.text = s;
         this.showTime = x;
@@ -170,7 +169,6 @@ public class Talk : MonoBehaviour
     /// <returns></returns>
     private IEnumerator ShowXSeconds(float countdownValue = 0)
     {
-      //  Debug.Log("Coundown gestartet!");
         while (countdownValue < showTime)
         {
             yield return new WaitForSeconds(1.0f);

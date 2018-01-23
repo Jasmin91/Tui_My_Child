@@ -29,6 +29,9 @@ public class Dog : MonoBehaviour
     /// </summary>
     private List<Point> KnotList = new List<Point>();
 
+    /// <summary>
+    /// Sound, den Hund am Ende des Spiels macht
+    /// </summary>
     public AudioSource DogSound;
 
 

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 
 /// <summary>  
-///  Diese Management-Klasse steuert und verbindet alle anderen Klassen
+///  Diese Management-Klasse steuert und verbindet alle anderen Klassen 
 /// </summary>
 public class ManagerKlasse {
 
@@ -398,6 +398,11 @@ public class ManagerKlasse {
         }
         return result;
     }
+
+    /// <summary>
+    /// Methode überprüft, ob Manager komplett geladen wurde
+    /// </summary>
+    /// <returns>Bool, ob Manager komplett geladen wurde</returns>
     public bool LoadingComplete()
     {
         bool result = false;
@@ -424,7 +429,6 @@ public class ManagerKlasse {
     public AnimalController GetAnimalByName(string name)
     {
         AnimalController result = null;
-        Debug.Log("GetAnimalByName, suche folgendes Tier" + name+ "--- AnimalList ist so lang:"+ AnimalList.Count);
 
         if (AnimalList.Count == this.PlayerCount)
         {
@@ -436,7 +440,6 @@ public class ManagerKlasse {
                 }
             }
         }
-        Debug.Log("GetAnimalByName, gebe folgendes Tier zurück:" + result + "--- AnimalList ist so lang:" + AnimalList.Count);
 
         return result;
     }
@@ -472,22 +475,29 @@ public class ManagerKlasse {
         }
     }
 
+    /// <summary>
+    /// Gibt alle verwendeten Fiducial IDs zurück
+    /// </summary>
+    /// <returns></returns>
     public int[] GetAllIDs(){
 
         int[] allIDs = new int[PlayerCount];
         int counter = 0;
+        string result="IDs:";
         if (AnimalList.Count == allIDs.Length)
         {
             foreach (AnimalController animal in AnimalList)
             {
                 allIDs[counter] = animal.MarkerID;
+                result+=", "+animal.MarkerID,
                 counter++;
             }
         }
          else{
-            Debug.Log("Sende default-IDs");
+            result = "Sende default-IDs";
             allIDs = new int[4]{0,1,2,3};
           }
+        Debug.Log(result);
          return allIDs;
        }
 
@@ -509,14 +519,7 @@ public class ManagerKlasse {
     ///  Fügt ein Tier dem Tier-Array hinzu
     /// </summary> 
     public void AddAnimal(AnimalController animal)
-    {/**
-        string s = animal.name+" soll hinzugefügt werden";
-        foreach(AnimalController a in AnimalList)
-        {
-            s += a.name + "ist in Liste"; ;
-        }
-        Debug.Log(s);*/
-
+    {
         if (animal != null&&!AnimalList.Contains(animal))
         {
             this.AnimalList.Add(animal);

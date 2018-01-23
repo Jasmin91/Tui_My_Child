@@ -3,6 +3,10 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Klasse steuert den Coundown zum automatischen Abschalten des Spiels
+/// </summary>
+
 public class Timer : MonoBehaviour
 {
 
@@ -11,19 +15,75 @@ public class Timer : MonoBehaviour
     ///Erstellt eine Instanz der Manager-Klasse
     /// </summary>
     private ManagerKlasse Manager;
+
+    /// <summary>
+    /// Speichert die Länge des Countdowns
+    /// </summary>
     private float ResetTime;
+
+    /// <summary>
+    /// Countdown-Dauer
+    /// </summary>
     public float Countdown = 60.0f;
+
+    /// <summary>
+    /// Breite der Wolke
+    /// </summary>
     public float width = 1;
+
+    /// <summary>
+    /// Höhe der Wolke
+    /// </summary>
     public float height = 1;
+
+    /// <summary>
+    /// bool, ob Wolke gezeigt werden soll
+    /// </summary>
     public bool ShowCloud = true;
+
+    /// <summary>
+    /// Z-Achse der Position der Wolke
+    /// </summary>
     public float AxeZ = -3f;
+
+    /// <summary>
+    /// Bool, ob Countdown unterbrochen wurde
+    /// </summary>
     private bool paused = true;
+
+    /// <summary>
+    /// 
+    /// </summary>
     Text ausgaben;
+
+    /// <summary>
+    /// Auszugebender Text
+    /// </summary>
     public Text Ausgabe;
+
+    /// <summary>
+    /// TuioManager
+    /// </summary>
     UniducialLibrary.TuioManager m_TuioManager;
+
+    /// <summary>
+    /// Zeit, die Warnung eingeblendet wird
+    /// </summary>
     private float TimeToWarn;
+
+    /// <summary>
+    /// Wartezeit, bis Warnung eingeblendet wird
+    /// </summary>
     public float WaitingTime = 10;
-    GameObject go;
+
+    /// <summary>
+    /// Spielobjekt Wolke
+    /// </summary>
+    GameObject Cloud;
+
+    /// <summary>
+    /// Bool, ob es sich bei aktiver Szene um Opening Szene handelt
+    /// </summary>
     public bool Opening = false;
 
 
@@ -38,14 +98,14 @@ public class Timer : MonoBehaviour
         Ausgabe.text = "";
 
 
-        go = new GameObject("Cloud");
-        SpriteRenderer renderer = go.AddComponent<SpriteRenderer>();
-        GUITexture te = go.AddComponent<GUITexture>();
-        go.GetComponent<SpriteRenderer>().sprite = Resources.Load("Cloud", typeof(Sprite)) as Sprite;
-        go.transform.position = new Vector3(Ausgabe.rectTransform.position.x, Ausgabe.rectTransform.position.y, AxeZ);
+        Cloud = new GameObject("Cloud");
+        SpriteRenderer renderer = Cloud.AddComponent<SpriteRenderer>();
+        GUITexture te = Cloud.AddComponent<GUITexture>();
+        Cloud.GetComponent<SpriteRenderer>().sprite = Resources.Load("Cloud", typeof(Sprite)) as Sprite;
+        Cloud.transform.position = new Vector3(Ausgabe.rectTransform.position.x, Ausgabe.rectTransform.position.y, AxeZ);
         //Ausgabe.rectTransform.position = new Vector3(0, 0, 0);
-        go.transform.localScale = new Vector3(width, height, 0);
-        go.SetActive(false);
+        Cloud.transform.localScale = new Vector3(width, height, 0);
+        Cloud.SetActive(false);
     }
 
         void Update()
@@ -66,7 +126,7 @@ public class Timer : MonoBehaviour
 
                 if (ShowCloud)
                 {
-                    go.SetActive(true);
+                    Cloud.SetActive(true);
                 }
             }
             if (Countdown <= 0.0f || Input.GetKeyDown(KeyCode.A))
@@ -89,6 +149,10 @@ public class Timer : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Startet den Timer
+    /// </summary>
+    /// <param name="duration">Dauer des Timers</param>
     public void StartTimer(float duration)
     {
         ResetTime = duration;
@@ -101,7 +165,7 @@ public class Timer : MonoBehaviour
         paused = true;
         Ausgabe.text = "";
         Countdown = ResetTime;
-        go.SetActive(false);
+        Cloud.SetActive(false);
 
     }
 
@@ -128,6 +192,6 @@ public class Timer : MonoBehaviour
     {
         int IntTime = (int) time;
         Ausgabe.text = "Das Spiel endet in " + (int)time + " Sekunden, wenn kein Fiducial auf dem Tisch steht!";
-        go.GetComponent<GUITexture>().enabled = true;
+        Cloud.GetComponent<GUITexture>().enabled = true;
     }
 }
