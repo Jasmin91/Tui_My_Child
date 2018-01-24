@@ -76,15 +76,15 @@ public class HutScript : MonoBehaviour
 
         if (Manager.GetVistors().Count == Manager.PlayerCount) { //Schaut, ob alle Tiere auf der Hütte sind
             if (Manager.GetFoundAllFood()) { //Schaut, ob alles Essen gesammelt wurde
-                finished = true;
-                Manager.Reset();
-                SceneManager.LoadScene("Closing");
+                finished = true; //Spiel ist fertig
+                Manager.Reset(); //Manger wird resettet
+                SceneManager.LoadScene("Closing"); //Endszene wird geladen
                
             }
             else
             {
                 String s = "Wir haben noch nicht genug zu essen!";
-                Manager.LetAnimalSaySomething(col.name, s, 4);
+                Manager.LetAnimalSaySomething(col.name, s, 4); //Lässt kollidierendes Tier 4 Sek etwas sagen
             }
         }
         else
@@ -93,12 +93,12 @@ public class HutScript : MonoBehaviour
             if (animal.GetHasFood())
             {
                 s += "Ich warte noch auf meine Freunde!";
-                animal.Speak(s, 4);
+                animal.Speak(s, 4); //Lässt kollidierendes Tier 4 Sek etwas sagen
             }
             else
             {
                 s += "Ich habe noch nichts zu essen!";
-                animal.Speak(s);
+                animal.Speak(s); //Lässt kollidierendes Tier etwas sagen, bis es die Hütte wieder verlässt
             }
         }
     }

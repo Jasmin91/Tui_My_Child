@@ -183,7 +183,7 @@ public class Timer : MonoBehaviour
     }
 
     /// <summary>
-    /// Methode reguliert, was bei Ablaufen des Timers funktioniert
+    /// Methode reguliert, was bei Ablaufen des Timers passiert
     /// </summary>
     void TimerEnded()
     {

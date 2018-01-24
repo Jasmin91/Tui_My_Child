@@ -51,9 +51,8 @@ public class NutScript : MonoBehaviour
     
     void Update()
     {
-        if (collected)
+        if (collected){
             gameObject.GetComponent<Renderer>().enabled = false;
-        {
 
             if (!Play) {
                 pling.Play();
