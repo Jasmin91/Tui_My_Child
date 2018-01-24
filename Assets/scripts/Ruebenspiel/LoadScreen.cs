@@ -13,41 +13,17 @@ public class LoadScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		UpdateBar ();
-		Debug.Log ("Start " + fill.fillAmount);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-	/*	GameObject circle1 = GameObject.Find ("Kreis1_1");
-		GameObject circle2 = GameObject.Find ("Kreis2_1");
-		GameObject circle3 = GameObject.Find ("Kreis3_1");
-		GameObject circle4 = GameObject.Find ("Kreis4_1");
-
-		GameObject[] circle = new GameObject[] {
-			circle1, circle2, circle3, circle4
-		}; */
-			
+		//fill.fillAmount füllt den Pfeil, der mit der Fiducial ID 0 kontrolliert wird
+		//das wird hier durch 2 geteilt, damit die Pfeile nicht sofort gefüllt sind
+		//macht man an dieser Stelle eine Anpassung, so muss man dies auch im Fiducial_Counter anpassen "done etc. >= 2f"
 		fill.fillAmount = RuebenController.ScreenArray [0]/2;
-		Debug.Log ("Update " + fill.fillAmount);
-
-	/*	for (int i = 1; i <= Fiducial_Counter.count; i++) {
-			if (i < Fiducial_Counter.count) {
-				SpriteRenderer renderer = circle [i - 1].GetComponent<SpriteRenderer> ();
-				renderer.color = new Color (0.133f, 0.545f, 0.133f);
-				continue;
-			} else {
-				if (fill.fillAmount >= 1f) {
-					SpriteRenderer renderer = circle [i - 1].GetComponent<SpriteRenderer> ();
-					renderer.color = new Color (0.133f, 0.545f, 0.133f);
-					continue;
-				}
-			} 
-			SpriteRenderer renderer1 = circle [i - 1].GetComponent<SpriteRenderer> ();
-			renderer1.color = new Color (0.35f, 0.19f, 0.1f);
-		} */
 	}
 
+	//Methode für das Leeren der Pfeile zu Beginn des Spiels Start()
 	private void UpdateBar(){
 		fill.fillAmount = 0f;
 	}
