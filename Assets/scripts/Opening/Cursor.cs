@@ -30,7 +30,10 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class Cursor : MonoBehaviour
 {
-    public int MarkerID;
+    public int MarkerID0=0;
+    public int MarkerID1=1;
+    public int MarkerID2=2;
+    public int MarkerID3=3;
 
     /// <summary>
     /// Sound bei Auswählen eines Buttons
@@ -98,29 +101,70 @@ public class Cursor : MonoBehaviour
         {
             Debug.LogError("There is no main camera defined in your scene.");
         }
-
-        System.Random rnd = new System.Random();
-        int id = rnd.Next(0, 4);
-        MarkerID = id;
-        Debug.Log("Marker ID:" + this.MarkerID);
-
+        
     }
 
     void Update()
     {
 
-        this.transform.position = new Vector3 (this.transform.position.x, PosY, this.transform.position.z);
-        
+      //  this.transform.position = new Vector3 (this.transform.position.x, PosY, this.transform.position.z);
 
-        if (this.m_TuioManager.IsConnected
-            && this.m_TuioManager.IsMarkerAlive(this.MarkerID))
+        if (this.m_TuioManager.IsConnected)
         {
-            TUIO.TuioObject marker = this.m_TuioManager.GetMarker(this.MarkerID);
 
-            //update parameters
-            this.m_ScreenPosition.x = marker.getX();
-            //update transform component
-            UpdateTransform();
+            string s = "aktiv:";
+            int counter = 0;
+            float posX = 0;
+            float x = this.transform.position.x;
+
+            if (this.m_TuioManager.IsMarkerAlive(this.MarkerID0))
+            {
+                TUIO.TuioObject marker0 = this.m_TuioManager.GetMarker(0);
+                posX += marker0.getX();
+                s += this.MarkerID0 + " posX:" + marker0.getX() + "+";
+
+                counter++;
+            }
+            if (this.m_TuioManager.IsMarkerAlive(this.MarkerID1))
+            {
+                TUIO.TuioObject marker1 = this.m_TuioManager.GetMarker(1);
+                posX += marker1.getX();
+                s += this.MarkerID1 + " posX:" + marker1.getX() + "+";
+                counter++;
+            }
+            if (this.m_TuioManager.IsMarkerAlive(this.MarkerID2))
+            {
+                TUIO.TuioObject marker2 = this.m_TuioManager.GetMarker(2);
+                posX += marker2.getX();
+                s += this.MarkerID2 + " posX:" + marker2.getX() + "+";
+                counter++;
+            }
+            if (this.m_TuioManager.IsMarkerAlive(this.MarkerID3))
+            {
+                TUIO.TuioObject marker3 = this.m_TuioManager.GetMarker(3);
+                posX += marker3.getX();
+                s += this.MarkerID3 + " posX:" + marker3.getX() + "+";
+                counter++;
+            }
+            if (counter > 0)
+            {
+                x = posX/counter ;
+            }
+                s += "=" + x;
+            
+            Debug.Log(s);
+
+            if (counter > 0)
+            {
+                Vector3 position = new Vector3(x * Screen.width,
+                    (1 - this.m_ScreenPosition.y) * Screen.height, this.CameraOffset);
+                this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);
+                //worldPosition += cameraOffset * mainCamera.transform.forward;
+                transform.position = new Vector3(this.m_WorldPosition.x, PosY, -1);
+            }
+            
+
+           // this.transform.position = new Vector3(x, this.transform.position.y, 0);
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -128,7 +172,6 @@ public class Cursor : MonoBehaviour
         }
 
     }
-
 
    
     /// <summary>

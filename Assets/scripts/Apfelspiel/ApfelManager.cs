@@ -89,31 +89,6 @@ public class ApfelManager {
        this.SetWindBlowing(false); //Wird wieder auf false gesetzt, damit Fiducial erneut gezeigt werden muss, damit der nächste Apfel fällt
     }
 
-    /// <summary>  
-    ///Lässt jeden Apfel im Array wachsen
-    /// </summary>
-    /// <param name="rainDuration">Dauer, die es bereits regnet</param>
-    public void ApfelWachsenLassen(float rainDuration)
-    {
-        foreach (AppleScript apfel in AppleList)
-        {
-            apfel.GrowingApple(rainDuration);
-        }
-    }
-
-
-    /// <summary>  
-    ///Lässt jeden Apfel im Array reifen
-    /// </summary>
-    /// <param name="sunDuration">Dauer, die Sonne bereits scheint</param>
-    public void ApfelReifenLassen(float sunDuration)
-    {
-        foreach (AppleScript apfel in AppleList)
-        {
-            apfel.RipingApple(sunDuration);
-        }
-    }
-
 
 
     /// <summary>  

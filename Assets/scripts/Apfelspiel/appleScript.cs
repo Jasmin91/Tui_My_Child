@@ -47,6 +47,11 @@ public class AppleScript : MonoBehaviour
         
     }
     
+    void Update()
+    {
+        GrowingApple(ms_Instance.Rain.GetRainDuration());
+        RipingApple(ms_Instance.Sun.sunDuration);
+    }
 
     /// <summary>
     /// Zeigt Apfel
@@ -73,16 +78,15 @@ public class AppleScript : MonoBehaviour
     /// </summary>
     /// <param name="rainDuration">Dauer, die es bereits regnet</param>
 
-    public void GrowingApple(float rainDuration)
+    public void GrowingApple(int rainDuration)
 
     {
         Debug.Log("wächst");
         float oldSize = gameObject.transform.localScale.x; //Alte Größe des Apfels
        
-        if (rainDuration <= 5 && rainDuration > 0)
+        if (rainDuration <= 5)
         {
             float size = 0.1f + (0.02f * (rainDuration)); //Berechnen der neuen Größe
-            if (size > oldSize && size <= 0.2f) //checkt, ob neue Größe wirklich größer, als die alte
             {
                 if (size == 0.09f)
                 {
@@ -103,9 +107,9 @@ public class AppleScript : MonoBehaviour
     ///Lässt den Apfel reifen 
     /// </summary>
     /// <param name="sunDuration">Dauer, die die Sonne bereits scheint</param>
-    public void RipingApple(float sunDuration)
+    public void RipingApple(int sunDuration)
     {
-        if (AppleNumber + 1 == sunDuration && sunDuration <= 5) //checkt, ob das nächste Bild auch wirklich einen Apfel zeigt, der reifer ist, als der vorhergehende
+        if (sunDuration <= 5) 
         {
             AppleNumber = sunDuration;
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("apfel_" + AppleNumber, typeof(Sprite)) as Sprite; //Setzt neues (reiferes) Bild

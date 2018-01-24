@@ -936,12 +936,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4ec05b41228034cbdc0f6dde2b333f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarkerID: 0
+  MarkerID0: 0
+  MarkerID1: 1
+  MarkerID2: 2
+  MarkerID3: 3
   PlingSound: {fileID: 1516566702}
   InvertX: 0
   CameraOffset: 10
   RotateAround: 1
-  PosY: 0
+  PosY: -1
 --- !u!1 &1617827712
 GameObject:
   m_ObjectHideFlags: 0

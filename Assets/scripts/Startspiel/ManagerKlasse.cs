@@ -234,6 +234,7 @@ public class ManagerKlasse {
         NutList.Clear();
         PortalList.Clear();
         VisitingHut.Clear();
+        
     }
 
     /// <summary>  

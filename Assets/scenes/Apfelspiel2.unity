@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3601e9633aaf6443861f3ba6b619492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingSpeed: 0.23
+  FallingSpeed: 0.23
 --- !u!50 &244158395
 Rigidbody2D:
   serializedVersion: 4
@@ -954,6 +954,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 2
+  Duration: 0
+  WaitingToMove: 10
   countdownDuration: 5
   RainSound: {fileID: 879039747}
   IsPositionMapped: 0
@@ -1632,7 +1634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3601e9633aaf6443861f3ba6b619492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingSpeed: 0.23
+  FallingSpeed: 0.23
 --- !u!50 &1766317958
 Rigidbody2D:
   serializedVersion: 4
@@ -1765,7 +1767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3601e9633aaf6443861f3ba6b619492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingSpeed: 0.23
+  FallingSpeed: 0.23
 --- !u!50 &1839704212
 Rigidbody2D:
   serializedVersion: 4
@@ -1870,7 +1872,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MarkerID: 1
-  sunDuration: 5
+  Duration: 0
+  sunDuration: 0
   countdownDuration: 5
   SunSound: {fileID: 2026832692}
   IsPositionMapped: 0
@@ -2105,7 +2108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3601e9633aaf6443861f3ba6b619492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallingSpeed: 0.23
+  FallingSpeed: 0.23
 --- !u!50 &2092852937
 Rigidbody2D:
   serializedVersion: 4

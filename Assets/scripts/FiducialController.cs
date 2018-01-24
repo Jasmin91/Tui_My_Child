@@ -107,11 +107,7 @@ public class FiducialController : MonoBehaviour
 
     void Update()
     {
-
-		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
-			//Debug.Log("FidcialController Zeile 110:this.m_TuioManager.IsMarkerAlive(this.MarkerID)");
-		}
-
+        
 
         if (this.m_TuioManager.IsConnected
             && this.m_TuioManager.IsMarkerAlive(this.MarkerID))

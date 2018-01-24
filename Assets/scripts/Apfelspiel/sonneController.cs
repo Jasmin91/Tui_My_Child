@@ -33,11 +33,16 @@ public class sonneController : MonoBehaviour
 {
     public int MarkerID = 0;
 
+    /// <summary>
+    /// Countdown-Dauer
+    /// </summary>
+    public float Duration = 0f;
+
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
     /// <summary>
     /// Dauer, die Sonne scheinen soll
     /// </summary>
-    public float sunDuration = 0;
+    public int sunDuration = 0;
 
     /// <summary>
     ///Dauer, die die Sonne scheint 
@@ -162,7 +167,9 @@ public class sonneController : MonoBehaviour
     private void ShowGameObject()
     {
         if (ms_Instance.Rain.GetRainReady()) {
-            StartCoroutine(StartCountdownToRed());
+            if(Duration < 5)
+            Duration += Time.deltaTime;
+            sunDuration = (int)Duration;
         }
         if (!PlayingSound)
         {
@@ -197,6 +204,11 @@ public class sonneController : MonoBehaviour
     private void HideGameObject()
     {
 
+        if (sunDuration < 5)
+        {
+            sunDuration = 0;
+            Duration = 0;
+        }
         if (PlayingSound)
         {
             SunSound.Stop();
@@ -225,26 +237,17 @@ public class sonneController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    ///Methode mit Zähler, sorgt dafür, dass das Sonnen-Fiducial mindestens countdownDuration Sekunden in die Kamera gehalten werden muss
-    /// </summary>
-    /// <param name="countdownValue"></param>
-    /// <returns></returns>
-    public IEnumerator StartCountdownToRed(float countdownValue = 0)
+
+    public void StartCountdownToRed()
     {
-        sunDuration = countdownValue;
-        while (sunDuration < countdownDuration)
+        Duration += Time.deltaTime;
+
+        
+        if (Duration <= 0.0f || Input.GetKeyDown(KeyCode.A))
         {
-            yield return new WaitForSeconds(1.0f);
-            sunDuration++;
-            ms_Instance.ApfelReifenLassen(this.sunDuration);
-            if (sunDuration == 5)
-            {
-                this.SetSunReady(true); //Sonne hat genug geschienen
-            }
+            
         }
-
-
+        
     }
 
     #region Getter

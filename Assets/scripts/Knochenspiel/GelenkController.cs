@@ -35,7 +35,7 @@ public class GelenkController : MonoBehaviour
     /// <summary>
     /// Ziel-Drehung des Gelenkes
     /// </summary>
-    private Quaternion reference;
+    private float reference = 90;
 
     /// <summary>
     /// Instanz des Knochen-Managers
@@ -50,7 +50,7 @@ public class GelenkController : MonoBehaviour
     /// <summary>
     /// Wert, um welchen Drehung abweichen darf
     /// </summary>
-    private float deviation = 0.05f;
+    private float deviation = 5f;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 
@@ -121,29 +121,30 @@ public class GelenkController : MonoBehaviour
 
            
         }
-
+        /**
 
         //Setzt je nach Gelenk den richtigen Zielwert
         switch (this.name)
         {
             case "red":
-                reference = new Quaternion(0.0f, 0.0f, 0.0f, -1.0f);
+                reference = 0;
                 break;
             case "blue":
-                reference = new Quaternion(0.0f, 0.0f, -1.0f, 0.0f);
+                reference = 180;
                 break;
             case "green":
-                reference = new Quaternion(0.0f, 0.0f, 0.0f, -1.0f);
+                reference = 360;
                 break;
             case "yellow":
-                reference = new Quaternion(0.0f, 0.0f, 0.0f, -1.0f);
+                reference = 360;
                 break;
 
-        }
+        }*/
     }
 
     void Update()
     {
+        Debug.Log(this.name+":"+this.transform.eulerAngles.z);
 
 		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
 		}
@@ -224,7 +225,7 @@ public class GelenkController : MonoBehaviour
         
 
         //Überprüft, ob die Rotation mit Zielrotation übereinstimmt
-        if (Equal(rotation))
+        if (Equal(this.transform.eulerAngles.z))
         {
             this.RightRotation = true;
         }
@@ -240,10 +241,10 @@ public class GelenkController : MonoBehaviour
     /// </summary>
     /// <param name="q">Abzugleichender, aktuellert Wert</param>
     /// <returns>Bool, ob übereinstimmend</returns>
-    private bool Equal(Quaternion q)
+    private bool Equal(float q)
     {
         bool result = false;
-        if (Check(q.z, reference.z))
+        if (Check(q, reference))
         {
             result = true;
         }

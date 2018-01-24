@@ -32,9 +32,20 @@ public class regenController : MonoBehaviour
     public int MarkerID = 0;
 
     /// <summary>
+    /// Countdown-Dauer
+    /// </summary>
+    public float Duration = 0f;
+
+    /// <summary>
     /// Dauer, die es regnet
     /// </summary>
-    private float rainDuration = 0;
+    private int rainDuration = 0;
+
+    /// <summary>
+    /// Hilfsbool gibt an, dass Fiducial nicht sofort erkannt wird
+    /// </summary>
+    private bool ShouldWait = true;
+    
 
     /// <summary>
     /// Dauer, die es regnen soll
@@ -102,6 +113,7 @@ public class regenController : MonoBehaviour
             this.m_ControlsGUIElement = true;
         }
         this.m_IsVisible = false;
+        HideGameObject();
     }
 
     void Start()
@@ -120,31 +132,33 @@ public class regenController : MonoBehaviour
     void Update()
     {
 
-		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
-		}
-
-
-        if (this.m_TuioManager.IsConnected
-            && this.m_TuioManager.IsMarkerAlive(this.MarkerID))
-        {
-            TUIO.TuioObject marker = this.m_TuioManager.GetMarker(this.MarkerID);
-            
-            this.m_IsVisible = true;
-
-            //set game object to visible, if it was hidden before
-            ShowGameObject();
-            
-
-        }
-        else
-        {
-            //automatically hide game object when marker is not visible
-            if (this.AutoHideGO)
+    
+        
+        
+            if (this.m_TuioManager.IsConnected
+                && this.m_TuioManager.IsMarkerAlive(this.MarkerID))
             {
-                HideGameObject();
+                if (!ShouldWait) { 
+                    TUIO.TuioObject marker = this.m_TuioManager.GetMarker(this.MarkerID);
+
+                this.m_IsVisible = true;
+
+                //set game object to visible, if it was hidden before
+                ShowGameObject();
+
             }
-            this.m_IsVisible = false;
-        }
+           }
+            else
+            {
+                //automatically hide game object when marker is not visible
+                if (this.AutoHideGO)
+                {
+                    HideGameObject();
+                    ShouldWait = false;
+                }
+                this.m_IsVisible = false;
+            
+            }
     }
 
 
@@ -162,8 +176,15 @@ public class regenController : MonoBehaviour
     /// </summary>
     private void ShowGameObject()
     {
-        
-        StartCoroutine(StartCountdownToGrow());
+       
+            if (Duration < 5)
+                Duration += Time.deltaTime;
+            rainDuration = (int)Duration;
+        if(rainDuration == 5)
+        {
+            this.RainReady = true;
+        }
+
         if (!PlayingSound) {
             RainSound.Play();
             PlayingSound = true;
@@ -191,37 +212,17 @@ public class regenController : MonoBehaviour
 
 
 
-    /// <summary>
-    ///Methode mit Zähler, sorgt dafür, dass das Regen-Fiducial mindestens countdownDuration Sekunden in die Kamera gehalten werden muss
-    /// </summary>
-    /// <param name="countdownValue"></param>
-    /// <returns></returns>
-    public IEnumerator StartCountdownToGrow(float countdownValue = 0)
-    {
-        if (!RainReady)
-        {
-            rainDuration = countdownValue;
-            while (rainDuration <= countdownDuration)
-            {
-
-                rainDuration++;
-                ms_Instance.ApfelWachsenLassen(this.rainDuration);
-                yield return new WaitForSeconds(1.0f);
-                if (rainDuration >= countdownDuration)
-                {
-                    this.SetRainReady(true); //Es hat genug geregnet
-                 }
-
-            }
-        }
-    }
 
     /// <summary>
     /// Blendet Regenwolke aus
     /// </summary>
     private void HideGameObject()
     {
-
+        if (rainDuration < 5)
+        {
+            rainDuration = 0;
+            Duration = 0;
+        }
 
         if (PlayingSound)
         {
@@ -277,19 +278,12 @@ public class regenController : MonoBehaviour
     /// Getter, wie lang es bisher geregnet hat
     /// </summary>
     /// <returns>Bisherige Regendauer</returns>
-    public float GetRainDuration()
+    public int GetRainDuration()
     {
         return this.rainDuration;
     }
 
-    /// <summary>
-    /// Setter, wie lang es bisher geregnet hat
-    /// </summary>
-    /// <param name="duration">Bisherige Regendauer</param>
-    public void SetRainDuration(float duration)
-    {
-        this.rainDuration = duration;
-    }
+
 
     public bool isAttachedToGUIComponent()
     {
