@@ -6,32 +6,47 @@ using UnityEngine.SceneManagement;
 
 //Sound: Music By http://instrumentalsfree.com
 
-public class Fiducial_Counter : MonoBehaviour {
+public class Fiducial_Counter : MonoBehaviour
+{
 
 	public static int count = 1;
 	public static float time;
 
-	public static bool play = false;
-	public static bool playPling = false;
+	public AudioSource WinSound;
+	public AudioSource Pling;
+
+	bool play = false;
+	//public static bool playPling = false;
 	bool finished = false;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		time = Time.time;
 		count = 1;
 		ResetScreenArray ();
+		WinSound = GameObject.Find ("ArrowCanvas").GetComponent<AudioSource> ();
+		Pling = GameObject.Find ("Middleground").GetComponent<AudioSource> ();
 	}
 
-	void ResetScreenArray(){
+	void ResetScreenArray ()
+	{
 		for (int i = 0; i < 4; i++) {
 			RuebenController.ScreenArray [i] = 0f;
 		}
 	}
+
+	IEnumerator Warten ()
+	{
+		yield return new WaitForSeconds (5f);
+		SceneManager.LoadScene ("Startspiel");
+	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 
-	/*	GameObject circle1 = GameObject.Find ("Kreis1_1");
+		/*	GameObject circle1 = GameObject.Find ("Kreis1_1");
 		GameObject circle2 = GameObject.Find ("Kreis2_1");
 		GameObject circle3 = GameObject.Find ("Kreis3_1");
 		GameObject circle4 = GameObject.Find ("Kreis4_1");
@@ -70,9 +85,9 @@ public class Fiducial_Counter : MonoBehaviour {
 			circle13, circle14, circle15, circle16
 		}; */
 
-		if(Time.time - time > 2){
-		bool done = true;
-		for(int i = 0; i < 4 ;i++){
+		if (Time.time - time > 2) {
+			bool done = true;
+			for (int i = 0; i < 4; i++) {
 				done &= RuebenController.ScreenArray [i] >= 2f;
 
 /*				if (RuebenController.ScreenArray [0] >= 2f) {
@@ -197,60 +212,62 @@ public class Fiducial_Counter : MonoBehaviour {
 					SpriteRenderer renderer = circle [15].GetComponent<SpriteRenderer> ();
 					renderer.color = new Color (0.133f, 0.545f, 0.133f);
 				}  */
-		}
+			}
         
 
-		if (done) {
+			if (done) {
 
-			time = Time.time;
-			// ziehe die Rübe aus der Mitte
-			GameObject carrot = GameObject.Find ("Ruebe" + count);
+				time = Time.time;
+				// ziehe die Rübe aus der Mitte
+				GameObject carrot = GameObject.Find ("Ruebe" + count);
 			
 			
 
-			GameObject carrot1 = GameObject.Find ("Ruebe1");
-			GameObject carrot2 = GameObject.Find ("Ruebe2");
-			GameObject carrot3 = GameObject.Find ("Ruebe3");
-			GameObject carrot4 = GameObject.Find ("Ruebe4");
+				GameObject carrot1 = GameObject.Find ("Ruebe1");
+				GameObject carrot2 = GameObject.Find ("Ruebe2");
+				GameObject carrot3 = GameObject.Find ("Ruebe3");
+				GameObject carrot4 = GameObject.Find ("Ruebe4");
 
 
 
-			carrot.GetComponent<Renderer>().enabled = false;
+				carrot.GetComponent<Renderer> ().enabled = false;
 
-	//		playPling = true;
 			
-			if (carrot.GetComponent<Renderer> ().enabled == false && count == 1) {
+				if (carrot.GetComponent<Renderer> ().enabled == false && count == 1) {
 					carrot1 = GameObject.Find ("Ruebe1");
-			}
-			if (carrot.GetComponent<Renderer> ().enabled == false && count == 2) {
+				//	Pling.Play ();
+				}
+				if (carrot.GetComponent<Renderer> ().enabled == false && count == 2) {
 					carrot2 = GameObject.Find ("Ruebe2");
-			}
-			if (carrot.GetComponent<Renderer> ().enabled == false && count == 3) {
+				//	Pling.Play ();
+				}
+				if (carrot.GetComponent<Renderer> ().enabled == false && count == 3) {
 					carrot3 = GameObject.Find ("Ruebe3");
-			}
-			if (carrot.GetComponent<Renderer> ().enabled == false && count == 4) {
+				//	Pling.Play ();
+				}
+				if (carrot.GetComponent<Renderer> ().enabled == false && count == 4) {
 					carrot4 = GameObject.Find ("Ruebe4");
-			}
-
-
-			if(count >= 4 && !carrot1.GetComponent<Renderer>().enabled && !carrot2.GetComponent<Renderer>().enabled && !carrot3.GetComponent<Renderer>().enabled && !carrot4.GetComponent<Renderer>().enabled){
-		//			playPling = false;
-					play = true;
-					finished = true;
-
-			}
-
-				if (finished == true) {
-				// lade Start-Bildschirm
-				SceneManager.LoadScene ("Startspiel");
 				}
 
-			count++;
+
+
+				if (count >= 4 && !carrot1.GetComponent<Renderer> ().enabled && !carrot2.GetComponent<Renderer> ().enabled && !carrot3.GetComponent<Renderer> ().enabled && !carrot4.GetComponent<Renderer> ().enabled) {
+					//			playPling = false;
+
+					WinSound.Play ();
+					finished = true;
+				}
+
+				if (finished == true) {
+					StartCoroutine ("Warten");
+				}
+
+				count++;
 //			Debug.Log ("Inkrement" + count);
-			for (int i = 0; i < 4; i++) {
+				for (int i = 0; i < 4; i++) {
 					RuebenController.ScreenArray [i] = 0;
+				}
 			}
-          }
 		}
-	}        
+	}
 }
