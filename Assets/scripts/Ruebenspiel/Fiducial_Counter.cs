@@ -9,12 +9,11 @@ using UnityEngine.SceneManagement;
 public class Fiducial_Counter : MonoBehaviour {
 
 	public static int count = 1;
-	//public int fiducialId = 0;
 	public static float time;
 
-
-	//public AudioSource sound;
-
+	public static bool play = false;
+	public static bool playPling = false;
+	bool finished = false;
 
 	// Use this for initialization
 	void Start () {
@@ -32,7 +31,7 @@ public class Fiducial_Counter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		GameObject circle1 = GameObject.Find ("Kreis1_1");
+	/*	GameObject circle1 = GameObject.Find ("Kreis1_1");
 		GameObject circle2 = GameObject.Find ("Kreis2_1");
 		GameObject circle3 = GameObject.Find ("Kreis3_1");
 		GameObject circle4 = GameObject.Find ("Kreis4_1");
@@ -49,10 +48,10 @@ public class Fiducial_Counter : MonoBehaviour {
 		GameObject circle15 = GameObject.Find ("Kreis3_4");
 		GameObject circle16 = GameObject.Find ("Kreis4_4");
 
-	/*	GameObject[] circle = new GameObject[] {
+		GameObject[] circle = new GameObject[] {
 			circle1, circle2, circle3, circle4, circle5, circle6, circle7, circle8, circle9,
 			circle10, circle11, circle12, circle13, circle14, circle15, circle16
-		}; */
+		}; 
 
 
 		GameObject[] kreis = new GameObject[]{ 
@@ -69,14 +68,14 @@ public class Fiducial_Counter : MonoBehaviour {
 
 		GameObject[] kreis3 = new GameObject[]{
 			circle13, circle14, circle15, circle16
-		}; 
+		}; */
 
 		if(Time.time - time > 2){
 		bool done = true;
 		for(int i = 0; i < 4 ;i++){
 				done &= RuebenController.ScreenArray [i] >= 2f;
 
-				if (RuebenController.ScreenArray [0] >= 2f) {
+/*				if (RuebenController.ScreenArray [0] >= 2f) {
 					for (int x = 1; x <= count; x++){
 						SpriteRenderer renderer = kreis [x-1].GetComponent<SpriteRenderer> ();
 						renderer.color = new Color (0.133f, 0.545f, 0.133f);
@@ -109,7 +108,7 @@ public class Fiducial_Counter : MonoBehaviour {
 				} 	
 
 
-		/*			for (int x = 1; x <= count; x++) {
+					for (int x = 1; x <= count; x++) {
 					if (RuebenController.ScreenArray [0] >= 2f) {
 						SpriteRenderer renderer = kreis [x-1].GetComponent<SpriteRenderer> ();
 						renderer.color = new Color (0.133f, 0.545f, 0.133f);
@@ -132,9 +131,9 @@ public class Fiducial_Counter : MonoBehaviour {
 						continue;	
 					}
 
-				} */
+				}
 
-/*				if (RuebenController.ScreenArray [0] >= 2f && count == 1) {
+				if (RuebenController.ScreenArray [0] >= 2f && count == 1) {
 					SpriteRenderer renderer = circle [0].GetComponent<SpriteRenderer> ();
 					renderer.color = new Color (0.133f, 0.545f, 0.133f);
 				}
@@ -206,6 +205,8 @@ public class Fiducial_Counter : MonoBehaviour {
 			time = Time.time;
 			// ziehe die Rübe aus der Mitte
 			GameObject carrot = GameObject.Find ("Ruebe" + count);
+			
+			
 
 			GameObject carrot1 = GameObject.Find ("Ruebe1");
 			GameObject carrot2 = GameObject.Find ("Ruebe2");
@@ -216,6 +217,7 @@ public class Fiducial_Counter : MonoBehaviour {
 
 			carrot.GetComponent<Renderer>().enabled = false;
 
+	//		playPling = true;
 			
 			if (carrot.GetComponent<Renderer> ().enabled == false && count == 1) {
 					carrot1 = GameObject.Find ("Ruebe1");
@@ -232,10 +234,17 @@ public class Fiducial_Counter : MonoBehaviour {
 
 
 			if(count >= 4 && !carrot1.GetComponent<Renderer>().enabled && !carrot2.GetComponent<Renderer>().enabled && !carrot3.GetComponent<Renderer>().enabled && !carrot4.GetComponent<Renderer>().enabled){
-					// lade Start-Bildschirm
-				SceneManager.LoadScene("Startspiel");
-	
+		//			playPling = false;
+					play = true;
+					finished = true;
+
 			}
+
+				if (finished == true) {
+				// lade Start-Bildschirm
+				SceneManager.LoadScene ("Startspiel");
+				}
+
 			count++;
 //			Debug.Log ("Inkrement" + count);
 			for (int i = 0; i < 4; i++) {
