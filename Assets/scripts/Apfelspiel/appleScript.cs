@@ -81,7 +81,6 @@ public class AppleScript : MonoBehaviour
     public void GrowingApple(int rainDuration)
 
     {
-        Debug.Log("wächst");
         float oldSize = gameObject.transform.localScale.x; //Alte Größe des Apfels
        
         if (rainDuration <= 5)

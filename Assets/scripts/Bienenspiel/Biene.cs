@@ -27,6 +27,7 @@ public class Biene : MonoBehaviour {
     // Use this for initialization
     public void Start()
     {
+        this.ResetBee();
         manager = BienenManager.Instance;
         tickSource = GetComponent<AudioSource>();
         glas.SetActive(true);
@@ -142,7 +143,7 @@ public class Biene : MonoBehaviour {
         counter_left = 0;
         WarZuletztLinks = true;
         WarZuletztRechts = true;
-}
+    }
 
 
 

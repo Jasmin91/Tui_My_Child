@@ -121,30 +121,11 @@ public class GelenkController : MonoBehaviour
 
            
         }
-        /**
-
-        //Setzt je nach Gelenk den richtigen Zielwert
-        switch (this.name)
-        {
-            case "red":
-                reference = 0;
-                break;
-            case "blue":
-                reference = 180;
-                break;
-            case "green":
-                reference = 360;
-                break;
-            case "yellow":
-                reference = 360;
-                break;
-
-        }*/
+       
     }
 
     void Update()
     {
-        Debug.Log(this.name+":"+this.transform.eulerAngles.z);
 
 		if (this.m_TuioManager.IsMarkerAlive(this.MarkerID)) {
 		}

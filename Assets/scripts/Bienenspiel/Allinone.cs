@@ -14,8 +14,8 @@ public class Allinone : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-       // tickSource.Play();
         manager = BienenManager.Instance;
+        manager.ResetManager();
         gameObject.GetComponent<Collider2D>().enabled = false;
     }
 
@@ -42,7 +42,7 @@ public class Allinone : MonoBehaviour {
             {
                 
                 play = false;
-                manager.FinisfhGame();
+                manager.FinishGame();
             }
         }
 

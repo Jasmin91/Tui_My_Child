@@ -24,7 +24,7 @@ public class BienenManager {
 			}
             return manager;
 		}
-                
+              
 	}
 
 
@@ -76,12 +76,12 @@ public class BienenManager {
     /// <summary>  
     /// Beendet das Bienenspiel und lädt wieder Startspiel
     /// </summary>
-    public void FinisfhGame()
+    public void FinishGame()
     {
 
-        foreach(Biene b in BienenListe)
+        foreach (Biene b in BienenListe)
         {
-            b.ResetBee();
+           // b.ResetBee();
         }
         BienenListe.Clear();
         SceneManager.LoadScene("Startspiel");
@@ -91,7 +91,14 @@ public class BienenManager {
 
     #region Getter&Setter
 
-    
+    public void ResetManager()
+    {
+        foreach (Biene b in BienenListe)
+        {
+            b.ResetBee();
+        }
+        BienenListe.Clear();
+    }
 
     #endregion
 
