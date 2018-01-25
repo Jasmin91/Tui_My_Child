@@ -41,21 +41,18 @@ public class HutScript : MonoBehaviour
     public AudioSource DoorSound;
 
     /// <summary>
-    /// Besucherzähler
+    /// Hilfsbool, damit Sound nur 1x gespielt wird
     /// </summary>
-    int VisitorCounter = 0;
-
+    bool Play = true;
 
     void Start()
     {
-        VisitorCounter=0;
         this.Manager = ManagerKlasse.Instance;
         baloon.GetComponent<Renderer>().enabled = false;
     }
     void Update()
     {
-
-        Debug.Log("Besucher:" + VisitorCounter);
+        
         if(Manager.GetFoundAllFood()){
 
             Countdown -= Time.deltaTime;
@@ -63,7 +60,11 @@ public class HutScript : MonoBehaviour
             if (Countdown <= 0.0f)
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("hut_open", typeof(Sprite)) as Sprite;
-                DoorSound.Play();
+
+                if (!Play){
+                    DoorSound.Play();
+                    Play = true;
+                }
                 baloon.GetComponent<Renderer>().enabled = true;
                 baloon.GetComponent<Rigidbody2D>().gravityScale = BaloonSpeed;
             }
@@ -76,12 +77,10 @@ public class HutScript : MonoBehaviour
     /// </summary> 
     void OnTriggerEnter2D(Collider2D col)
     {
-        //Manager.VisitHut(col.name); //Merkt sich im Manager, dass Tier gerade auf Hütte ist
+        Manager.VisitHut(col.name); //Merkt sich im Manager, dass Tier gerade auf Hütte ist
         AnimalController animal = Manager.GetAnimalByName(col.name);
-        VisitorCounter++;
-        if (col.name == "horse" && col.name == "dog") ;
-
-        if (VisitorCounter == Manager.PlayerCount) { //Schaut, ob alle Tiere auf der Hütte sind
+        
+        if (Manager.GetVistors().Count == Manager.PlayerCount) { //Schaut, ob alle Tiere auf der Hütte sind
             if (Manager.GetFoundAllFood()) { //Schaut, ob alles Essen gesammelt wurde
                 finished = true; //Spiel ist fertig
                 Manager.Reset(); //Manger wird resettet
@@ -113,9 +112,8 @@ public class HutScript : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-       // Manager.LeaveHut(col.name); //Merkt sich im Manager, dass Tier Hütte verlassen hat
+        Manager.LeaveHut(col.name); //Merkt sich im Manager, dass Tier Hütte verlassen hat
         Manager.LetAnimalBeQuiet(col.name);
-        VisitorCounter--;
     }
     
 }

@@ -102,12 +102,28 @@ public class ManagerKlasse {
     /// </summary> 
     public void VisitHut(string name)
     {
+        //Hilfsvariable um zu überprüfen, ob Tier schon in Liste 
+        bool AlreadyThere = false;
+        
         foreach (AnimalController animal in AnimalList) {
+            
             if (animal.name == name)
             {
-                this.VisitingHut.Add(animal);
+                foreach (AnimalController a in VisitingHut)
+                {
+                    if (a.name == name)
+                    {
+                        AlreadyThere = true;
+
+                    } 
+                }
+                if (!AlreadyThere)
+                {
+                    this.VisitingHut.Add(animal);
+                }
             }
         }
+        
     }
     /// <summary>  
     ///  Methode, die anhand des Tiernamens das Tier aus der entsprechenden Liste löscht, wenn es sich nicht mehr auf der Hütte befindet
@@ -540,6 +556,7 @@ public class ManagerKlasse {
     /// </summary> 
     public void AddVisitedPortal(PortalController portal)
     {
+       
         this.DeletedPortalList.Add(portal.name);
     }
 

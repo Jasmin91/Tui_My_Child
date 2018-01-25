@@ -11711,13 +11711,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fdb8a9fc7fdea45b0591500a8be83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Countdown: 30
+  Countdown: 40
   width: 0.1
   height: 0.1
   ShowCloud: 1
   AxeZ: -1
   Ausgabe: {fileID: 831542061}
-  WaitingTime: 10
+  WaitingTime: 20
   Opening: 0
 --- !u!81 &1932923346
 AudioListener:
