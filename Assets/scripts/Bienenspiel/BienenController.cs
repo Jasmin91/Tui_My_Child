@@ -44,7 +44,7 @@ public class BienenController : MonoBehaviour
 
 
     public float CameraOffset = 10;
-    public RotationAxis RotateAround = RotationAxis.Back;
+    private RotationAxis RotateAround = RotationAxis.Back;
     private UniducialLibrary.TuioManager m_TuioManager;
 	private ApfelManager ms_Instance;
     private Camera m_MainCamera;

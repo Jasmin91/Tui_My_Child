@@ -79,7 +79,7 @@ public class HutScript : MonoBehaviour
         //Manager.VisitHut(col.name); //Merkt sich im Manager, dass Tier gerade auf Hütte ist
         AnimalController animal = Manager.GetAnimalByName(col.name);
         VisitorCounter++;
-
+        if (col.name == "horse" && col.name == "dog") ;
 
         if (VisitorCounter == Manager.PlayerCount) { //Schaut, ob alle Tiere auf der Hütte sind
             if (Manager.GetFoundAllFood()) { //Schaut, ob alles Essen gesammelt wurde

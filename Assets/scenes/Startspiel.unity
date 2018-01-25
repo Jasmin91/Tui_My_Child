@@ -4171,7 +4171,6 @@ MonoBehaviour:
   MarkerID: 3
   Nickname: Hund
   WaitingToMove: 1
-  audioo: {fileID: 0}
   Geschwindigkeit: 0.9
   IsPositionMapped: 0
   InvertX: 0
@@ -5708,7 +5707,6 @@ MonoBehaviour:
   MarkerID: 1
   Nickname: Pferd
   WaitingToMove: 1
-  audioo: {fileID: 0}
   Geschwindigkeit: 0.9
   IsPositionMapped: 0
   InvertX: 0
@@ -8043,7 +8041,6 @@ MonoBehaviour:
   MarkerID: 2
   Nickname: Hase
   WaitingToMove: 1
-  audioo: {fileID: 0}
   Geschwindigkeit: 0.9
   IsPositionMapped: 0
   InvertX: 0
@@ -12145,7 +12142,6 @@ MonoBehaviour:
   MarkerID: 0
   Nickname: "B\xE4r"
   WaitingToMove: 1
-  audioo: {fileID: 0}
   Geschwindigkeit: 0.9
   IsPositionMapped: 0
   InvertX: 0
