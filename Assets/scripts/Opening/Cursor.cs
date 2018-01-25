@@ -107,9 +107,10 @@ public class Cursor : MonoBehaviour
     void Update()
     {
 
-      //  this.transform.position = new Vector3 (this.transform.position.x, PosY, this.transform.position.z);
+        //  this.transform.position = new Vector3 (this.transform.position.x, PosY, this.transform.position.z);
 
-        if (this.m_TuioManager.IsConnected)
+        //if (this.m_TuioManager.IsConnected)
+        if (this.m_TuioManager.IsConnected&& this.m_TuioManager.IsMarkerAlive(this.MarkerID0) && this.m_TuioManager.IsMarkerAlive(this.MarkerID1) && this.m_TuioManager.IsMarkerAlive(this.MarkerID2) && this.m_TuioManager.IsMarkerAlive(this.MarkerID3))
         {
 
             string s = "aktiv:";
