@@ -268,8 +268,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Countdown: 120
-  width: 0.3
-  height: 0.3
+  width: 0.4
+  height: 0.4
   ShowCloud: 1
   AxeZ: -2
   Ausgabe: {fileID: 463182223}

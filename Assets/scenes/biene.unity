@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1500
+  m_DynamicPixelsPerUnit: 800
 --- !u!223 &655198116
 Canvas:
   m_ObjectHideFlags: 0
@@ -1377,8 +1377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Countdown: 30
-  width: 0.15
-  height: 0.15
+  width: 0.3
+  height: 0.3
   ShowCloud: 1
   AxeZ: -3
   Ausgabe: {fileID: 1813655073}
@@ -2301,7 +2301,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.15}
-  m_SizeDelta: {x: 5.908, y: 4.617}
+  m_SizeDelta: {x: 7.292, y: 4.617}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1813655073
 MonoBehaviour:
@@ -2324,7 +2324,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 43243fa8ce87d3243bde7f11c18ea00e, type: 3}
-    m_FontSize: 1
+    m_FontSize: 2
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

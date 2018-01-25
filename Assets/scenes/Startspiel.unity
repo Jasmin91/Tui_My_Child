@@ -4954,8 +4954,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 43243fa8ce87d3243bde7f11c18ea00e, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -11712,8 +11712,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Countdown: 40
-  width: 0.1
-  height: 0.1
+  width: 0.15
+  height: 0.15
   ShowCloud: 1
   AxeZ: -1
   Ausgabe: {fileID: 831542061}
