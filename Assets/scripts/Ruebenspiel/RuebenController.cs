@@ -124,20 +124,6 @@ public class RuebenController : MonoBehaviour
 		          && this.m_TuioManager.IsMarkerAlive (this.MarkerID)) {
 			TUIO.TuioObject marker = this.m_TuioManager.GetMarker (this.MarkerID);
 
-			/*
-			if (!recognized) {
-				recognized = true;
-				time0 = Time.time * 1000; 
-			}
-
-			time1 = Time.time  * 1000;
-
-			if (time1 - time0 > 2000) {
-				recognized = false;
-				Fiducial_Counter.UpdateCount ();
-			}
-			*/
-
 			//update parameters
 			this.m_ScreenPosition.x = marker.getX ();
 			this.m_ScreenPosition.y = marker.getY ();
@@ -156,24 +142,43 @@ public class RuebenController : MonoBehaviour
 
 			//update transform component
 			UpdateTransform ();
+
+			//Hier werden die Rüben gesucht, die auf der Seite der jeweiligen Person sind und ihre Kreise eingefärbt
 			if (Time.time - Fiducial_Counter.time > 2) {
+
+				//Hier wird der Index gesetzt, damit man weiß, welche "kleinen" Rüben und Kreise zu welcher Rübe gehören
 				if (this.name.IndexOf ("Ruebe" + Fiducial_Counter.count) > -1) {
+
+					/*Die Rüben in der Mitte werden von 1 - 4 gezählt und 
+						die unteren Rüben werden ebenfalls von 1-4 nummeriert,
+						jedoch nach dem "_" werden sie pro Seite mit gleich nummeriert.
+						Auf der Seite der Marker ID 0 ist bspw. die Ruebe1_1 
+						Hier soll die jeweilige Rübe in Kleinformat gefunden werden */
 					if (this.name.Equals ("Ruebe" + Fiducial_Counter.count + "_" + (this.MarkerID + 1))) {
 
+						//Dadurch findet man den Jeweiligen kreis der Unterrübe und färbt diesen Grün
 						GameObject circle = GameObject.Find (this.name.Replace ("Ruebe", "Kreis"));
 						SpriteRenderer renderer = circle.GetComponents<SpriteRenderer> () [0];
 						renderer.color = new Color(0.133f, 0.545f, 0.133f) ;
 
+						/*Hier kommt die Methode handleMarkerMovement in Aktion, die unten im Code zu finden ist. 
+							Über diese Methode wird der Füllstand und die Bewegungsrichtung der Fiducials festgelegt*/
 						float diff = this.handleMarkerMovement ();
-						diff *= MarkerID == 0 && MarkerID == 3 ? -1 : 1;
 
-					//	Debug.Log (diff);
+						/*Die Bewegungsachse wird in der Methode handleMarkerMovement festgelegt und 
+						 	hier wird nochmal festgelegt ob sie in die + oder - Richtung 
+						 	auf der jeweiligen Achse bewegt werden müssen. 
+						 	Spricht MarkerID 0 muss in Richtung +y, MarkerID 1 -x, 
+							MarkerID 2 -y und MarkerID 3 +x*/
+						diff *= MarkerID == 0 && MarkerID == 3 ? -1 : 1;
+					
 						if (diff > 0) {
+							//Der maximale Füllstand wird dann in den jeweiligen Loadscreen-Skripten kontrolliert
 							ScreenArray [MarkerID] += diff;
 						}
-						// logik für Fortschritt ... :)
 					}
 				} else {
+					//Ist die Rübe nicht dran, so bleibt der Kreis braun
 					GameObject circle = GameObject.Find (this.name.Replace ("Ruebe", "Kreis"));
 					SpriteRenderer renderer = circle.GetComponents<SpriteRenderer> () [0];
 					renderer.color = new Color (0.35f, 0.19f, 0.1f);
@@ -184,6 +189,7 @@ public class RuebenController : MonoBehaviour
 					HideGameObject ();
 				}
 
+				//Wird das Fiducial nicht erkannt, so bleibt die Rübe auch braun
 				recognized = false; 
 
 				GameObject circle = GameObject.Find (this.name.Replace ("Ruebe", "Kreis"));
@@ -319,6 +325,9 @@ public class RuebenController : MonoBehaviour
         }
     }
 
+	/*In dieser Methode wird sowohl der Füllstand des Pfeiles kontrolliert, sprich der Fortschritt, 
+	  der anhand der vorherigen und anschließenden Position berechnet wird 
+	  und auch die Richtung auf den jeweiligen x-y-Achsen festgelegt*/
 	private float handleMarkerMovement(){
 		if (previous_ScreenPosition != null) {
 			float prevValue = MarkerID % 2 == 0 ? previous_ScreenPosition.y : previous_ScreenPosition.x;
