@@ -56,49 +56,48 @@ public class Fiducial_Counter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //Logikvorbereitung für das eingefärbt lassen des Kreises dessen Pfeil schon voll ist
 
         //Finden aller Kreisobjekte
         /*	GameObject circle1 = GameObject.Find ("Kreis1_1");
-            GameObject circle2 = GameObject.Find ("Kreis2_1");
-            GameObject circle3 = GameObject.Find ("Kreis3_1");
-            GameObject circle4 = GameObject.Find ("Kreis4_1");
-            GameObject circle5 = GameObject.Find ("Kreis1_2");
-            GameObject circle6 = GameObject.Find ("Kreis2_2");
-            GameObject circle7 = GameObject.Find ("Kreis3_2");
-            GameObject circle8 = GameObject.Find ("Kreis4_2");
-            GameObject circle9 = GameObject.Find ("Kreis1_3");
-            GameObject circle10 = GameObject.Find ("Kreis2_3");
-            GameObject circle11 = GameObject.Find ("Kreis3_3");
-            GameObject circle12 = GameObject.Find ("Kreis4_3");
-            GameObject circle13 = GameObject.Find ("Kreis1_4");
-            GameObject circle14 = GameObject.Find ("Kreis2_4");
-            GameObject circle15 = GameObject.Find ("Kreis3_4");
-            GameObject circle16 = GameObject.Find ("Kreis4_4");
+		GameObject circle2 = GameObject.Find ("Kreis2_1");
+		GameObject circle3 = GameObject.Find ("Kreis3_1");
+		GameObject circle4 = GameObject.Find ("Kreis4_1");
+		GameObject circle5 = GameObject.Find ("Kreis1_2");
+		GameObject circle6 = GameObject.Find ("Kreis2_2");
+		GameObject circle7 = GameObject.Find ("Kreis3_2");
+		GameObject circle8 = GameObject.Find ("Kreis4_2");
+		GameObject circle9 = GameObject.Find ("Kreis1_3");
+		GameObject circle10 = GameObject.Find ("Kreis2_3");
+		GameObject circle11 = GameObject.Find ("Kreis3_3");
+		GameObject circle12 = GameObject.Find ("Kreis4_3");
+		GameObject circle13 = GameObject.Find ("Kreis1_4");
+		GameObject circle14 = GameObject.Find ("Kreis2_4");
+		GameObject circle15 = GameObject.Find ("Kreis3_4");
+		GameObject circle16 = GameObject.Find ("Kreis4_4");
 
-            //GamebObject-String mit allen Kreisen
-            GameObject[] circle = new GameObject[] {
-                circle1, circle2, circle3, circle4, circle5, circle6, circle7, circle8, circle9,
-                circle10, circle11, circle12, circle13, circle14, circle15, circle16
-            }; 
+		//GamebObject-String mit allen Kreisen
+		GameObject[] circle = new GameObject[] {
+			circle1, circle2, circle3, circle4, circle5, circle6, circle7, circle8, circle9,
+			circle10, circle11, circle12, circle13, circle14, circle15, circle16
+		}; 
 
-            //Gameobject-Strings (folgende vier) mit den Kreisen einer jeweiligen Seite
-            GameObject[] kreis = new GameObject[]{ 
-                circle1, circle2, circle3, circle4
-            };
+		//Gameobject-Strings (folgende vier) mit den Kreisen einer jeweiligen Seite
+		GameObject[] kreis = new GameObject[]{ 
+			circle1, circle2, circle3, circle4
+		};
 
-            GameObject[] kreis1 = new GameObject [] {
-                circle5, circle6, circle7, circle8	
-            };
+		GameObject[] kreis1 = new GameObject [] {
+			circle5, circle6, circle7, circle8	
+		};
 
-            GameObject[] kreis2 = new GameObject[] { 
-                circle9, circle10, circle11, circle12
-            };
+		GameObject[] kreis2 = new GameObject[] { 
+			circle9, circle10, circle11, circle12
+		};
 
-            GameObject[] kreis3 = new GameObject[]{
-                circle13, circle14, circle15, circle16
-            }; */
+		GameObject[] kreis3 = new GameObject[]{
+			circle13, circle14, circle15, circle16
+		}; */
 
         //Wartezeit nachdem eine Rübe in der Mitte gezogen wurde
         if (Time.time - time > 2)
