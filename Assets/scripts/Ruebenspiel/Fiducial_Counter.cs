@@ -48,7 +48,7 @@ public class Fiducial_Counter : MonoBehaviour
     //Warten nach dem Abspielen des WinSounds
     IEnumerator Warten()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         //Laden des Startspiels
         SceneManager.LoadScene("Startspiel");
     }
