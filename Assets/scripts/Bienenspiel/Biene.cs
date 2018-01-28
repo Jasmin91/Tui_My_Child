@@ -17,6 +17,8 @@ public class Biene : MonoBehaviour {
     public float ActRotation;
     float referenceLeft = 50;
     float referenceRight = 320;
+    float referenceLeft2 = 230;
+    float referenceRight2 = 140;
 
     /// <summary>
     /// Lässt Sound nur 1x spielen
@@ -73,14 +75,14 @@ public class Biene : MonoBehaviour {
     {
         
         GetRotation();
-        if ((counter_left < numberRotations) && (Equal(ActRotation, referenceLeft)) && WarZuletztRechts)
+        if ((counter_left < numberRotations) && (Equal(ActRotation, referenceLeft)|| Equal(ActRotation, referenceLeft2)) && WarZuletztRechts)
             {
             counter_left++;
             WarZuletztLinks = true;
             WarZuletztRechts = false;
         }
 
-        if ((counter_right < numberRotations) && (Equal(ActRotation, referenceRight)) && WarZuletztLinks)
+        if ((counter_right < numberRotations) && (Equal(ActRotation, referenceRight)|| Equal(ActRotation, referenceRight2)) && WarZuletztLinks)
             {
             counter_right++;
             WarZuletztRechts = true;
@@ -117,18 +119,26 @@ public class Biene : MonoBehaviour {
             case "bee":
                 referenceLeft = 50;
                 referenceRight = 320;
+                referenceLeft2 = 230;
+                referenceRight2 = 140;
                 break;
             case "bee1":
                 referenceLeft = 140;
                 referenceRight = 50;
+                referenceLeft2 = 320;
+                referenceRight2 = 230;
                 break;
             case "bee2":
-                referenceLeft = 225;
+                referenceLeft = 230;
                 referenceRight = 140;
+                referenceLeft2 = 50;
+                referenceRight2 = 320;
                 break;
             case "bee3":
                 referenceLeft = 320;
-                referenceRight = 225;
+                referenceRight = 230;
+                referenceLeft2 = 140;
+                referenceRight2 = 50;
                 break;
 
         }
