@@ -369,14 +369,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fdb8a9fc7fdea45b0591500a8be83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Countdown: 60
+  Countdown: 80
+  CountdownClosing: 10
   width: 1
   height: 1
   ShowCloud: 0
   AxeZ: -3
   Ausgabe: {fileID: 1938048965}
-  WaitingTime: 10
+  WaitingTime: 30
   Opening: 0
+  Closing: 1
 --- !u!82 &209239232
 AudioSource:
   m_ObjectHideFlags: 0

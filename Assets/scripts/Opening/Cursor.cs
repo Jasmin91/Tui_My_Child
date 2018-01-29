@@ -21,9 +21,11 @@ THE SOFTWARE.
 */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Steuert den Cursor des Startbildschirms
@@ -34,6 +36,10 @@ public class Cursor : MonoBehaviour
     public int MarkerID1=1;
     public int MarkerID2=2;
     public int MarkerID3=3;
+
+   
+
+    public Text hint;
 
     /// <summary>
     /// Sound bei Auswählen eines Buttons
@@ -102,14 +108,12 @@ public class Cursor : MonoBehaviour
             Debug.LogError("There is no main camera defined in your scene.");
         }
         
+        
     }
 
     void Update()
     {
-
-        //  this.transform.position = new Vector3 (this.transform.position.x, PosY, this.transform.position.z);
-
-        //if (this.m_TuioManager.IsConnected)
+        
         if (this.m_TuioManager.IsConnected&& this.m_TuioManager.IsMarkerAlive(this.MarkerID0) && this.m_TuioManager.IsMarkerAlive(this.MarkerID1) && this.m_TuioManager.IsMarkerAlive(this.MarkerID2) && this.m_TuioManager.IsMarkerAlive(this.MarkerID3))
         {
 
@@ -153,19 +157,17 @@ public class Cursor : MonoBehaviour
             }
                 s += "=" + x;
             
-            Debug.Log(s);
+            //Debug.Log(s);
 
             if (counter > 0)
             {
                 Vector3 position = new Vector3(x * Screen.width,
                     (1 - this.m_ScreenPosition.y) * Screen.height, this.CameraOffset);
                 this.m_WorldPosition = this.m_MainCamera.ScreenToWorldPoint(position);
-                //worldPosition += cameraOffset * mainCamera.transform.forward;
                 transform.position = new Vector3(this.m_WorldPosition.x, PosY, -1);
             }
-            
 
-           // this.transform.position = new Vector3(x, this.transform.position.y, 0);
+            
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -174,7 +176,8 @@ public class Cursor : MonoBehaviour
 
     }
 
-   
+ 
+
     /// <summary>
     ///Collider, der erkennt ob Cursor und Button
     /// </summary>

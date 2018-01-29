@@ -940,6 +940,7 @@ MonoBehaviour:
   MarkerID1: 1
   MarkerID2: 2
   MarkerID3: 3
+  hint: {fileID: 0}
   PlingSound: {fileID: 1516566702}
   InvertX: 0
   CameraOffset: 10

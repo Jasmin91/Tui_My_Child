@@ -108,7 +108,7 @@ public class Timer : MonoBehaviour
         Cloud.SetActive(false);
     }
 
-        void Update()
+    void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -119,7 +119,7 @@ public class Timer : MonoBehaviour
         if (!paused)
         {
             Countdown -= Time.deltaTime;
-           
+
             if (Countdown <= TimeToWarn)
             {
                 this.PrintTimer(Countdown);
@@ -138,6 +138,7 @@ public class Timer : MonoBehaviour
         }
 
         int[] IDs = this.Manager.GetAllIDs();
+
         if (!IsRunning() && !this.m_TuioManager.IsMarkerAlive(0) && !this.m_TuioManager.IsMarkerAlive(1) && !this.m_TuioManager.IsMarkerAlive(2) && !this.m_TuioManager.IsMarkerAlive(3))
         {
             Manager.GetTimer().StartTimer(Countdown);
@@ -146,7 +147,7 @@ public class Timer : MonoBehaviour
         {
             Manager.GetTimer().ResetTimer();
         }
-
+    
     }
 
     /// <summary>
