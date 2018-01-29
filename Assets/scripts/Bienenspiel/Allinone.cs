@@ -7,27 +7,26 @@ public class Allinone : MonoBehaviour {
     public AudioSource tickSource;
     public AudioSource sound;
     private BienenManager manager;
-    public int counter=0;
     bool play = false;
     float targetTime = 3;
 
     // Use this for initialization
     void Start ()
     {
-        manager = BienenManager.Instance;
-        manager.ResetManager();
-        gameObject.GetComponent<Collider2D>().enabled = false;
+        manager = BienenManager.Instance; //Instanz v. Bienenmanager
+        manager.ResetManager(); //resette d Managers
+        gameObject.GetComponent<Collider2D>().enabled = false; //Collider deaktiviert
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        int filling = manager.GetFilling();
-        string name = "glas" + filling;
-        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load(name, typeof(Sprite)) as Sprite;
+        int filling = manager.GetFilling(); //Füllung abfragen im Manager
+        string name = "glas" + filling; //Dateiname generieren
+        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load(name, typeof(Sprite)) as Sprite; //holt Bilddatei aus Ressources
 
-        if (manager.GetReady()&&play==false)
+        if (manager.GetReady()&& !play)
         {
             tickSource.Play();
             sound.Pause();
@@ -37,34 +36,15 @@ public class Allinone : MonoBehaviour {
         }
 
         if(play){
-            targetTime -= Time.deltaTime;
+            targetTime -= Time.deltaTime; //Warten, bis Sound fertig ist
             if (targetTime <= 0.0f)
             {
-                
                 play = false;
                 manager.FinishGame();
             }
         }
 
     }
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-           /** if (other.gameObject.name == "bee" || other.gameObject.name == "bee1" || other.gameObject.name == "bee2" || other.gameObject.name == "bee3")
-            {
-                counter++;
-                if (counter == 4)
-                {
-                    tickSource.Play();
-                }
-            }   */
-    }
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.name == "bee" || other.gameObject.name == "bee1" || other.gameObject.name == "bee2" || other.gameObject.name == "bee3")
-        {
-            counter--;
-        }
-     
-    }
+
     
 }

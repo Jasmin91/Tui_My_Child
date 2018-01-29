@@ -39,8 +39,7 @@ public class KnochenManager {
 		}
                 
 	}
-
-
+    
     public KnochenManager()
     {
         if (km_Instance != null)

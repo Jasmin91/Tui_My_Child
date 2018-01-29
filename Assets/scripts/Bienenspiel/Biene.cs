@@ -29,20 +29,20 @@ public class Biene : MonoBehaviour {
     // Use this for initialization
     public void Start()
     {
-        this.ResetBee();
-        manager = BienenManager.Instance;
-        tickSource = GetComponent<AudioSource>();
-        glas.SetActive(true);
-        this.GetReferenceAxes();
+        this.ResetBee(); //Resetten der Biene
+        manager = BienenManager.Instance; //Instanz d Managers
+        tickSource = GetComponent<AudioSource>(); 
+        glas.SetActive(true); //Anzeigen der Gläser
+        this.GetReferenceAxes(); //Holen der Referenzachsen
     }
 
 
     void Update()
     {
-        ActRotation = this.transform.eulerAngles.z;
+        ActRotation = this.transform.eulerAngles.z; //Aktualisieren der gespeicherten Rotation
         if (onFlower)
         {
-            CheckRotation();
+            CheckRotation(); //Abgleichen der Rotation mit Referenz
         }
     }
 
@@ -69,6 +69,8 @@ public class Biene : MonoBehaviour {
         float x=  gameObject.transform.rotation.x;
         float y = gameObject.transform.rotation.y;
         float z = gameObject.transform.rotation.z;
+
+        //Zum bestimmen der Rotation
     }
 
     private void CheckRotation()
@@ -92,9 +94,9 @@ public class Biene : MonoBehaviour {
 
 
         int filling = counter_left;
-        string name = "glas" + filling;
+        string name = "glas" + filling; //Dateiname generiert
 
-        glas.GetComponent<SpriteRenderer>().sprite = Resources.Load(name, typeof(Sprite)) as Sprite;
+        glas.GetComponent<SpriteRenderer>().sprite = Resources.Load(name, typeof(Sprite)) as Sprite; //Datei aus Ressourcen
 
 
         if (counter_left == numberRotations)
@@ -104,7 +106,7 @@ public class Biene : MonoBehaviour {
                 tickSource.Play();
                 play = true;
             }
-            manager.HoneyReady(this);
+            manager.HoneyReady(this); //Biene sagt Manager, dass fertig
         }
     }
 

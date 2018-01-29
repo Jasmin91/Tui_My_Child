@@ -9,9 +9,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class BienenManager {
     
-    private static BienenManager manager;
-    private List<Biene> BienenListe = new List<Biene>();
-    private int anzahlBienen = 4;
+    private static BienenManager manager; //Speichert sich selbst
+    private List<Biene> BienenListe = new List<Biene>(); //Speichert alle Bienen
+    private int anzahlBienen = 4; 
 
 
     public static BienenManager Instance
@@ -42,7 +42,7 @@ public class BienenManager {
 
     }
 
-    internal bool GetReady()
+    internal bool GetReady() //Wenn sich alle fertigen Bienen eingetragen haben ist Spiel aus
     {
         bool result = false;
         if (BienenListe.Count == anzahlBienen)
@@ -52,7 +52,7 @@ public class BienenManager {
         return result;
     }
 
-    internal int GetFilling()
+    internal int GetFilling() //Gibt Glas die Anzahl der fertigen Bienen bzw Höhe des Füllstandes
     {
         int result = 0;
         if (BienenListe.Count >= 0 && BienenListe.Count <= anzahlBienen)
@@ -64,42 +64,30 @@ public class BienenManager {
 
     public void HoneyReady(Biene h)
     {
-        if (!BienenListe.Contains(h))
+        if (!BienenListe.Contains(h)) //Überprüft das Biene noch nicht in Liste ist
         {
-            BienenListe.Add(h);
+            BienenListe.Add(h); //Füt Biene hinzu
         }
     }
 
   
-
-
     /// <summary>  
     /// Beendet das Bienenspiel und lädt wieder Startspiel
     /// </summary>
     public void FinishGame()
     {
-
-        foreach (Biene b in BienenListe)
-        {
-           // b.ResetBee();
-        }
         BienenListe.Clear();
         SceneManager.LoadScene("Startspiel");
     }
 
 
-
-    #region Getter&Setter
-
     public void ResetManager()
     {
         foreach (Biene b in BienenListe)
         {
-            b.ResetBee();
+            b.ResetBee(); //Alle Bienen in Liste werden resetten
         }
-        BienenListe.Clear();
+        BienenListe.Clear(); //Leeren der Liste
     }
-
-    #endregion
-
+    
 }
