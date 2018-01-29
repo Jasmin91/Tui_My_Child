@@ -26,6 +26,7 @@ public class KnochenManager {
     /// </summary>
     private bool GameSolved = false;
 
+    
 
     public static KnochenManager Instance
 	{

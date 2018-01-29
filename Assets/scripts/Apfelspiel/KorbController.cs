@@ -18,6 +18,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+Code angepasst von: Jasmin Profus
 */
 
 using System;
@@ -51,11 +53,15 @@ public class KorbController : MonoBehaviour
     /// Sound nach erfolgreicher Lösung des Spiels (Alle Äpfel gesammelt)
     /// </summary>
     public AudioSource WinSound;
+    //https://www.youtube.com/watch?v=hvs34cmWu8w (Abrufdatum: 29.01.18)
 
     /// <summary>
     /// Sound beim Sammeln eines Apfels
     /// </summary>
     public AudioSource PlingSound;
+    //https://youtu.be/sIn-m7UXcoo?t=10s (Abrufdatum: 29.01.18)
+
+
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 
     //translation

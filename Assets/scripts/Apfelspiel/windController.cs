@@ -18,6 +18,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+Code angepasst von: Jasmin Profus
 */
 
 using System;
@@ -36,6 +38,7 @@ public class windController : MonoBehaviour
     /// Sound beim Einblenden des Windes
     /// </summary>
     public AudioSource WindSound;
+    //http://soundbible.com/1810-Wind.html (Abrufdatum: 29.01.18)
 
     /// <summary>
     /// Hilfsbool, damit Sound nur 1x abgespielt wird
