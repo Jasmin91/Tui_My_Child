@@ -8,12 +8,19 @@ using UnityEngine.SceneManagement;
 ///  Diese BienenManagement-Klasse steuert und verbindet alle anderen Klassen des Bienenspiels
 /// </summary>
 public class BienenManager {
-    
-    private static BienenManager manager; //Speichert sich selbst
-    private List<Biene> BienenListe = new List<Biene>(); //Speichert alle Bienen
+    /// <summary>
+    /// Der Manager für die BienenManager-Klasse wird definiert
+    /// </summary>
+    private static BienenManager manager; 
+    /// <summary>
+    /// Liste in der die Bienen gespeichert werden wird erstellt
+    /// </summary>
+    private List<Biene> BienenListe = new List<Biene>(); 
     private int anzahlBienen = 4; 
 
-
+    /// <summary>
+    /// Überprüft ob Manager vorhanden ist und erzeugt diesen falls nicht vorhanden
+    /// </summary>
     public static BienenManager Instance
 	{
 		get
@@ -41,8 +48,11 @@ public class BienenManager {
             manager = this;
 
     }
-
-    internal bool GetReady() //Wenn sich alle fertigen Bienen eingetragen haben ist Spiel aus
+    /// <summary>
+    /// Wenn die Anzahl der Bienen identsich mit der eingetragenen Anzahl der Bienen ist wird das Spiel beendet 
+    /// </summary>
+    /// <returns></returns>
+    internal bool GetReady() 
     {
         bool result = false;
         if (BienenListe.Count == anzahlBienen)
@@ -51,8 +61,11 @@ public class BienenManager {
         }
         return result;
     }
-
-    internal int GetFilling() //Gibt Glas die Anzahl der fertigen Bienen bzw Höhe des Füllstandes
+    /// <summary>
+    /// Überträgt dem Glas die Anzahl der fertigen Bienen und bestimmt somit den Füllstand für das Glas 
+    /// </summary>
+    /// <returns></returns>
+    internal int GetFilling() 
     {
         int result = 0;
         if (BienenListe.Count >= 0 && BienenListe.Count <= anzahlBienen)
@@ -61,12 +74,15 @@ public class BienenManager {
         }
         return result;
     }
-
+    /// <summary>
+    /// Wenn eine Biene nicht in der Liste ist, wird diese hinzugefügt
+    /// </summary>
+    /// <param name="h"></param>
     public void HoneyReady(Biene h)
     {
-        if (!BienenListe.Contains(h)) //Überprüft das Biene noch nicht in Liste ist
+        if (!BienenListe.Contains(h)) 
         {
-            BienenListe.Add(h); //Füt Biene hinzu
+            BienenListe.Add(h); 
         }
     }
 
@@ -80,14 +96,16 @@ public class BienenManager {
         SceneManager.LoadScene("Startspiel");
     }
 
-
+    /// <summary>
+    /// Für das nächste Spiel werden die Bienen resettet und die Liste der Bienen wird gelöscht
+    /// </summary>
     public void ResetManager()
     {
         foreach (Biene b in BienenListe)
         {
-            b.ResetBee(); //Alle Bienen in Liste werden resetten
+            b.ResetBee(); 
         }
-        BienenListe.Clear(); //Leeren der Liste
+        BienenListe.Clear(); 
     }
     
 }

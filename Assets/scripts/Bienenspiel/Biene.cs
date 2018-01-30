@@ -1,52 +1,113 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Klasse für die Steuerungn der Bienen
+/// </summary>
 public class Biene : MonoBehaviour {
+    /// <summary>
+    /// Sound für die Bienen wenn sie auf der Blume sind
+    /// </summary>
     public AudioSource tickSource;
+    /// <summary>
+    /// Blume wird definiert
+    /// </summary>
     public GameObject Blume;
+    /// <summary>
+    /// Glas wird definiert
+    /// </summary>
     public GameObject glas;
+    /// <summary>
+    /// Manager aus der BienenManager-Klasse wird definiert
+    /// </summary>
     private BienenManager manager;
+    /// <summary>
+    /// Abweichungswert für die Rotation wird definiert
+    /// </summary>
     private float deviation = 10f;
+    /// <summary>
+    /// Counter für die Rotation nach Links
+    /// </summary>
     public int counter_left = 0;
+    /// <summary>
+    /// Counter für die Rotation nach Rechts
+    /// </summary>
     public int counter_right = 0;
+    /// <summary>
+    /// Bestimmt ob die Rotation zuletzt nach Links war
+    /// </summary>
     public bool WarZuletztLinks = true;
+    /// <summary>
+    /// Bestimmt ob die Rotation zuletzt nach rechts war
+    /// </summary>
     public bool WarZuletztRechts = true;
+    /// <summary>
+    /// Anzahl der Rotation für das Füllen vom Glas
+    /// </summary>
     private int numberRotations = 4;
+    /// <summary>
+    /// Überprüft ob die Biene sich während der Rotation auf der Blume befindet
+    /// </summary>
     public bool onFlower = false;
+    /// <summary>
+    /// Gibt den Rotationswinkel der Biene wieder
+    /// </summary>
     public float ActRotation;
+    /// <summary>
+    /// Gibt dem Referenzwert der Rotation nach Links an
+    /// </summary>
     float referenceLeft = 50;
+    /// <summary>
+    /// Gibt den Referenzwert der Rotation nach Rechts an
+    /// </summary>
     float referenceRight = 320;
+    /// <summary>
+    /// Gibt den zweiten Referenzwert der Rotation nach Links an, falls die Biene Kopfüber auf der Blume positioniert wird
+    /// </summary>
     float referenceLeft2 = 230;
+    /// <summary>
+    /// Gibt den zweiten Referenzwert der Rotation nach Rechts an, falls die Biene Kopfüber auf der Blume positioniert wird
+    /// </summary>
     float referenceRight2 = 140;
 
     /// <summary>
     /// Lässt Sound nur 1x spielen
     /// </summary>
     private bool play = false;
-    
 
-    // Use this for initialization
+
+    /// <summary>
+    /// Bienen werden resettet
+    /// Instanz des Managers wird erstellt
+    /// Sound wir hervogerufen
+    /// Glas wird auf dem Spielfel sichtbar gemacht
+    /// Referenzachsen werden hervorgeholt
+    /// </summary>
     public void Start()
     {
-        this.ResetBee(); //Resetten der Biene
-        manager = BienenManager.Instance; //Instanz d Managers
+        this.ResetBee(); 
+        manager = BienenManager.Instance; 
         tickSource = GetComponent<AudioSource>(); 
-        glas.SetActive(true); //Anzeigen der Gläser
-        this.GetReferenceAxes(); //Holen der Referenzachsen
+        glas.SetActive(true); 
+        this.GetReferenceAxes(); 
     }
 
-
+    /// <summary>
+    /// Gespeicherte rotation wird aktualisiert und mit der Referenz abgeglichen
+    /// </summary>
     void Update()
     {
-        ActRotation = this.transform.eulerAngles.z; //Aktualisieren der gespeicherten Rotation
+        ActRotation = this.transform.eulerAngles.z; 
         if (onFlower)
         {
-            CheckRotation(); //Abgleichen der Rotation mit Referenz
+            CheckRotation(); 
         }
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Überprüft ob Biene auf der Blume ist
+    /// </summary>
+    /// <param name="other"></param>
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject==Blume)
@@ -55,7 +116,10 @@ public class Biene : MonoBehaviour {
             onFlower = true;
         }
     }
-
+    /// <summary>
+    /// Überprüft ob Biene runter von der Blume ist
+    /// </summary>
+    /// <param name="other"></param>
     public void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject == Blume)
@@ -72,7 +136,10 @@ public class Biene : MonoBehaviour {
 
         //Zum bestimmen der Rotation
     }
-
+    /// <summary>
+    /// Vergleicht die Rotationsanzahl nach links oder rechts mit der Anzahl der Rotation die erlaubt sind und ob die Rotation im Referenzbereich ist
+    /// Erhöht den Counter der Rotation nach Links bzw nach Rechts
+    /// </summary>
     private void CheckRotation()
     {
         
@@ -90,15 +157,20 @@ public class Biene : MonoBehaviour {
             WarZuletztRechts = true;
             WarZuletztLinks = false;
         }
-        
 
-
+        /// <summary>
+        /// Generiert Dateiname 
+        /// </summary>
         int filling = counter_left;
-        string name = "glas" + filling; //Dateiname generiert
+        string name = "glas" + filling; 
+        ///<summary>
+        ///Holt Datei aus Ressourcen
+        ///</summary>
+        glas.GetComponent<SpriteRenderer>().sprite = Resources.Load(name, typeof(Sprite)) as Sprite;
 
-        glas.GetComponent<SpriteRenderer>().sprite = Resources.Load(name, typeof(Sprite)) as Sprite; //Datei aus Ressourcen
-
-
+        // <summary>
+        /// Füllt die Biene ihr Glas mit Honig, gibt sie dem Manager bescheid, dass der Vorgang erfolgreich abgeschlossen ist
+        /// </summary>
         if (counter_left == numberRotations)
         {
             if (!play)
@@ -106,7 +178,7 @@ public class Biene : MonoBehaviour {
                 tickSource.Play();
                 play = true;
             }
-            manager.HoneyReady(this); //Biene sagt Manager, dass fertig
+            manager.HoneyReady(this); 
         }
     }
 
