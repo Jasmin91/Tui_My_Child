@@ -29,7 +29,8 @@ public class NutScript : MonoBehaviour
     /// Sound beim Sammeln einer Nuss
     /// </summary>
     public AudioSource pling;
-    
+    //https://youtu.be/sIn-m7UXcoo?t=10s (Abrufdatum: 29.01.18)
+
     /// <summary>
     /// Hilfsbool, damit Sound nur einmal abgespielt wird
     /// </summary>

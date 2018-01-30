@@ -18,6 +18,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+Code angepasst von: Jasmin Profus
 */
 
 using System;
@@ -58,6 +60,7 @@ public class sonneController : MonoBehaviour
     /// Sound, wenn Sonne angezeigt wird
     /// </summary>
     public AudioSource SunSound;
+    //http://www.salamisound.de/1755562-vogelgezwitscher-singvoegel-im# (Abrufdatum: 29.01.18)
 
     /// <summary>
     /// Hilfsbool, damit Sound nur 1x gespielt wird

@@ -18,6 +18,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+Code angepasst von: Jasmin Profus
 */
 
 using System;
@@ -111,6 +113,9 @@ public class Cursor : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Alle Fiducials müssen sichtbar sein. x-Wert wird aus Durchschnitt aller x-Werte aller Fiducials berechnet
+    /// </summary>
     void Update()
     {
         

@@ -29,11 +29,16 @@ public class Knochen : MonoBehaviour
     /// Sound nach erfolgreichem Beenden des Spiels
     /// </summary>
     public AudioSource WinSound;
+    //https://www.youtube.com/watch?v=hvs34cmWu8w (Abrufdatum: 29.01.18)
 
     /// <summary>
     /// Hilfsbool, damit Sound nur 1x gespielt wird
     /// </summary>
     bool Play = false;
+
+    public bool WalkedThrough = false;
+
+    Point next;
 
 
     void Start()
@@ -53,48 +58,28 @@ public class Knochen : MonoBehaviour
                 WinSound.Play();
                 Play = true;
             }
-            if (!KnotList[0].GetVisited())
+
+
+
+            if (KnotList.Count > 0)
             {
-                this.Move(KnotList[0]);
-            }
-            else if (!KnotList[1].GetVisited())
-            {
-                this.Move(KnotList[1]);
-            }
-            else if (!KnotList[2].GetVisited())
-            {
-                this.Move(KnotList[2]);
-            }
-            else if (!KnotList[3].GetVisited())
-            {
-                this.Move(KnotList[3]);
-            }
-            else if (!KnotList[4].GetVisited())
-            {
-                this.Move(KnotList[4]);
-            }
-            else if (!KnotList[5].GetVisited())
-            {
-                this.Move(KnotList[5]);
-            }
-            else if (!KnotList[6].GetVisited())
-            {
-                this.Move(KnotList[6]);
-            }
-            else if (!KnotList[7].GetVisited())
-            {
-                this.Move(KnotList[7]);
-            }
-            else if (!KnotList[8].GetVisited())
-            {
-                this.Move(KnotList[8]);
+                next = KnotList[0];
+                if (!next.GetVisited())
+                {
+                    this.Move(next);
+                }
+                else
+                {
+                    KnotList.RemoveAt(0);
+                }
             }
             else
             {
                 this.Km_Instance.SetGameSolved(true);
             }
-        }
 
+
+        }
     }
 
     /// <summary>
@@ -114,7 +99,8 @@ public class Knochen : MonoBehaviour
     private void DefineWay()
     {
         float z = this.transform.position.z;
-
+       
+        
         KnotList.Add(new Point(new Vector3(-21f, 2.8f, z)));
         KnotList.Add(new Point(new Vector3(-4.1f, 2.8f, z)));
         KnotList.Add(new Point(new Vector3(-4.1f, -14f, z)));
@@ -124,6 +110,7 @@ public class Knochen : MonoBehaviour
         KnotList.Add(new Point(new Vector3(5.1f, 6.3f, z)));
         KnotList.Add(new Point(new Vector3(22.4f, 6.3f, z)));
         KnotList.Add(new Point(new Vector3(22.4f, 19.2f, z)));
+    
         
     }
 }

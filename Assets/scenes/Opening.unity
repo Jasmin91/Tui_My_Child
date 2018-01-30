@@ -1206,8 +1206,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Bewegt alle zusammen mit euren Fiducials das Eichh\xF6rnchen auf den richtigen
-    Button!"
+  m_Text: "Nur mit allen vier Fiducials zusammen kann das Eichh\xF6rnchen auf den
+    richtigen Button bewegt werden!"
 --- !u!222 &1917532436
 CanvasRenderer:
   m_ObjectHideFlags: 0

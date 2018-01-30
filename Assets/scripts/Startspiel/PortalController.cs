@@ -29,6 +29,11 @@ public class PortalController : MonoBehaviour
     /// Sound, der bei Betreten des Portals abgespielt wird
     /// </summary>
     public AudioSource sound;
+    //Quellen:
+    //Bär: https://www.youtube.com/watch?v=TCswyCcVQNg&t (Abrufdatum: 29.01.18)
+    //Hund: http://www.salamisound.de/3561361-einmal-bellen-und (Abrufdatum: 29.01.18)
+    //Hase: http://soundbible.com/85-Cartoon-Hop.html (Abrufdatum: 29.01.18)
+    //Pferd: https://www.youtube.com/watch?v=D0nCnS-UJLs (Abrufdatum: 29.01.18)
 
     /// <summary>
     /// Delay, bevor Minigame gestartet wird

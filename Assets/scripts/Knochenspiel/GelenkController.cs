@@ -18,6 +18,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+Code angepasst von: Jasmin Profus
 */
 
 using System;
@@ -50,7 +52,7 @@ public class GelenkController : MonoBehaviour
     /// <summary>
     /// Wert, um welchen Drehung abweichen darf
     /// </summary>
-    private float deviation = 5f;
+    private float deviation = 10f;
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 

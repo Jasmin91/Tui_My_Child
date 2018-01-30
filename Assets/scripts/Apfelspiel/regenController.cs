@@ -18,6 +18,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+Code angepasst von: Jasmin Profus
 */
 
 using System;
@@ -61,6 +63,7 @@ public class regenController : MonoBehaviour
     /// Sound bei Anzeigen der Wolke
     /// </summary>
     public AudioSource RainSound;
+    //http://www.salamisound.de/1871420-einsetzender-regen-auf-einer (Abrufdatum: 29.01.18)
 
     /// <summary>
     /// Hilfsbool, damit Sound nur 1xgespielt wird

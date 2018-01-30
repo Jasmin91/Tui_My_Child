@@ -138,7 +138,6 @@ public class Timer : MonoBehaviour
         }
 
         int[] IDs = this.Manager.GetAllIDs();
-
         if (!IsRunning() && !this.m_TuioManager.IsMarkerAlive(0) && !this.m_TuioManager.IsMarkerAlive(1) && !this.m_TuioManager.IsMarkerAlive(2) && !this.m_TuioManager.IsMarkerAlive(3))
         {
             Manager.GetTimer().StartTimer(Countdown);
@@ -147,7 +146,7 @@ public class Timer : MonoBehaviour
         {
             Manager.GetTimer().ResetTimer();
         }
-    
+
     }
 
     /// <summary>
@@ -157,7 +156,7 @@ public class Timer : MonoBehaviour
     public void StartTimer(float duration)
     {
         ResetTime = duration;
-        Countdown = duration;
+        //Countdown = duration;
         TimeToWarn = duration - WaitingTime;
         paused = false;
     }
@@ -207,7 +206,7 @@ public class Timer : MonoBehaviour
     /// <param name="time">Aktuelle Countdown Zeit</param>
     private void PrintTimer(float time)
     {
-        int IntTime = (int) time;
+        int IntTime = (int)time;
         Ausgabe.text = "Das Spiel endet in " + (int)time + " Sekunden, wenn kein Fiducial auf dem Tisch steht!";
         Cloud.GetComponent<GUITexture>().enabled = true;
     }

@@ -17,6 +17,7 @@ public class Point
     public Vector3 position;
     private bool visited = false;
     
+
     /// <summary>
     /// Constructor, dem Position mitgegeben werden muss
     /// </summary>
@@ -25,7 +26,6 @@ public class Point
     {
         this.position = pos;
     }
-  
 
     /// <summary>
     ///  Methode vergleicht, ob Position mit Position des Point übereinstimmt

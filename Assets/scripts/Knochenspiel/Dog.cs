@@ -33,6 +33,7 @@ public class Dog : MonoBehaviour
     /// Sound, den Hund am Ende des Spiels macht
     /// </summary>
     public AudioSource DogSound;
+    //http://www.salamisound.de/3561361-einmal-bellen-und (Abrufdatum: 29.01.18)
 
 
     void Start()
