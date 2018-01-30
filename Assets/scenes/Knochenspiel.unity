@@ -631,6 +631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 7
   WinSound: {fileID: 543683017}
+  WalkedThrough: 0
 --- !u!82 &543683017
 AudioSource:
   m_ObjectHideFlags: 0

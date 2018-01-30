@@ -45,6 +45,8 @@ public class Knochen : MonoBehaviour
     {
         this.Km_Instance = KnochenManager.Instance;
         this.DefineWay();
+        WalkedThrough = false;
+        
     }
 
 

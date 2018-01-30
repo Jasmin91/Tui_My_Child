@@ -35,6 +35,7 @@ public class KnochenManager {
             if (km_Instance == null)
 			{
                 km_Instance = new KnochenManager();
+
 			}
             return km_Instance;
 		}
@@ -69,7 +70,10 @@ public class KnochenManager {
     /// <param name="gc">Hinzuzufügendes Gelenk</param>
     public void AddGelenk(GelenkController gc)
     {
+
         this.GelenkList.Add(gc);
+
+        
     }
     
     /// <summary>
@@ -77,7 +81,7 @@ public class KnochenManager {
     /// </summary>
     public void ResetGame()
     {
-        GelenkList.Clear();
+       // GelenkList.Clear();
         GameSolved = false;
     }
 
@@ -98,14 +102,28 @@ public class KnochenManager {
     /// <returns>Bool, ob Lösungsweg gefunden wurde</returns>
     public bool GetRightWayFound()
     {
-        bool result = true;
-        foreach (GelenkController gk in GelenkList)
-        {
-            if (!gk.GetRightRotation())
-            {
-                result = false;
+        bool result = false;
+        int count = 0;
 
+        Debug.Log(GelenkList.Count);
+        if (GelenkList.Count > 0)
+        {
+            foreach (GelenkController gk in GelenkList)
+            {
+                if (gk != null)
+                {
+                    if (gk.GetRightRotation())
+                    {
+                        
+                        count++;
+
+                    }
+               }
             }
+        }
+        if (count == 4)
+        {
+            result = true;
         }
         return result;
     }

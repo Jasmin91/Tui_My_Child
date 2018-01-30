@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: 0406c56bf41344047b64ae6f95c64f6d
   - enabled: 1
     path: Assets/scenes/biene.unity
-    guid: 7312a92089783ff459b701cdfe8f62d7
+    guid: 0e7c280095188d346928a4465f88a5c0
   - enabled: 1
     path: Assets/scenes/Closing.unity
     guid: fe47b9275d136454981fbe103a16ecf0

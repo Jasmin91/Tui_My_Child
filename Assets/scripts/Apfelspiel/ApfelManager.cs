@@ -76,6 +76,11 @@ public class ApfelManager {
     /// <param name="apple">Dem Array hinzuzufügender Apfel</param>
     public void AddApple(AppleScript apple)
     {
+
+        if (AppleList.Count == 4)
+        {
+            AppleList.Clear();
+        }
         this.AppleList.Add(apple);
     }
 
