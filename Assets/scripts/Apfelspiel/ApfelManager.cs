@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Jasmin Profus
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -76,6 +78,11 @@ public class ApfelManager {
     /// <param name="apple">Dem Array hinzuzufügender Apfel</param>
     public void AddApple(AppleScript apple)
     {
+
+        if (AppleList.Count == 4)
+        {
+            AppleList.Clear();
+        }
         this.AppleList.Add(apple);
     }
 

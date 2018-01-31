@@ -32,6 +32,10 @@ using UnityEngine;
 public class GelenkController : MonoBehaviour
 {
     public int MarkerID = 0;
+
+    /// <summary>
+    /// Bool, ob Rotation stimmt
+    /// </summary>
     bool RightRotation = false;
 
     /// <summary>
@@ -53,6 +57,7 @@ public class GelenkController : MonoBehaviour
     /// Wert, um welchen Drehung abweichen darf
     /// </summary>
     private float deviation = 10f;
+    
 
     public enum RotationAxis { Forward, Back, Up, Down, Left, Right };
 
@@ -89,6 +94,7 @@ public class GelenkController : MonoBehaviour
 
         this.m_TuioManager.Connect();
         this.Manager = KnochenManager.Instance;
+        this.RightRotation = false;
         this.Manager.AddGelenk(this);
 
 
@@ -231,7 +237,6 @@ public class GelenkController : MonoBehaviour
         {
             result = true;
         }
-        
         return result;
     }
 

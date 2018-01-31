@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Author: Jasmin Profus
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -45,6 +47,8 @@ public class Knochen : MonoBehaviour
     {
         this.Km_Instance = KnochenManager.Instance;
         this.DefineWay();
+        WalkedThrough = false;
+        
     }
 
 

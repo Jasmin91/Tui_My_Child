@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//Author: Jasmin Profus
+
+using UnityEngine;
 
 /// <summary>  
 ///  Diese Klasse steuert die  Funktion eines  Apfels
