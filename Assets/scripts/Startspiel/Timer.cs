@@ -1,3 +1,5 @@
+//Author: Jasmin Profus
+
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
